@@ -4,7 +4,7 @@ import el from './common/dom-el.js'
 import pluginManager from './plugin-manager.js'
 // plugins
 import furnitureLibrary from './plugins/furniture-library.js'
-import googleBlocks from './plugins/google-blocks.js'
+import polyModels from './plugins/poly-models.js'
 import staffPicks from './plugins/staff-picks.js'
 
 var PLUGINS = {
@@ -15,9 +15,9 @@ var PLUGINS = {
     // access
     module: furnitureLibrary
   },
-  googleBlocks: {
-    displayTitle: '🥑&nbsp;&nbsp;google blocks',
-    module: googleBlocks
+  polyModels: {
+    displayTitle: '🥑&nbsp;&nbsp;poly.google.com',
+    module: polyModels
   },
   staffPicks: {
     displayTitle: '✨&nbsp;&nbsp;staff picks',
@@ -64,30 +64,56 @@ function detachCss () {
 // initializes launcher with plugins
 pluginManager.setPlugins(PLUGINS)
 
-// handle inspector events
-if (AFRAME && AFRAME.INSPECTOR && AFRAME.INSPECTOR.opened) {
-  // inspector opened: init immediately
+window.onload=function loadButton() {
+  // pluginManager.show3dioButton()
+  console.log("Initializing 3dio stuff")
   init()
-} else {
-  // initialize on inspector ready event
-  window.addEventListener('inspector-loaded', init, {once: true})
 }
+
+
+// // handle inspector events
+// if (AFRAME && AFRAME.INSPECTOR && AFRAME.INSPECTOR.opened) {
+//   // inspector opened: init immediately
+//   init()
+// } else {
+//   // initialize on inspector ready event
+//   window.addEventListener('inspector-loaded', init, {once: true})
+// }
+//
+// function init () {
+//
+//   if (typeof AFRAME.INSPECTOR.on !== 'function') {
+//     console.warn('3dio.js: 3d.io inspector plugins require A-Frame version 0.7.0 or higher.')
+//
+//   } else {
+//
+//     if (AFRAME.INSPECTOR.opened) show()
+//     AFRAME.INSPECTOR.on('inspectormodechanged', function (isOpen) {
+//       isOpen ? show() : hide()
+//     })
+//
+//   }
+//
+// }
+
 
 function init () {
-
-  if (typeof AFRAME.INSPECTOR.on !== 'function') {
-    console.warn('3dio.js: 3d.io inspector plugins require A-Frame version 0.7.0 or higher.')
-
-  } else {
-
-    if (AFRAME.INSPECTOR.opened) show()
-    AFRAME.INSPECTOR.on('inspectormodechanged', function (isOpen) {
-      isOpen ? show() : hide()
-    })
-
-  }
+show()
+  // if (typeof AFRAME.INSPECTOR.on !== 'function') {
+  //   console.warn('3dio.js: 3d.io inspector plugins require A-Frame version 0.7.0 or higher.')
+  //
+  // } else {
+  //
+  //   if (AFRAME.INSPECTOR.opened) show()
+  //   AFRAME.INSPECTOR.on('inspectormodechanged', function (isOpen) {
+  //     isOpen ? show() : hide()
+  //   })
+  //
+  // }
 
 }
+
+
 
 function show () {
   appendCss()
