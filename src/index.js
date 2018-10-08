@@ -64,54 +64,54 @@ function detachCss () {
 // initializes launcher with plugins
 pluginManager.setPlugins(PLUGINS)
 
-window.onload=function loadButton() {
-  // pluginManager.show3dioButton()
-  console.log("Initializing 3dio stuff")
-  init()
-}
-
-
-// // handle inspector events
-// if (AFRAME && AFRAME.INSPECTOR && AFRAME.INSPECTOR.opened) {
-//   // inspector opened: init immediately
+// window.onload=function loadButton() {
+//   // pluginManager.show3dioButton()
+//   console.log("Initializing 3dio stuff")
 //   init()
-// } else {
-//   // initialize on inspector ready event
-//   window.addEventListener('inspector-loaded', init, {once: true})
 // }
-//
+
+
+// // // handle inspector events
+// // if (AFRAME && AFRAME.INSPECTOR && AFRAME.INSPECTOR.opened) {
+// //   // inspector opened: init immediately
+// //   init()
+// // } else {
+// //   // initialize on inspector ready event
+// //   window.addEventListener('inspector-loaded', init, {once: true})
+// // }
+// //
+// // function init () {
+// //
+// //   if (typeof AFRAME.INSPECTOR.on !== 'function') {
+// //     console.warn('3dio.js: 3d.io inspector plugins require A-Frame version 0.7.0 or higher.')
+// //
+// //   } else {
+// //
+// //     if (AFRAME.INSPECTOR.opened) show()
+// //     AFRAME.INSPECTOR.on('inspectormodechanged', function (isOpen) {
+// //       isOpen ? show() : hide()
+// //     })
+// //
+// //   }
+// //
+// // }
+
+
 // function init () {
-//
-//   if (typeof AFRAME.INSPECTOR.on !== 'function') {
-//     console.warn('3dio.js: 3d.io inspector plugins require A-Frame version 0.7.0 or higher.')
-//
-//   } else {
-//
-//     if (AFRAME.INSPECTOR.opened) show()
-//     AFRAME.INSPECTOR.on('inspectormodechanged', function (isOpen) {
-//       isOpen ? show() : hide()
-//     })
-//
-//   }
-//
+// show()
+//   // if (typeof AFRAME.INSPECTOR.on !== 'function') {
+//   //   console.warn('3dio.js: 3d.io inspector plugins require A-Frame version 0.7.0 or higher.')
+//   //
+//   // } else {
+//   //
+//   //   if (AFRAME.INSPECTOR.opened) show()
+//   //   AFRAME.INSPECTOR.on('inspectormodechanged', function (isOpen) {
+//   //     isOpen ? show() : hide()
+//   //   })
+//   //
+//   // }
+
 // }
-
-
-function init () {
-show()
-  // if (typeof AFRAME.INSPECTOR.on !== 'function') {
-  //   console.warn('3dio.js: 3d.io inspector plugins require A-Frame version 0.7.0 or higher.')
-  //
-  // } else {
-  //
-  //   if (AFRAME.INSPECTOR.opened) show()
-  //   AFRAME.INSPECTOR.on('inspectormodechanged', function (isOpen) {
-  //     isOpen ? show() : hide()
-  //   })
-  //
-  // }
-
-}
 
 
 
@@ -130,10 +130,19 @@ function hide () {
 
 // expose API
 
-var io3dInspectorPlugins = {
-  setInitialPlugin: setInitialPlugin,
-  showMenu: pluginManager.showMenu,
-  hideMenu: pluginManager.hideMenu
-}
+	// expose API
+
+	var io3dInspectorPlugins = {
+	  setInitialPlugin: setInitialPlugin,
+	  showMenu: pluginManager.showMenu,
+	  hideMenu: pluginManager.hideMenu,
+	  
+	  //ADDED BY JAFET
+	  // showButton: pluginManager.show3dioButton,
+	  // hideButton: pluginManager.hide3dioButton
+	  show: show,
+	  hide: hide
+	};
+
 
 export default io3dInspectorPlugins
