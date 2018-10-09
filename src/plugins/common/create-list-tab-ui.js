@@ -3,6 +3,8 @@ import createTabUi from './create-tab-ui.js'
 import pickPointOnGroundPlane from './pick-point-on-ground-plane.js'
 import getCenteredImageLayout from './get-centered-image-layout.js'
 
+import $ from "jquery";
+
 // shared internals
 
 var showDragAndDropHint = true
@@ -116,8 +118,10 @@ function createListTabUi(args) {
         var cameraEl = document.querySelector('#camera2');
         cameraEl.setAttribute('camera', 'active', true);
         var camera2 = cameraEl.getObject3D('camera');
-        camera2.position.set(20, 10, 20);
-        camera2.lookAt(new THREE.Vector3());
+        // camera2.position.set(20, 10, 20);
+        camera2.position.set(playerPosition.x+20, playerPosition.y+20, playerPosition.z+20);
+        // camera2.lookAt(new THREE.Vector3());
+        camera2.lookAt(playerPosition);
         camera2.updateMatrixWorld();
 
 
@@ -309,14 +313,20 @@ function createListTabUi(args) {
 
 
 
+    // var cameraPass=$.extend(true,{}, cameraEl)
+    // cameraEl.setAttribute('camera', 'active', false);
+    // cameraEl.setAttribute('camera', 'active', false);
 
 
+      cameraEl.setAttribute('camera', 'active', false);
+      el.setAttribute('camera', 'active', true);
 
     var position = pickPointOnGroundPlane({
       x: e.x,
       y: e.y,
       canvas: AFRAME.scenes[0].canvas, //,
       tempCamera: camera2, //AFRAME.INSPECTOR.EDITOR_CAMERA
+      // tempCamera: cameraPass.getObject3D('camera'), //AFRAME.INSPECTOR.EDITOR_CAMERA
       playerPosition:el.getObject3D('camera').position//playerPosition
     })
     // var position = pickPointOnGroundPlane({
@@ -333,14 +343,20 @@ function createListTabUi(args) {
     // position.y=1
     // get item data
     var item = JSON.parse(e.dataTransfer.getData('text/plain'))
-    // onItemDropCallback(item, position.add(el.getObject3D('camera').position).sub(camera2.position), function() {
     // onItemDropCallback(item, position.add(el.getObject3D('camera').position), function() {
-    // onItemDropCallback(item, position.add(el.getObject3D('camera').position).sub(camera2.position), function() {
-    // onItemDropCallback(item, position.sub(camera2.position), function() {
-    onItemDropCallback(item, position, function() {
+    
+    // var newPos=position.add(el.getObject3D('camera').position)
+    var newPos = new THREE.Vector3()
+    newPos.addVectors(position,el.getObject3D('camera').position)
+    newPos.y=0
+    onItemDropCallback(item, newPos, function() {
+
+    // onItemDropCallback(item, position, function() {
 
       // cameraEl.setAttribute('camera', 'active', false);
       // el.setAttribute('camera', 'active', true);
+      // cameraEl.setAttribute('camera', 'active', true);
+      // el.setAttribute('camera', 'active', false);
 
     })
     // onItemDropCallback(item, position, function() {})
