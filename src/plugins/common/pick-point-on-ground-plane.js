@@ -65,22 +65,17 @@ export default function pickPointOnGroundPlane(args) {
   //SAME PLACE WHERE THE USER IS LOCATED, NOT A CAMERA WITH A POSITION OF 0,0,0. SO FIND
   //A WAY TO SOLVE THAT
 
-  // var tempCamera2=jQuery.extend({}, tempCamera)
-  // var tempCamera2=$.extend(true,{}, tempCamera)
-  // tempCamera2.position=tempCamera2.position.sub(playerPosition);
-  // tempCamera2.lookAt(new THREE.Vector3())
+  // var tempCamera2=$.extend({}, tempCamera)
+  var tempCamera2=$.extend(true,{}, tempCamera)
+  tempCamera2.position=tempCamera2.position.sub(playerPosition);
+  tempCamera2.lookAt(new THREE.Vector3())
 
   // setup raycaster
   pickingRaycaster.set(
-    tempCamera.position,
+    tempCamera2.position,
     // position,
-    // pickingVector.set(nX, nY, 1).unproject(tempCamera).sub(tempCamera.position)//.normalize()
     // pickingVector.set(nX, nY, 1).unproject(tempCamera).sub(tempCamera.position).normalize()
-    // pickingVector.set(nX, nY, 1).unproject(tempCamera).sub(tempCamera.position).normalize()
-    // pickingVector.set(nX, nY, 1).unproject(tempCamera2).sub(tempCamera2.position).normalize()
-    // pickingVector.set(nX, nY, 1).unproject(tempCamera).sub(tempCamera.position).normalize()
-    // pickingVector.set(x, y, 1).unproject(tempCamera).normalize()
-    pickingVector.set(nX, nY, 1).unproject(tempCamera).sub(tempCamera.position).normalize()
+    pickingVector.set(nX, nY, 1).unproject(tempCamera2).sub(tempCamera2.position).normalize()
   )
 
   // shoot ray
