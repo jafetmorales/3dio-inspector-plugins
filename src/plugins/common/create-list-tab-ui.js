@@ -107,17 +107,17 @@ function createListTabUi(args) {
         e.dataTransfer.setData('text/plain', JSON.stringify(item))
 
         console.log("dragging just started")
-        var cameraEl = document.querySelector('#camera2');
-        // var playerPosition = el.getAttribute('position');
-        // var cameraEl = document.createElement('a-camera')
-        cameraEl.setAttribute('camera', 'active', true);
         var el = document.querySelector('#mynameis');
         var playerPosition = el.getAttribute('position');
 
         document.querySelector('#mynameis').setAttribute('camera', 'active', false);
+
+
+        var cameraEl = document.querySelector('#camera2');
+        cameraEl.setAttribute('camera', 'active', true);
         var camera2 = cameraEl.getObject3D('camera');
-        camera2.position.set(playerPosition.x + 20, playerPosition.y + 10, playerPosition.z + 20);
-        camera2.lookAt(playerPosition);
+        camera2.position.set(20, 10, 20);
+        camera2.lookAt(new THREE.Vector3());
         camera2.updateMatrixWorld();
 
 
@@ -280,9 +280,9 @@ function createListTabUi(args) {
     // var camera = AFRAME.scenes[0].camera.el.getObject3D('camera')
     var el = document.querySelector('#mynameis');
     var playerPosition = el.getAttribute('position');
-    var cameraEl = document.createElement('a-camera')
-    cameraEl.setAttribute('camera', 'active', true);
-    document.querySelector('a-scene').appendChild(cameraEl);
+    // var cameraEl = document.createElement('a-camera')
+    // cameraEl.setAttribute('camera', 'active', true);
+    // document.querySelector('a-scene').appendChild(cameraEl);
     // cameraEl.addEventListener('loaded', function() {
     console.log('temporary camera attached');
     // var camera2 = cameraEl.getObject3D('camera');
@@ -303,6 +303,10 @@ function createListTabUi(args) {
     var camera2 = cameraEl.getObject3D('camera');
     console.log("Jafet says camera 2 position is")
     console.log(camera2.position)
+        //     camera2.position.set(20, 10, 20);
+        // camera2.lookAt(new THREE.Vector3());
+        // camera2.updateMatrixWorld();
+
 
 
 
@@ -313,7 +317,7 @@ function createListTabUi(args) {
       y: e.y,
       canvas: AFRAME.scenes[0].canvas, //,
       tempCamera: camera2, //AFRAME.INSPECTOR.EDITOR_CAMERA
-      playerPosition:playerPosition
+      playerPosition:el.getObject3D('camera').position//playerPosition
     })
     // var position = pickPointOnGroundPlane({
     //   x: playerPosition.x,
@@ -326,12 +330,17 @@ function createListTabUi(args) {
     console.log("Jafet says drop off location is:")
     console.log(position)
     
-    position.y=1
+    // position.y=1
     // get item data
     var item = JSON.parse(e.dataTransfer.getData('text/plain'))
+    // onItemDropCallback(item, position.add(el.getObject3D('camera').position).sub(camera2.position), function() {
+    // onItemDropCallback(item, position.add(el.getObject3D('camera').position), function() {
+    // onItemDropCallback(item, position.add(el.getObject3D('camera').position).sub(camera2.position), function() {
+    // onItemDropCallback(item, position.sub(camera2.position), function() {
     onItemDropCallback(item, position, function() {
-      cameraEl.setAttribute('camera', 'active', false);
-      el.setAttribute('camera', 'active', true);
+
+      // cameraEl.setAttribute('camera', 'active', false);
+      // el.setAttribute('camera', 'active', true);
 
     })
     // onItemDropCallback(item, position, function() {})
