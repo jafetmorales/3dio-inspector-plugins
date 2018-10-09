@@ -4,6 +4,8 @@ pickingPlane.updateMatrixWorld()
 var pickingVector = new THREE.Vector3()
 var pickingRaycaster = new THREE.Raycaster()
 
+import $ from "jquery";
+
 export default function pickPointOnGroundPlane(args) {
 
   // API
@@ -20,8 +22,8 @@ export default function pickPointOnGroundPlane(args) {
   // get normalized 2D coordinates
   if (nX === undefined || nY === undefined) {
     var viewport = canvas.getBoundingClientRect()
-    nX = 2 * (x - viewport.left) / viewport.width //- 1
-    nY = -(2 * (y - viewport.top) / viewport.height )//- 1)
+    nX = 2 * (x - viewport.left) / viewport.width - 1
+    nY = -(2 * (y - viewport.top) / viewport.height - 1)
   }
 
 
@@ -63,17 +65,22 @@ export default function pickPointOnGroundPlane(args) {
   //SAME PLACE WHERE THE USER IS LOCATED, NOT A CAMERA WITH A POSITION OF 0,0,0. SO FIND
   //A WAY TO SOLVE THAT
 
-  var tempCamera2=
+  // var tempCamera2=jQuery.extend({}, tempCamera)
+  // var tempCamera2=$.extend(true,{}, tempCamera)
+  // tempCamera2.position=tempCamera2.position.sub(playerPosition);
+  // tempCamera2.lookAt(new THREE.Vector3())
 
   // setup raycaster
   pickingRaycaster.set(
     tempCamera.position,
     // position,
-    // pickingVector.set(nX, nY, 1).unproject(camera).sub(camera.position).normalize()
+    // pickingVector.set(nX, nY, 1).unproject(tempCamera).sub(tempCamera.position)//.normalize()
     // pickingVector.set(nX, nY, 1).unproject(tempCamera).sub(tempCamera.position).normalize()
-    // pickingVector.set(nX, nY, 1).unproject(tempCamera).normalize()
+    // pickingVector.set(nX, nY, 1).unproject(tempCamera).sub(tempCamera.position).normalize()
+    // pickingVector.set(nX, nY, 1).unproject(tempCamera2).sub(tempCamera2.position).normalize()
+    // pickingVector.set(nX, nY, 1).unproject(tempCamera).sub(tempCamera.position).normalize()
+    // pickingVector.set(x, y, 1).unproject(tempCamera).normalize()
     pickingVector.set(nX, nY, 1).unproject(tempCamera).sub(tempCamera.position).normalize()
-    // pickingVector.set(x, y, 1).unproject(tempCamera)
   )
 
   // shoot ray
