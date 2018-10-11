@@ -1,148 +1,146 @@
-import css from './less/style.less'
-import el from './common/dom-el.js'
-// plugin manager & menu
-import pluginManager from './plugin-manager.js'
-// plugins
-import furnitureLibrary from './plugins/furniture-library.js'
-import polyModels from './plugins/poly-models.js'
-import staffPicks from './plugins/staff-picks.js'
+import createListTabUi from './common/create-list-tab-ui.js'
 
-var PLUGINS = {
-  // name
-  furnitureLibrary: {
-    // ui
-    displayTitle: '🏠&nbsp;&nbsp;furniture library',
-    // access
-    module: furnitureLibrary
-  },
-  polyModels: {
-    displayTitle: '🥑&nbsp;&nbsp;poly.google.com',
-    module: polyModels
-  },
-  staffPicks: {
-    displayTitle: '✨&nbsp;&nbsp;staff picks',
-    module: staffPicks
-  }
+// config
+
+var DEFAULT_SEARCH_VALUE = 'house'
+
+// export
+
+var scope = {
+  show: show,
+  hide: hide,
+  isVisible: false
 }
 
-window.io3d.aFrame.activePluginName = null
+// internals
 
-function setInitialPlugin (name) {
-  window.io3d.aFrame.activePluginName = name
-}
+var isInitialized = false
+var listTab
 
-// check dependencies
-if (!window.AFRAME) {
-  throw 'Error loading 3d.io Inspector Plugins: Missing dependency: "AFRAME"\n' +
-  'Please add "<script src="https://aframe.io/releases/0.6.1/aframe.min.js"></script>" to "<head>" tag before loading 3d.io plugins.' +
-  'Read more: https://aframe.io/docs/0.7.0/introduction/'
-}
-if (!window.io3d) {
-  throw 'Error loading 3d.io Inspector Plugins: Missing dependency: "io3d"\n' +
-  'Please add "<script src="https://dist.3d.io/3dio-js/1.x.x-beta/3dio.min.js"></script>" to "<head>" tag before loading 3d.io plugins.' +
-  'Read more: https://3d.io/docs/api/1/get-started-browser.html'
-}
+// methods
 
-// prevents 3dio lib from loading plugins (ie in dev mode)
-window.io3d.aFrame.pluginsLoaded = true
+function init () {
 
-// add css to page
-var cssEl = el('<style>', {
-  id: 'io3d-inspector-plugins___css',
-  media: 'screen',
-  text: css
-})
-
-function appendCss () {
-  cssEl.appendTo(document.head)
-}
-
-function detachCss () {
-  document.head.removeChild(cssEl)
-}
-
-// initializes launcher with plugins
-pluginManager.setPlugins(PLUGINS)
-
-// window.onload=function loadButton() {
-//   // pluginManager.show3dioButton()
-//   console.log("Initializing 3dio stuff")
-//   init()
-// }
-
-
-// // // handle inspector events
-// // if (AFRAME && AFRAME.INSPECTOR && AFRAME.INSPECTOR.opened) {
-// //   // inspector opened: init immediately
-// //   init()
-// // } else {
-// //   // initialize on inspector ready event
-// //   window.addEventListener('inspector-loaded', init, {once: true})
-// // }
-// //
-// // function init () {
-// //
-// //   if (typeof AFRAME.INSPECTOR.on !== 'function') {
-// //     console.warn('3dio.js: 3d.io inspector plugins require A-Frame version 0.7.0 or higher.')
-// //
-// //   } else {
-// //
-// //     if (AFRAME.INSPECTOR.opened) show()
-// //     AFRAME.INSPECTOR.on('inspectormodechanged', function (isOpen) {
-// //       isOpen ? show() : hide()
-// //     })
-// //
-// //   }
-// //
-// // }
-
-
-// function init () {
-// show()
-//   // if (typeof AFRAME.INSPECTOR.on !== 'function') {
-//   //   console.warn('3dio.js: 3d.io inspector plugins require A-Frame version 0.7.0 or higher.')
-//   //
-//   // } else {
-//   //
-//   //   if (AFRAME.INSPECTOR.opened) show()
-//   //   AFRAME.INSPECTOR.on('inspectormodechanged', function (isOpen) {
-//   //     isOpen ? show() : hide()
-//   //   })
-//   //
-//   // }
-
-// }
-
-
-
-function show () {
-  appendCss()
-  pluginManager.show3dioButton()
-  if (window.io3d.aFrame.activePluginName) pluginManager.showPlugin(window.io3d.aFrame.activePluginName, false)
-}
-
-function hide () {
-  setInitialPlugin(null)
-  pluginManager.hide3dioButton(function () {
-    detachCss()
+  listTab = createListTabUi({
+    title: 'Models from <a target="_blank" href="https://poly.google.com">poly.google.com</a>',
+    onSearchChange: search,
+    onItemDrop: addToScene,
+    onHide: function () {
+      scope.isVisible = false
+    }
   })
+
+  isInitialized = true
+
+}
+
+function callSearchApi (offset, value) {
+  return fetch('https://gblock.3d.io/api/search?limit=10&offset=' + offset + '&query=' + value).then(function (response) {
+    return response.json()
+  })
+}
+
+function search (value, offset) {
+
+  listTab.setInfo('Loading ...')
+  listTab.setList(null)
+
+  Promise.all([
+    // google has a limit fo max 10 result per call :/
+    // so we do 3 api calls and merge the results into one
+    callSearchApi(1, value),
+    callSearchApi(11, value),
+    callSearchApi(21, value)
+  ]).then(function (results) {
+    return results[0].items.concat(results[1].items).concat(results[2].items)
+  }).then(function (results) {
+
+    var items = results.map(function (item_) {
+      return {
+        title: item_.title + ' by ' + item_.author,
+        thumb: item_.image,
+        url: item_.url,
+        author: item_.author
+      }
+    })
+
+    listTab.setList(items)
+    var info = 'API code is open sourced on <a target="_blank" href="https://github.com/archilogic-com/aframe-gblock/blob/master/server/api-methods.js">github</a>'
+    listTab.setInfo(items.length ? info : 'No results found.')
+
+  }).catch(function (error) {
+    console.error(error)
+    io3d.utils.ui.message.error('Sorry, something went wrong:\n\n' + JSON.stringify(error, null, 2))
+  })
+
+}
+
+function addToScene (item, position, callback) {
+
+  var uiMessage = io3d.utils.ui.message('Loading glTF from<br><a class="io3d-inspector-plugins___truncate-message" href="' + item.url + '" target="_blank">' + item.url + '</a>', 0)
+
+  // add new entity to scene
+  var newEntity = document.createElement('a-entity')
+
+  newEntity.addEventListener('model-loaded', function (event) {
+
+    uiMessage.close()
+    io3d.utils.ui.message.success('Added<br><a class="io3d-inspector-plugins___truncate-message" href="' + item.url + '" target="_blank">' + item.url + '</a>')
+
+    // center model to picking position
+    var bb = new THREE.Box3().setFromObject(event.detail.model) // bounding box
+    var size = new THREE.Vector3(Math.abs(bb.max.x - bb.min.x), Math.abs(bb.max.y - bb.min.y), Math.abs(bb.max.z - bb.min.z))
+    position.set(
+      position.x - bb.min.x - size.x / 2,
+      -bb.min.y,
+      position.z - bb.min.z - size.z / 2
+    )
+
+    newEntity.setAttribute('position', position.x + ' ' + position.y + ' ' + position.z)
+
+    callback()
+
+  }, {once: true})
+
+  newEntity.addEventListener('model-error', function (event) {
+
+    uiMessage.close()
+    io3d.utils.ui.message.error('Sorry: ' + event.detail.message + '<br/><a class="io3d-inspector-plugins___truncate-message" href="' + item.url + '" target="_blank">' + item.url + '</a>')
+
+  }, {once: true})
+
+  newEntity.setAttribute('gblock', item.url)
+  document.querySelector('a-scene').appendChild(newEntity)
+
+}
+
+function show (callback, animate) {
+
+  if (!isInitialized) init()
+
+  if (scope.isVisible) return
+  scope.isVisible = true
+
+  listTab.show(callback, animate)
+
+  if (!listTab.getSearchValue()) {
+    search(DEFAULT_SEARCH_VALUE)
+    listTab.setSearchValue(DEFAULT_SEARCH_VALUE)
+  }
+
+}
+
+function hide (callback, animate) {
+
+  if (!isInitialized) return
+
+  if (!scope.isVisible) return
+  scope.isVisible = false
+
+  listTab.hide(callback, animate)
+
 }
 
 // expose API
 
-	// expose API
-
-	var io3dInspectorPlugins = {
-	  setInitialPlugin: setInitialPlugin,
-	  showMenu: pluginManager.showMenu,
-	  hideMenu: pluginManager.hideMenu,
-	  
-	  //ADDED BY JAFET
-	  // showButton: pluginManager.show3dioButton,
-	  // hideButton: pluginManager.hide3dioButton
-	  show: show,
-	  hide: hide
-	};
-
-
-export default io3dInspectorPlugins
+export default scope
