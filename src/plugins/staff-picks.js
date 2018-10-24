@@ -16,13 +16,13 @@ var listTab
 
 // method
 
-function init () {
+function init() {
 
   listTab = createListTabUi({
     title: 'Staff Pics',
     listInfo: 'A growing list of models for testing and demo purposes.',
     onItemDrop: addToScene,
-    onHide: function () {
+    onHide: function() {
       scope.isVisible = false
     }
   })
@@ -36,33 +36,35 @@ function init () {
 
 }
 
-function addToScene (item, position, callback) {
+function addToScene(item, position, callback) {
 
-  var uiMessage = io3d.utils.ui.message('Loading'+(item.title ? ' "'+item.title+'" ' : ' ') +'...', 0)
+  var uiMessage = io3d.utils.ui.message('Loading' + (item.title ? ' "' + item.title + '" ' : ' ') + '...', 0)
 
   // add new entity to scene
   var newEntity = document.createElement('a-entity')
+  //LINE ADDED BY JAFET
+  newEntity.setAttribute('position', position.x + ' ' + position.y + ' ' + position.z)
 
-  newEntity.addEventListener('model-loaded', function (event) {
+  newEntity.addEventListener('model-loaded', function(event) {
 
     uiMessage.close()
-    io3d.utils.ui.message.success('Added'+(item.title ? ' "'+item.title+'"' : 'model'))
+    io3d.utils.ui.message.success('Added' + (item.title ? ' "' + item.title + '"' : 'model'))
 
     // center model to picking position
 
-    var bb = new THREE.Box3().setFromObject(event.detail.model) // bounding box
-    var size = new THREE.Vector3(Math.abs(bb.max.x - bb.min.x), Math.abs(bb.max.y - bb.min.y), Math.abs(bb.max.z - bb.min.z))
-    position.set(
-      position.x - bb.min.x - size.x / 2,
-      -bb.min.y,
-      position.z - bb.min.z - size.z / 2
-    )
-
-    newEntity.setAttribute('position', position.x + ' 0 ' + position.z)
+    //COMMENTED OUT BY JAFET
+    // var bb = new THREE.Box3().setFromObject(event.detail.model) // bounding box
+    // var size = new THREE.Vector3(Math.abs(bb.max.x - bb.min.x), Math.abs(bb.max.y - bb.min.y), Math.abs(bb.max.z - bb.min.z))
+    // position.set(
+    //   position.x - bb.min.x - size.x / 2,
+    //   -bb.min.y,
+    //   position.z - bb.min.z - size.z / 2
+    // )
+    // newEntity.setAttribute('position', position.x + ' 0 ' + position.z)
 
     callback()
 
-  }, {once: true})
+  }, { once: true })
 
   newEntity.setAttribute(item.type, stringifyAttributes(item.attributes))
 
@@ -72,7 +74,7 @@ function addToScene (item, position, callback) {
 
 }
 
-function show (callback, animate) {
+function show(callback, animate) {
 
   if (!isInitialized) init()
 
@@ -83,7 +85,7 @@ function show (callback, animate) {
 
 }
 
-function hide (callback, animate) {
+function hide(callback, animate) {
 
   if (!isInitialized) return
 
@@ -94,10 +96,10 @@ function hide (callback, animate) {
 
 }
 
-function stringifyAttributes (attributes) {
+function stringifyAttributes(attributes) {
   var s = ''
-  Object.keys(attributes).forEach(function(name){
-    s += name +': '+ attributes[name] +'; '
+  Object.keys(attributes).forEach(function(name) {
+    s += name + ': ' + attributes[name] + '; '
   })
   return s
 }
