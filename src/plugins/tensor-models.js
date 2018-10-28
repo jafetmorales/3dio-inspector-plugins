@@ -1,7 +1,13 @@
 import createListTabUi from './common/create-list-tab-ui.js'
-import tensorModelItems from './tensor-models/items.js'
+import tensorModels from './tensor-models/tensorModels.js'
+
+
+
 
 // export
+
+// import {FBAppDatabase} from './firebaseInit.js'
+
 
 var scope = {
   show: show,
@@ -30,11 +36,32 @@ function init() {
   listTab.init()
 
   listTab.setInfo('<a target="_blank" href="https://spaces.archilogic.com">Archilogic Models</a> for experimenting & testing. Kudos to <a target="_blank" href="https://twitter.com/Pandatology">@Pandatology</a>, <a target="_blank" href="https://twitter.com/anialdam">@anialdam</a>')
-  listTab.setList(tensorModelItems)
 
+  tensorModels.initializeDatabase()
+
+
+  tensorModels.fetchDefaultItems(itemsCallback)
+}
+
+function itemsCallback(itemsJson) {
+  
+  var items = [];
+for(var i in itemsJson)
+    items.push(itemsJson[i]);
+
+  console.log("bro fetched items are")
+  console.log(items)
+  
+  listTab.setList(items)
   isInitialized = true
 
-}
+} //.bind(listTab, isInitialized))
+// listTab.setList(tensorModels.defaultItems)
+// isInitialized = true
+
+
+
+// }
 
 function addToScene(item, position, callback) {
 
@@ -77,47 +104,47 @@ function addToScene(item, position, callback) {
   // // node.remove()
   var key
   for (key in item) {
-    newEntity.setAttribute(key,item[key])
-    }
-    // newEntity.setAttribute(item.type, item.value)
-    // newEntity.setAttribute('gltf-model', item['gltf-model'])
-
-    // add other attributes
-
-    document.querySelector('a-scene').appendChild(newEntity)
-
+    newEntity.setAttribute(key, item[key])
   }
+  // newEntity.setAttribute(item.type, item.value)
+  // newEntity.setAttribute('gltf-model', item['gltf-model'])
 
-  function show(callback, animate) {
+  // add other attributes
 
-    if (!isInitialized) init()
+  document.querySelector('a-scene').appendChild(newEntity)
 
-    if (scope.isVisible) return
-    scope.isVisible = true
+}
 
-    listTab.show(callback, animate)
+function show(callback, animate) {
 
-  }
+  if (!isInitialized) init()
 
-  function hide(callback, animate) {
+  if (scope.isVisible) return
+  scope.isVisible = true
 
-    if (!isInitialized) return
+  listTab.show(callback, animate)
 
-    if (!scope.isVisible) return
-    scope.isVisible = false
+}
 
-    listTab.hide(callback, animate)
+function hide(callback, animate) {
 
-  }
+  if (!isInitialized) return
 
-  function stringifyAttributes(attributes) {
-    var s = ''
-    Object.keys(attributes).forEach(function(name) {
-      s += name + ': ' + attributes[name] + '; '
-    })
-    return s
-  }
+  if (!scope.isVisible) return
+  scope.isVisible = false
 
-  // expose API
+  listTab.hide(callback, animate)
 
-  export default scope
+}
+
+function stringifyAttributes(attributes) {
+  var s = ''
+  Object.keys(attributes).forEach(function(name) {
+    s += name + ': ' + attributes[name] + '; '
+  })
+  return s
+}
+
+// expose API
+
+export default scope
