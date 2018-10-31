@@ -2,9 +2,9 @@
  * @preserve
  * @name 3dio-inspector-plugins
  * @version 0.0.6
- * @date 2018/10/27 23:49
+ * @date 2018/10/28 22:02
  * @branch master
- * @commit 4f4d0e48292db298274290b0f71b4002f8271ed4
+ * @commit 19ed749ebce6ec5024a602d5f0180f15ce2bdd8d
  * @description Connects A-Frame Inspector to 3d.io APIs
  * @see https://3d.io
  * @tutorial https://github.com/archilogic-com/3dio-inspector-plugins
@@ -18,7 +18,7 @@
 	(global.io3dInspectorPlugins = factory());
 }(this, (function () { 'use strict';
 
-	var BUILD_DATE='2018/10/27 23:49', GIT_BRANCH = 'master', GIT_COMMIT = '4f4d0e48292db298274290b0f71b4002f8271ed4'
+	var BUILD_DATE='2018/10/28 22:02', GIT_BRANCH = 'master', GIT_COMMIT = '19ed749ebce6ec5024a602d5f0180f15ce2bdd8d'
 
 	var css = "#io3d-inspector-plugins * {\n  outline: none;\n  -webkit-box-sizing: border-box;\n  /* Safari/Chrome, other WebKit */\n  -moz-box-sizing: border-box;\n  /* Firefox, other Gecko */\n  box-sizing: border-box;\n  /* Opera/IE 8+ */\n}\n.io3d-inspector-plugins___truncate-message {\n  display: inline-block;\n  overflow: hidden;\n  white-space: nowrap;\n  max-width: 365px;\n  text-overflow: ellipsis;\n  margin-bottom: 0;\n}\n.io3d-inspector-plugins * {\n  outline: none;\n  -webkit-box-sizing: border-box;\n  /* Safari/Chrome, other WebKit */\n  -moz-box-sizing: border-box;\n  /* Firefox, other Gecko */\n  box-sizing: border-box;\n  /* Opera/IE 8+ */\n}\n.io3d-inspector-plugins___tab-container {\n  position: absolute;\n  font-family: Roboto, BlinkMacSystemFont, -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif;\n  font-size: 12px;\n  top: 30px;\n  left: 0;\n  bottom: 0;\n  z-index: 100000;\n}\n.io3d-inspector-plugins___tab-container a {\n  color: #bcbcbc;\n}\n.io3d-inspector-plugins___tab {\n  position: absolute;\n  font-size: 12px;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 230px;\n  background-color: #2b2b2b;\n}\n@-webkit-keyframes io3d-inspector-plugins___tab___slide-in {\n  0% {\n    -webkit-transform: translateX(-40%);\n    opacity: 0;\n  }\n  100% {\n    -webkit-transform: translateX(0%);\n    opacity: 1;\n  }\n}\n@keyframes io3d-inspector-plugins___tab___slide-in {\n  0% {\n    transform: translateX(-40%);\n    opacity: 0;\n  }\n  100% {\n    transform: translateX(0%);\n    opacity: 1;\n  }\n}\n@-webkit-keyframes io3d-inspector-plugins___tab___slide-out {\n  0% {\n    -webkit-transform: translateX(0%);\n    opacity: 1;\n  }\n  100% {\n    -webkit-transform: translateX(-40%);\n    opacity: 0;\n  }\n}\n@keyframes io3d-inspector-plugins___tab___slide-out {\n  0% {\n    transform: translateX(0%);\n    opacity: 1;\n  }\n  100% {\n    transform: translateX(-40%);\n    opacity: 0;\n  }\n}\n#io3d-inspector-plugins___3dio-button {\n  z-index: 100000;\n  position: absolute;\n  top: 39px;\n  left: 184px;\n  height: 18px;\n  text-align: right;\n  border-radius: 3px;\n  cursor: pointer;\n}\n#io3d-inspector-plugins___3dio-button svg {\n  height: 100%;\n}\n#io3d-inspector-plugins___3dio-button svg g {\n  fill: #bcbcbc;\n  stroke: #bcbcbc;\n  stroke-width: 13;\n}\n#io3d-inspector-plugins___3dio-button svg g:hover {\n  fill: #1faaf2;\n  stroke: #1faaf2;\n  stroke-width: 13;\n}\n#io3d-inspector-plugins___plugins-menu {\n  z-index: 100001;\n  position: absolute;\n  top: 0;\n  left: 250px;\n  width: 230px;\n  font-family: Roboto, BlinkMacSystemFont, -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif;\n  font-size: 12px;\n  letter-spacing: 0px;\n  color: #bcbcbc;\n}\n@-webkit-keyframes io3d-inspector-plugins___plugins-menu-slide-in {\n  0% {\n    -webkit-transform: translateY(-40%);\n    opacity: 0;\n  }\n  100% {\n    -webkit-transform: translateY(0%);\n    opacity: 1;\n  }\n}\n@keyframes io3d-inspector-plugins___plugins-menu-slide-in {\n  0% {\n    transform: translateY(-40%);\n    opacity: 0;\n  }\n  100% {\n    transform: translateY(0%);\n    opacity: 1;\n  }\n}\n@-webkit-keyframes io3d-inspector-plugins___plugins-menu-slide-out {\n  0% {\n    -webkit-transform: translateY(0%);\n    opacity: 1;\n  }\n  100% {\n    -webkit-transform: translateY(-40%);\n    opacity: 0;\n  }\n}\n@keyframes io3d-inspector-plugins___plugins-menu-slide-out {\n  0% {\n    transform: translateY(0%);\n    opacity: 1;\n  }\n  100% {\n    transform: translateY(-40%);\n    opacity: 0;\n  }\n}\n#io3d-inspector-plugins___plugins-menu___container {\n  background-color: rgba(0, 0, 0, 0.9);\n  padding: 0 12px 0 12px;\n}\n#io3d-inspector-plugins___plugins-menu___header {\n  padding: 14px 0 14px 0;\n  border-bottom: 1px solid #bcbcbc;\n}\n#io3d-inspector-plugins___plugins-menu___close-button {\n  position: absolute;\n  top: 0;\n  right: 12px;\n  padding: 14px 0 14px 0;\n  cursor: pointer;\n}\n#io3d-inspector-plugins___plugins-menu___button {\n  padding: 10px 0 10px 0;\n  border-bottom: 1px solid #bcbcbc;\n  cursor: pointer;\n}\n#io3d-inspector-plugins___plugins-menu___button:hover {\n  background-color: rgba(255, 255, 255, 0.2);\n}\n#io3d-inspector-plugins___plugins-menu___footer {\n  padding: 14px 0 14px 0;\n  line-height: 1.3;\n}\n#io3d-inspector-plugins___plugins-menu___footer a {\n  color: #bcbcbc;\n}\n#io3d-inspector-plugins___plugins-menu___footer a:hover {\n  color: white;\n}\n#io3d-inspector-plugins___bake-lightmaps___container {\n  font-family: Roboto, BlinkMacSystemFont, -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif;\n  position: absolute;\n  top: 0px;\n  left: 246px;\n  z-index: 100000;\n}\n#io3d-inspector-plugins___bake-lightmaps___main-bar span,\n#io3d-inspector-plugins___bake-lightmaps___main-bar a {\n  text-decoration: none;\n  display: inline-block;\n  height: 33px;\n  line-height: 33px;\n  padding: 0 12px 0 12px;\n  margin: 0 0 0 0;\n  border-left: 1px solid rgba(255, 255, 255, 0.5);\n  white-space: nowrap;\n  font-weight: 400;\n  letter-spacing: 1px;\n  font-size: 12px;\n  color: white;\n  background-color: rgba(0, 0, 0, 0.8);\n}\n#io3d-inspector-plugins___bake-lightmaps___bake-button {\n  display: inline-block;\n  cursor: pointer;\n  text-decoration: none;\n  color: white;\n  font-size: 16px;\n  font-weight: 500;\n  letter-spacing: 0px;\n  height: 38px;\n  line-height: 40px;\n  padding: 0 13px 0 13px;\n  background-color: #1faaf2;\n  border-radius: 2px;\n  margin: 16px 0 0 0;\n  position: relative;\n  left: 2px;\n  top: -2px;\n  box-shadow: -2px 2px 0px 0px #105576;\n}\n#io3d-inspector-plugins___bake-lightmaps___bake-button:hover {\n  background-color: #44c3f2;\n}\n#io3d-inspector-plugins___bake-lightmaps___bake-button:active {\n  left: -1px;\n  top: 1px;\n  background-color: #105576;\n  box-shadow: -2px 2px 0px 0px rgba(0, 0, 0, 0);\n}\n#io3d-inspector-plugins___list-tab___header {\n  position: absolute;\n  width: 100%;\n  height: 64px;\n  background-color: #333;\n  top: 0;\n  left: 0;\n}\n#io3d-inspector-plugins___list-tab___title {\n  position: absolute;\n  width: 100%;\n  height: 38px;\n  line-height: 38px;\n  color: #bcbcbc;\n  padding: 0 0 0 8px;\n  top: 0;\n  left: 0;\n  letter-spacing: 1px;\n}\n#io3d-inspector-plugins___list-tab___close-button {\n  -webkit-font-smoothing: antialiased;\n  font-family: FontAwesome;\n  font-size: 16px;\n  font-weight: 200;\n  position: absolute;\n  width: 20px;\n  height: 20px;\n  line-height: 20px;\n  border-radius: 50%;\n  text-align: center;\n  top: 9px;\n  right: 4px;\n  cursor: pointer;\n  color: #bcbcbc;\n}\n#io3d-inspector-plugins___list-tab___close-button:hover {\n  color: #1faaf2;\n}\n#io3d-inspector-plugins___list-tab___close-button:before {\n  content: \"\\f00d\";\n}\n#io3d-inspector-plugins___list-tab___search-input {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  writing-mode: horizontal-tb;\n  -webkit-rtl-ordering: logical;\n  -webkit-border-image: none;\n  font-family: \"Roboto Mono\", Consolas, \"Andale Mono\", Monaco, \"Courier New\", monospace;\n  font-size: 11px;\n  font-weight: normal;\n  letter-spacing: 0px;\n  position: absolute;\n  width: 218px;\n  height: 26px;\n  line-height: 26px;\n  top: 37px;\n  left: 6px;\n  padding: 0 0 0 7px;\n  border-radius: 5px;\n  border: 0;\n  background-color: #222222;\n}\n#io3d-inspector-plugins___list-tab___search-icon {\n  font-family: FontAwesome;\n  font-size: 12px;\n  position: absolute;\n  width: 26px;\n  height: 26px;\n  line-height: 26px;\n  top: 37px;\n  right: 0;\n  color: #4d4d4d;\n}\n#io3d-inspector-plugins___list-tab___search-icon:before {\n  content: \"\\f002\";\n}\n#io3d-inspector-plugins___list-tab___list-container {\n  position: absolute;\n  width: 100%;\n  top: 64px;\n  left: 0;\n  bottom: 0;\n  padding: 0 0 20px 0;\n  overflow: auto;\n  background-color: #2b2b2b;\n}\n#io3d-inspector-plugins___list-tab___list-info {\n  position: relative;\n  display: block;\n  padding: 10px;\n  width: 100%;\n  color: #bcbcbc;\n  line-height: 1.3;\n}\n#io3d-inspector-plugins___list-tab___list-info a {\n  color: #bcbcbc;\n}\n#io3d-inspector-plugins___list-tab___list-info a:hover {\n  color: white;\n}\n#io3d-inspector-plugins___list-tab___list-item-container {\n  position: relative;\n  display: block;\n  width: 100%;\n  padding: 4px 0 0 4px;\n}\n#io3d-inspector-plugins___list-tab___list-item-container .io3d-inspector-plugins___list-item {\n  display: inline-block;\n  margin: 4px 0 0 4px;\n  position: relative;\n  width: 98px;\n  height: 98px;\n  -moz-user-select: none;\n  -webkit-user-select: none;\n  user-select: none;\n  /* Required to make elements draggable in old WebKit */\n  -khtml-user-drag: element;\n  -webkit-user-drag: element;\n  border: 1px dotted rgba(255, 255, 255, 0.4);\n  border-radius: 3px;\n  overflow: hidden;\n  -webkit-transition: border-color 1500ms;\n  transition: border-color 1500ms;\n  cursor: move;\n  /* fallback if grab cursor is unsupported */\n  cursor: grab;\n  cursor: -moz-grab;\n  cursor: -webkit-grab;\n}\n#io3d-inspector-plugins___list-tab___list-item-container .io3d-inspector-plugins___list-item:active {\n  cursor: grabbing;\n  cursor: -moz-grabbing;\n  cursor: -webkit-grabbing;\n}\n#io3d-inspector-plugins___list-tab___list-item-container .io3d-inspector-plugins___list-item:hover {\n  background-color: #333;\n}\n#io3d-inspector-plugins___list-tab___list-item-container .io3d-inspector-plugins___list-item img {\n  position: absolute;\n  opacity: 0;\n  -webkit-transition: opacity 1500ms;\n  transition: opacity 1500ms;\n}\n#io3d-inspector-plugins___list-tab___drop-plane {\n  position: absolute;\n  top: 0;\n  right: 0;\n  left: 230px;\n  height: 100%;\n  background-color: rgba(33, 172, 242, 0.15);\n  border: 2px solid #21acf2;\n  z-index: 100000;\n  opacity: 0;\n  -webkit-transition: opacity 200ms;\n  transition: opacity 200ms;\n}\n#io3d-inspector-plugins___list-tab___drop-plane-info {\n  width: 100%;\n  height: 100%;\n  line-height: 100vh;\n  text-align: center;\n  color: rgba(33, 172, 242, 0.2);\n  font-size: 68px;\n  font-weight: 400;\n  letter-spacing: 2px;\n}\n";
 
@@ -58985,11 +58985,7 @@
 	 */
 	console.warn("\nIt looks like you're using the development build of the Firebase JS SDK.\nWhen deploying Firebase apps to production, it is advisable to only import\nthe individual SDK components you intend to use.\n\nFor the module builds, these are available in the following manner\n(replace <PACKAGE> with the name of a component - i.e. auth, database, etc):\n\nCommonJS Modules:\nconst firebase = require('firebase/app');\nrequire('firebase/<PACKAGE>');\n\nES Modules:\nimport firebase from 'firebase/app';\nimport 'firebase/<PACKAGE>';\n\nTypescript:\nimport * as firebase from 'firebase/app';\nimport 'firebase/<PACKAGE>';\n");
 
-	// var AspectTypeModule = function() {};
-	// module.exports = AspectTypeModule;
-
-	class tensorModels$1 {
-	    // ...    
+	class tensorModels {
 	  static initializeDatabase() {
 	    // Initialize Firebase
 	    var config = {
@@ -59000,208 +58996,29 @@
 	      storageBucket: "vrquitect.appspot.com",
 	      messagingSenderId: "64632163739"
 	    };
+	    
 	    const FbApp = firebase$1.initializeApp(config);
-
-	    console.log("Bro FbApp is:");
-	    console.log(FbApp);
-
 	    var FBAppDatabase = FbApp.database();
-
-	    // this.tensorModelItems=[];
-
-	    this.default_ref = FBAppDatabase.ref('defaultEntities');
-	    console.log("default_ref is");
-	    console.log(this.default_ref);
-	    
-	    
-	    
-
+	    this.myItems_ref = FBAppDatabase.ref('defaultEntities');
+	    this.avatars_ref = FBAppDatabase.ref('avatars');
 	  }
 
-
-	      static fetchDefaultItems(cb) {
-	    this.default_ref.once("value").then(function(snapshot) {
-	      // this.defaultItems = snapshot.toJSON()
-	      // snapshot.forEach(function(data) {
-	      //   console.log("Data is:")
-	      //   console.log(data.val())
-	      //   this.listOfEntities.push(<MenuItem value={JSON.stringify(data.val())} label="Insert" key={data.key} style={menuItemStyle}>{data.key}</MenuItem>)
-	      // }.bind(thiss))
-	      // window.tensorModelItems=tensorModelItems
-	      console.log("bro snapshot to json is");
-	      console.log(snapshot.toJSON());
+	  static fetchMyItems(cb) {
+	    this.myItems_ref.once("value").then(function(snapshot) {
 	      cb(snapshot.toJSON());
-	      console.log("Bro The callback is");
-	      console.log(cb);
 	    }.bind(cb));
-
-	    // console.log('Bro defaultItems is:')
-	    // console.log(this.defaultItems)
-	    // return this.defaultItems
 	  }
-	  
-	    // Getter
-	  get defaultItems() {
-	    return this.defaultItems;
+	  static fetchAvatars(cb) {
+	    this.avatars_ref.once("value").then(function(snapshot) {
+	      cb(snapshot.toJSON());
+	    }.bind(cb));
 	  }
 
-
+	  // // Getter
+	  // get defaultItems() {
+	  //   return this.defaultItems;
+	  // }
 	}
-
-
-	// module.exports = {
-
-	// }
-
-
-
-
-
-
-
-
-	// export default [{
-	//   title: 'Steve Jobs Theatre',
-	//   thumb: 'https://storage.3d.io/535e624259ee6b0200000484/2017-10-02_17-55-42_Ow0tyt/sadasd.png',
-	//   editorUrl: 'https://spaces.archilogic.com/model/archilogic/clxtnlsv?modelResourceId=6f3a27fa-51e0-4773-9cb7-87d497b554af&mode=edit',
-	//   'gltf-model':'url(https://cdn.glitch.com/805efba9-e3e3-437f-aa43-050881a363ae%2Fmerged2.glb)'
-	// },{
-	//   title: 'Millennium Falcon',
-	//   thumb: 'https://storage.3d.io/535e624259ee6b0200000484/2017-10-02_17-57-37_4xyPaE/localhost_8081_examples_staff-picks_html_4.png',
-	//   attributes: {
-	//     url: 'https://storage.3d.io/535e624259ee6b0200000484/170903-1554-hl8t6r/archilogic_2017-09-03_15-47-13_dkhZ1I.gz.data3d.buffer'
-	//   },
-	//   type: 'io3d-data3d'
-	// },{
-	//   title: 'Loewy House by Albert Frey',
-	//   thumb: 'https://storage.3d.io/535e624259ee6b0200000484/2017-10-02_14-51-45_Obk9pz/Cursor_and_Archilogic.png',
-	//   editorUrl: 'https://spaces.archilogic.com/model/archilogic/wlnobthy?modelResourceId=88ac69d1-28c1-406c-890c-1f86531e2a31&mode=edit',
-	//   type: 'io3d-data3d',
-	//   attributes: {
-	//     url: 'https://storage.3d.io/535e624259ee6b0200000484/171002-1928-ticazn/archilogic_2017-10-02_19-25-55_TGu8vT.gz.data3d.buffer'
-	//   }
-	// },{
-	//   title: 'Architecture Cardboard Model',
-	//   thumb: 'https://storage.3d.io/535e624259ee6b0200000484/2017-10-02_14-26-46_cBo1I6/localhost_8081_examples_staff-picks_html_copy.png',
-	//   editorUrl: 'https://spaces.archilogic.com/model/archilogic/psm59wss?modelResourceId=3e03a0e7-587b-473f-86b1-32fba6c13a8d&mode=edit',
-	//   type: 'io3d-data3d',
-	//   attributes: {
-	//     url: 'https://storage.3d.io/535e624259ee6b0200000484/171002-1509-2xzmx3/archilogic_2017-10-02_14-50-27_85SdOH.gz.data3d.buffer',
-	//     lightMapIntensity: 0.850,
-	//     lightMapExposure: 0.9
-	//   }
-	// },{
-	//   title: 'Big Bang Theory',
-	//   thumb: 'https://storage.3d.io/535e624259ee6b0200000484/2017-10-02_16-30-51_8ZMkZR/Cursor_and_Archilogic_2.png',
-	//   editorUrl: 'https://spaces.archilogic.com/model/archilogic/fljox97z?modelResourceId=60dde7c8-d481-475f-9c0f-8ecbe57cef05&mode=edit',
-	//   type: 'io3d-data3d',
-	//   attributes: {
-	//     url: 'https://storage.3d.io/535e624259ee6b0200000484/171002-1837-069qe5/archilogic_2017-10-02_18-36-42_jZBOac.gz.data3d.buffer',
-	//     lightMapIntensity: 3,
-	//     lightMapExposure: 0.541
-	//   }
-	// },{
-	//   title: 'Room (with lightmaps)',
-	//   thumb: 'https://storage.3d.io/535e624259ee6b0200000484/2017-10-02_12-39-00_OoAMZ9/localhost_8081.png',
-	//   type: 'io3d-data3d',
-	//   attributes: {
-	//     url: 'https://storage.3d.io/535e624259ee6b0200000484/170918-2056-hp86we/archilogic_2017-09-18_20-56-43_B4LLEX.gz.data3d.buffer',
-	//   }
-	// },{
-	//   title: 'Bridge House',
-	//   thumb: 'https://storage.3d.io/535e624259ee6b0200000484/2017-10-02_14-54-19_hRwy6W/localhost_8081_examples_staff-picks_html.png',
-	//   type: 'io3d-data3d',
-	//   attributes: {
-	//     url: 'https://storage.3d.io/535e624259ee6b0200000484/170927-2018-a10bpi/archilogic_2017-09-27_20-18-12_GT3EQI.gz.data3d.buffer'
-	//   }
-	// },{
-	//   title: 'The Office',
-	//   thumb: 'https://storage.3d.io/535e624259ee6b0200000484/2017-10-02_14-57-25_gyGxcm/khjghfd.png',
-	//   editorUrl: 'https://spaces.archilogic.com/3d/archilogic/nsh7wfvq?modelResourceId=3d6acff4-abcd-4c58-b3f3-d56d99642199&mode=edit',
-	//   type: 'io3d-data3d',
-	//   attributes: {
-	//     url: 'https://storage.3d.io/535e624259ee6b0200000484/171004-1708-j45k01/archilogic_2017-10-04_17-07-52_TZmYmS.gz.data3d.buffer'
-	//   }
-	// },{
-	//   title: '55 West 17th Street @night',
-	//   thumb: 'https://storage.3d.io/535e624259ee6b0200000484/2017-10-02_16-31-03_NaN4m8/Cursor_and_Archilogic_3.png',
-	//   editorUrl: 'https://spaces.archilogic.com/model/archilogic/empzwgkx?modelResourceId=e717c8e5-3d7c-423b-b2f2-21874665a5b3&mode=edit',
-	//   type: 'io3d-data3d',
-	//   attributes: {
-	//     url: 'https://storage.3d.io/535e624259ee6b0200000484/171002-1827-w81rq6/archilogic_2017-10-02_18-25-28_CYLCC5.gz.data3d.buffer',
-	//     lightMapIntensity: 2, //2.86,
-	//     lightMapExposure: 0.6 //0.672
-	//   }
-	// },{
-	//   title: null,
-	//   thumb: 'https://storage.3d.io/535e624259ee6b0200000484/2017-10-02_16-47-24_dmVHK7/localhost_8081_examples_staff-picks_html_2.png',
-	//   editorUrl: null,
-	//   type: 'io3d-data3d',
-	//   attributes: {
-	//     url: 'https://storage.3d.io/535e624259ee6b0200000484/processing/2017-09-20_11-42-38_Vnv6ma/lighting.gz.data3d.buffer',
-	//     lightMapIntensity: 1.2,
-	//     lightMapExposure: 0.6
-	//   }
-	// },{
-	//   title: 'Apartment (with lightmaps)',
-	//   thumb: 'https://storage.3d.io/535e624259ee6b0200000484/2017-10-02_14-49-30_4F8kDN/apt.png',
-	//   type: 'io3d-data3d',
-	//   attributes: {
-	//     url: 'https://storage.3d.io/535e624259ee6b0200000484/170725-1421-wujxjb/archilogic_2017-07-25_14-19-02_hn9axa.gz.data3d.buffer'
-	//   }
-	// },{
-	//   title: 'Case Study House 4, Ralph Rapson',
-	//   thumb: 'https://storage.3d.io/535e624259ee6b0200000484/2017-10-02_16-01-30_aXZWGC/jzthgf.png',
-	//   editorUrl: 'https://spaces.archilogic.com/model/archilogic/krxvla7n?modelResourceId=ac682b97-3c9b-45a0-9c90-f1534ea769d3&mode=edit',
-	//   type: 'io3d-data3d',
-	//   attributes: {
-	//     url: 'https://storage.3d.io/535e624259ee6b0200000484/171002-1754-b4u6gv/archilogic_2017-10-02_17-52-50_41hXdK.gz.data3d.buffer',
-	//     lightMapIntensity: 2,
-	//     lightMapExposure: 0.576
-	//   }
-	// },{
-	//   title: 'Stahl House',
-	//   thumb: 'https://storage.3d.io/535e624259ee6b0200000484/2017-10-02_14-41-55_xBsnUO/sadsad.png',
-	//   editorUrl: 'https://spaces.archilogic.com/model/archilogic/la7jhe3t?modelResourceId=216cfcbc-82d3-4ad0-a834-e6cfbb173dcb&mode=edit',
-	//   type: 'io3d-data3d',
-	//   attributes: {
-	//     url: 'https://storage.3d.io/535e624259ee6b0200000484/171002-1639-r2mus5/archilogic_2017-10-02_16-39-08_HYWIGh.gz.data3d.buffer'
-	//   }
-	// },{
-	//   title: 'The Office (baked white)',
-	//   thumb: 'https://storage.3d.io/535e624259ee6b0200000484/2017-10-04_16-22-37_Od7ppw/qwesadsad-1.png',
-	//   editorUrl: 'https://spaces.archilogic.com/model/archilogic/uhyxqfvr?modelResourceId=34bfdbba-a44d-4268-bdb8-6b7cfe719555',
-	//   type: 'io3d-data3d',
-	//   attributes: {
-	//     url: 'https://storage.3d.io/535e624259ee6b0200000484/171002-1644-4cfpoh/archilogic_2017-10-02_16-44-01_5CoeyU.gz.data3d.buffer',
-	//     lightMapIntensity: 1.4,
-	//     lightMapExposure: 0.83
-	//   }
-	// },{
-	//   title: 'Empty apartment (with lightmaps)',
-	//   thumb: 'https://storage.3d.io/535e624259ee6b0200000484/2017-10-04_16-21-52_z16iGz/localhost_8081_examples_staff-picks_html_5.png',
-	//   editorUrl: 'https://spaces.archilogic.com/3d/archilogic/h4959x0g?modelResourceId=62cb3510-6708-4f62-94c3-f9936db7e20b',
-	//   type: 'io3d-data3d',
-	//   attributes: {
-	//     url: 'https://storage.3d.io/535e624259ee6b0200000484/bake/2017-06-30_11-05-49_P144IW/regular/lighting.gz.data3d.buffer',
-	//     lightMapIntensity: 1.2,
-	//     lightMapExposure: 0.6
-	//   }
-	// },{
-	//   title: 'Room (no lightmaps)',
-	//   thumb: 'https://storage.3d.io/535e624259ee6b0200000484/2017-10-02_14-31-08_k31wKT/sdasd.png',
-	//   type: 'io3d-data3d',
-	//   attributes: {
-	//     url: 'https://storage.3d.io/535e624259ee6b0200000484/170918-2106-0sr2cn/9fd87fec-8bdd-4bc1-b9ba-bbfc47d08008.gz.data3d.buffer'
-	//   },
-	// },{
-	//   title: 'Test Cube',
-	//   thumb: 'https://storage.3d.io/535e624259ee6b0200000484/2017-10-02_12-30-54_8do34C/localhost_8081.png',
-	//   type: 'io3d-data3d',
-	//   attributes: {
-	//     url: 'https://storage.3d.io/archilogic/sample-models/cube-with-texture/data3d/cube-with-texture.gz.data3d.buffer',
-	//   }
-	// }]
 
 	// export
 
@@ -59224,8 +59041,8 @@
 	function init$4() {
 
 	  listTab$3 = createListTabUi({
-	    title: 'Tensor Models',
-	    listInfo: 'A growing list of models for testing and demo purposes.',
+	    title: 'My Items',
+	    listInfo: 'The items you have saved',
 	    onItemDrop: addToScene$3,
 	    onHide: function() {
 	      scope$3.isVisible = false;
@@ -59236,10 +59053,8 @@
 
 	  listTab$3.setInfo('<a target="_blank" href="https://spaces.archilogic.com">Archilogic Models</a> for experimenting & testing. Kudos to <a target="_blank" href="https://twitter.com/Pandatology">@Pandatology</a>, <a target="_blank" href="https://twitter.com/anialdam">@anialdam</a>');
 
-	  tensorModels$1.initializeDatabase();
-
-
-	  tensorModels$1.fetchDefaultItems(itemsCallback);
+	  tensorModels.initializeDatabase();
+	  tensorModels.fetchMyItems(itemsCallback);
 	}
 
 	function itemsCallback(itemsJson) {
@@ -59336,6 +59151,137 @@
 
 	}
 
+	// export
+
+	// import {FBAppDatabase} from './firebaseInit.js'
+
+
+	var scope$4 = {
+	  show: show$5,
+	  hide: hide$5,
+	  isVisible: false
+	};
+
+	// internal
+
+	var isInitialized$5 = false;
+	var listTab$4;
+
+	// method
+
+	function init$5() {
+
+	  listTab$4 = createListTabUi({
+	    title: 'Avatars',
+	    listInfo: 'Choose your avatar!',
+	    onItemDrop: addToScene$4,
+	    onHide: function() {
+	      scope$4.isVisible = false;
+	    }
+	  });
+
+	  listTab$4.init();
+
+	  listTab$4.setInfo('<a target="_blank" href="https://spaces.archilogic.com">Archilogic Models</a> for experimenting & testing. Kudos to <a target="_blank" href="https://twitter.com/Pandatology">@Pandatology</a>, <a target="_blank" href="https://twitter.com/anialdam">@anialdam</a>');
+
+	  tensorModels.initializeDatabase();
+	  tensorModels.fetchAvatars(itemsCallback$1);
+	}
+
+	function itemsCallback$1(itemsJson) {
+	  
+	  var items = [];
+	for(var i in itemsJson)
+	    items.push(itemsJson[i]);
+
+	  console.log("bro fetched items are");
+	  console.log(items);
+	  
+	  listTab$4.setList(items);
+	  isInitialized$5 = true;
+
+	} //.bind(listTab, isInitialized))
+	// listTab.setList(tensorModels.defaultItems)
+	// isInitialized = true
+
+
+
+	// }
+
+	function addToScene$4(item, position, callback) {
+
+	  var uiMessage = io3d.utils.ui.message('Loading' + (item.title ? ' "' + item.title + '" ' : ' ') + '...', 0);
+
+	  // add new entity to scene
+	  var newEntity = document.createElement('a-entity');
+	  //LINE ADDED BY JAFET
+	  newEntity.setAttribute('position', position.x + ' ' + position.y + ' ' + position.z);
+
+	  newEntity.addEventListener('model-loaded', function(event) {
+
+	    uiMessage.close();
+	    io3d.utils.ui.message.success('Added' + (item.title ? ' "' + item.title + '"' : 'model'));
+
+	    // center model to picking position
+
+	    //COMMENTED OUT BY JAFET
+	    // var bb = new THREE.Box3().setFromObject(event.detail.model) // bounding box
+	    // var size = new THREE.Vector3(Math.abs(bb.max.x - bb.min.x), Math.abs(bb.max.y - bb.min.y), Math.abs(bb.max.z - bb.min.z))
+	    // position.set(
+	    //   position.x - bb.min.x - size.x / 2,
+	    //   -bb.min.y,
+	    //   position.z - bb.min.z - size.z / 2
+	    // )
+	    // newEntity.setAttribute('position', position.x + ' 0 ' + position.z)
+
+	    callback();
+
+	  }, { once: true });
+
+
+	  // // var allAtts = node.getAttributeNames()
+	  // var arrayLength = item.length;
+	  // for (var i = 0; i < arrayLength; i++) {
+	  //   console.log(allAtts[i])
+	  //   jsonified[allAtts[i]] = node.getAttribute(allAtts[i])
+	  //   //Do something
+	  // }
+	  // // node.remove()
+	  var key;
+	  for (key in item) {
+	    newEntity.setAttribute(key, item[key]);
+	  }
+	  // newEntity.setAttribute(item.type, item.value)
+	  // newEntity.setAttribute('gltf-model', item['gltf-model'])
+
+	  // add other attributes
+
+	  document.querySelector('a-scene').appendChild(newEntity);
+
+	}
+
+	function show$5(callback, animate) {
+
+	  if (!isInitialized$5) init$5();
+
+	  if (scope$4.isVisible) return
+	  scope$4.isVisible = true;
+
+	  listTab$4.show(callback, animate);
+
+	}
+
+	function hide$5(callback, animate) {
+
+	  if (!isInitialized$5) return
+
+	  if (!scope$4.isVisible) return
+	  scope$4.isVisible = false;
+
+	  listTab$4.hide(callback, animate);
+
+	}
+
 	// plugin manager & menu
 	// plugins
 	var PLUGINS = {
@@ -59354,9 +59300,13 @@
 	    displayTitle: '✨&nbsp;&nbsp;staff picks',
 	    module: scope$2
 	  },
-	  tensorModels: {
-	    displayTitle: '✨&nbsp;&nbsp;tensor models',
+	  myItems: {
+	    displayTitle: '✨&nbsp;&nbsp;My Items',
 	    module: scope$3
+	  },
+	  avatars: {
+	    displayTitle: '✨&nbsp;&nbsp;Avatars',
+	    module: scope$4
 	  }
 	};
 

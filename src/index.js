@@ -6,7 +6,8 @@ import pluginManager from './plugin-manager.js'
 import furnitureLibrary from './plugins/furniture-library.js'
 import polyModels from './plugins/poly-models.js'
 import staffPicks from './plugins/staff-picks.js'
-import tensorModels from './plugins/tensor-models.js'
+import myItems from './plugins/my-items.js'
+import avatars from './plugins/avatars.js'
 
 var PLUGINS = {
   // name
@@ -24,9 +25,13 @@ var PLUGINS = {
     displayTitle: '✨&nbsp;&nbsp;staff picks',
     module: staffPicks
   },
-  tensorModels: {
-    displayTitle: '✨&nbsp;&nbsp;tensor models',
-    module: tensorModels
+  myItems: {
+    displayTitle: '✨&nbsp;&nbsp;My Items',
+    module: myItems
+  },
+  avatars: {
+    displayTitle: '✨&nbsp;&nbsp;Avatars',
+    module: avatars
   }
 }
 
