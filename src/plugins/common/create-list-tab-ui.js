@@ -112,7 +112,7 @@ function createListTabUi(args) {
         var el = document.querySelector('#mynameis');
         var playerPosition = el.getAttribute('position');
 
-        document.querySelector('#mynameis').setAttribute('camera', 'active', false);
+        document.querySelector('#thecam').setAttribute('camera', 'active', false);
 
 
         var cameraEl = document.querySelector('#camera2');
@@ -282,7 +282,7 @@ function createListTabUi(args) {
 
 
     // var camera = AFRAME.scenes[0].camera.el.getObject3D('camera')
-    var el = document.querySelector('#mynameis');
+              var el = document.querySelector('#mynameis');//was #mynameis
     var playerPosition = el.getAttribute('position');
     // var cameraEl = document.createElement('a-camera')
     // cameraEl.setAttribute('camera', 'active', true);
@@ -319,7 +319,8 @@ function createListTabUi(args) {
 
 
       cameraEl.setAttribute('camera', 'active', false);
-      el.setAttribute('camera', 'active', true);
+          var camEl = document.querySelector('#thecam');//was #mynameis
+      camEl.setAttribute('camera', 'active', true);
 
     var position = pickPointOnGroundPlane({
       x: e.x,
@@ -327,7 +328,7 @@ function createListTabUi(args) {
       canvas: AFRAME.scenes[0].canvas, //,
       tempCamera: camera2, //AFRAME.INSPECTOR.EDITOR_CAMERA
       // tempCamera: cameraPass.getObject3D('camera'), //AFRAME.INSPECTOR.EDITOR_CAMERA
-      playerPosition:el.getObject3D('camera').position//playerPosition
+      playerPosition:camEl.getObject3D('camera').position//playerPosition
     })
     // var position = pickPointOnGroundPlane({
     //   x: playerPosition.x,
@@ -347,7 +348,7 @@ function createListTabUi(args) {
     
     // var newPos=position.add(el.getObject3D('camera').position)
     var newPos = new THREE.Vector3()
-    newPos.addVectors(position,el.getObject3D('camera').position)
+    newPos.addVectors(position,camEl.getObject3D('camera').position)
     newPos.y=0
     onItemDropCallback(item, newPos, function() {
 
