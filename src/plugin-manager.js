@@ -33,7 +33,6 @@ function init () {
   }).appendTo(document.body)
 
   // launcher menu
-
   menuContainerEl = el('<div>', {
     id: 'io3d-inspector-plugins___plugins-menu',
     class: 'io3d-inspector-plugins'
@@ -169,6 +168,13 @@ function hideMenu (callback) {
 
 }
 
+
+function getButton()
+{
+  console.log('about to return the button!!')
+  return io3dButtonEl
+}
+
 // API
 
 var pluginManager = {
@@ -177,7 +183,8 @@ var pluginManager = {
   show3dioButton: show3dioButton,
   hide3dioButton: hide3dioButton,
   showMenu: showMenu,
-  hideMenu: hideMenu
+  hideMenu: hideMenu,
+  toggleMenu: toggleMenu
 }
 
 // expose API

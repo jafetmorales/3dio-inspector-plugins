@@ -109,7 +109,7 @@ function createListTabUi(args) {
         e.dataTransfer.setData('text/plain', JSON.stringify(item))
 
         console.log("dragging just started")
-        var el = document.querySelector('#mynameis');
+        var el = document.querySelector('#player');
         var playerPosition = el.getAttribute('position');
 
         document.querySelector('#thecam').setAttribute('camera', 'active', false);
@@ -282,7 +282,7 @@ function createListTabUi(args) {
 
 
     // var camera = AFRAME.scenes[0].camera.el.getObject3D('camera')
-              var el = document.querySelector('#mynameis');//was #mynameis
+              var el = document.querySelector('#player');//was #player
     var playerPosition = el.getAttribute('position');
     // var cameraEl = document.createElement('a-camera')
     // cameraEl.setAttribute('camera', 'active', true);
@@ -319,7 +319,7 @@ function createListTabUi(args) {
 
 
       cameraEl.setAttribute('camera', 'active', false);
-          var camEl = document.querySelector('#thecam');//was #mynameis
+          var camEl = document.querySelector('#thecam');//was #player
       camEl.setAttribute('camera', 'active', true);
 
     var position = pickPointOnGroundPlane({

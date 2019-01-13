@@ -38,7 +38,7 @@ export default function pickPointOnGroundPlane(args) {
 
 
   // // var camera = AFRAME.scenes[0].camera.el.getObject3D('camera')
-  // var el = document.querySelector('#mynameis');
+  // var el = document.querySelector('#player');
   // var position = el.getAttribute('position');
 
   // // camera.position.set(position.x, camera.position.y, position.z)

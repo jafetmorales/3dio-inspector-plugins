@@ -151,7 +151,9 @@ function hide () {
 	  // showButton: pluginManager.show3dioButton,
 	  // hideButton: pluginManager.hide3dioButton
 	  show: show,
-	  hide: hide
+	  hide: hide,
+	  //ADDED BY JAFET
+	  toggleMenu: pluginManager.toggleMenu
 	};
 
 
