@@ -125,13 +125,13 @@ pluginManager.setPlugins(PLUGINS)
 
 
 
-function show () {
+function initialize () {
   appendCss()
   pluginManager.show3dioButton()
   if (window.io3d.aFrame.activePluginName) pluginManager.showPlugin(window.io3d.aFrame.activePluginName, false)
 }
 
-function hide () {
+function destroy () {
   setInitialPlugin(null)
   pluginManager.hide3dioButton(function () {
     detachCss()
@@ -150,8 +150,8 @@ function hide () {
 	  //ADDED BY JAFET
 	  // showButton: pluginManager.show3dioButton,
 	  // hideButton: pluginManager.hide3dioButton
-	  show: show,
-	  hide: hide,
+	  initialize: initialize,
+	  destroy: destroy,
 	  //ADDED BY JAFET
 	  toggleMenu: pluginManager.toggleMenu
 	};
