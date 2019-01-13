@@ -169,11 +169,6 @@ function hideMenu (callback) {
 }
 
 
-function getButton()
-{
-  console.log('about to return the button!!')
-  return io3dButtonEl
-}
 
 // API
 

@@ -37,20 +37,20 @@ var PLUGINS = {
 
 window.io3d.aFrame.activePluginName = null
 
-function setInitialPlugin (name) {
+function setInitialPlugin(name) {
   window.io3d.aFrame.activePluginName = name
 }
 
 // check dependencies
 if (!window.AFRAME) {
   throw 'Error loading 3d.io Inspector Plugins: Missing dependency: "AFRAME"\n' +
-  'Please add "<script src="https://aframe.io/releases/0.6.1/aframe.min.js"></script>" to "<head>" tag before loading 3d.io plugins.' +
-  'Read more: https://aframe.io/docs/0.7.0/introduction/'
+    'Please add "<script src="https://aframe.io/releases/0.6.1/aframe.min.js"></script>" to "<head>" tag before loading 3d.io plugins.' +
+    'Read more: https://aframe.io/docs/0.7.0/introduction/'
 }
 if (!window.io3d) {
   throw 'Error loading 3d.io Inspector Plugins: Missing dependency: "io3d"\n' +
-  'Please add "<script src="https://dist.3d.io/3dio-js/1.x.x-beta/3dio.min.js"></script>" to "<head>" tag before loading 3d.io plugins.' +
-  'Read more: https://3d.io/docs/api/1/get-started-browser.html'
+    'Please add "<script src="https://dist.3d.io/3dio-js/1.x.x-beta/3dio.min.js"></script>" to "<head>" tag before loading 3d.io plugins.' +
+    'Read more: https://3d.io/docs/api/1/get-started-browser.html'
 }
 
 // prevents 3dio lib from loading plugins (ie in dev mode)
@@ -63,11 +63,11 @@ var cssEl = el('<style>', {
   text: css
 })
 
-function appendCss () {
+function appendCss() {
   cssEl.appendTo(document.head)
 }
 
-function detachCss () {
+function detachCss() {
   document.head.removeChild(cssEl)
 }
 
@@ -125,13 +125,13 @@ pluginManager.setPlugins(PLUGINS)
 
 
 
-function initialize () {
+function initialize() {
   appendCss()
-  pluginManager.show3dioButton()
+  // pluginManager.show3dioButton()
   if (window.io3d.aFrame.activePluginName) pluginManager.showPlugin(window.io3d.aFrame.activePluginName, false)
 }
 
-function destroy () {
+function destroy() {
   setInitialPlugin(null)
   pluginManager.hide3dioButton(function () {
     detachCss()
@@ -140,21 +140,21 @@ function destroy () {
 
 // expose API
 
-	// expose API
+// expose API
 
-	var io3dInspectorPlugins = {
-	  setInitialPlugin: setInitialPlugin,
-	  showMenu: pluginManager.showMenu,
-	  hideMenu: pluginManager.hideMenu,
-	  
-	  //ADDED BY JAFET
-	  // showButton: pluginManager.show3dioButton,
-	  // hideButton: pluginManager.hide3dioButton
-	  initialize: initialize,
-	  destroy: destroy,
-	  //ADDED BY JAFET
-	  toggleMenu: pluginManager.toggleMenu
-	};
+var io3dInspectorPlugins = {
+  setInitialPlugin: setInitialPlugin,
+  showMenu: pluginManager.showMenu,
+  hideMenu: pluginManager.hideMenu,
+
+  //ADDED BY JAFET
+  // showButton: pluginManager.show3dioButton,
+  // hideButton: pluginManager.hide3dioButton
+  initialize: initialize,
+  destroy: destroy,
+  //ADDED BY JAFET
+  toggleMenu: pluginManager.toggleMenu
+};
 
 
 export default io3dInspectorPlugins
