@@ -36,9 +36,55 @@ function init() {
 
 function callSearchApi(offset, value) {
   return fetch('https://gblock.3d.io/api/search?limit=10&offset=' + offset + '&query=' + value).then(function(response) {
+    console.log('THE OUTPUT FROM GBLOCKS IS')
+    // console.log(response.json())
     return response.json()
   })
 }
+
+//JAFET ADDED
+const API_KEY = 'AIzaSyD2l0Cy_cS9IqgA-W-bIHvYjbf24a6aUv4';
+
+function callPolyApi(offset, value) {
+  return fetch(`https://poly.googleapis.com/v1/assets?keywords=${value}&format=OBJ&key=${API_KEY}`).then(function(response) {
+    console.log('THE OUTPUT FROM POLY IS')
+    // console.log(response.json())
+    return response.json()
+  })
+}
+
+
+
+
+// NEW POLY STUFFFFFF
+// 	const API_KEY = 'AIzaSyD2l0Cy_cS9IqgA-W-bIHvYjbf24a6aUv4';
+function searchPoly(keywords, onLoad) {
+  var url = `https://poly.googleapis.com/v1/assets?keywords=${keywords}&format=OBJ&key=${API_KEY}`;
+  var request = new XMLHttpRequest();
+  request.open('GET', url, true);
+  request.addEventListener('load', function(event) {
+    onLoad(JSON.parse(event.target.response));
+  });
+  request.send(null);
+}
+// NEW POLY STUFFFFFF
+function onResults(data) {
+  while (results.childNodes.length) {
+    results.removeChild(results.firstChild);
+  }
+  var assets = data.assets;
+  if (assets) {
+    for (var i = 0; i < assets.length; i++) {
+      var asset = assets[i];
+      var image = createImage(asset);
+      results.appendChild(image);
+    }
+  }
+  else {
+    results.innerHTML = '<center>NO RESULTS</center>';
+  }
+}
+
 
 function search(value, offset) {
 
@@ -48,24 +94,44 @@ function search(value, offset) {
   Promise.all([
     // google has a limit fo max 10 result per call :/
     // so we do 3 api calls and merge the results into one
-    callSearchApi(1, value),
-    callSearchApi(11, value),
-    callSearchApi(21, value)
+    // callSearchApi(1, value),
+    // callSearchApi(11, value),
+    // callSearchApi(21, value),
+    callPolyApi(1, value)
+    // callPolyApi(11, value),
+    // callPolyApi(21, value),
   ]).then(function(results) {
-    return results[0].items.concat(results[1].items).concat(results[2].items)
+    // return results[0].items.concat(results[1].items).concat(results[2].items)
+    return results[0].assets
   }).then(function(results) {
 
     var items = results.map(function(item_) {
+      // return {
+      //   title: item_.title + ' by ' + item_.author,
+      //   thumb: item_.image,
+      //   url: item_.url,
+      //   author: item_.author
+      // }
+      console.log(item_)
+
+      var fifthSlashIndex = item_.formats[0].root.url.split('/', 5).join('/').length
+      var profileUrl = item_.formats[0].root.url.substr(0, fifthSlashIndex)
+      profileUrl = profileUrl.replace('googleapis.com/downloads', 'google.com/view')
+
       return {
-        title: item_.title + ' by ' + item_.author,
-        thumb: item_.image,
-        url: item_.url,
-        author: item_.author
+        title: item_.displayName + ' by ' + item_.authorName,
+        thumb: item_.thumbnail.url,
+        url: profileUrl, //please use gltf 2
+        author: item_.authorName
       }
     })
 
     listTab.setList(items)
-    var info = 'API code is open sourced on <a target="_blank" href="https://github.com/archilogic-com/aframe-gblock/blob/master/server/api-methods.js">github</a>'
+
+    console.log('Bro items are:')
+    console.log(items)
+
+    var info = '' //'API code is open sourced on <a target="_blank" href="https://github.com/archilogic-com/aframe-gblock/blob/master/server/api-methods.js">github</a>'
     listTab.setInfo(items.length ? info : 'No results found.')
 
   }).catch(function(error) {
@@ -82,7 +148,7 @@ function addToScene(item, position, callback) {
   // add new entity to scene
   var newEntity = document.createElement('a-entity')
   //ADDED BY JAFET
-    newEntity.setAttribute('position', position.x + ' ' + position.y + ' ' + position.z)
+  newEntity.setAttribute('position', position.x + ' ' + position.y + ' ' + position.z)
 
   newEntity.addEventListener('model-loaded', function(event) {
 

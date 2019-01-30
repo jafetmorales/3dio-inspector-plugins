@@ -25,12 +25,12 @@ function init () {
 
   // 3d.io button in action bar
 
-  io3dButtonEl = el('<div>', {
-    id: 'io3d-inspector-plugins___3dio-button',
-    class: 'io3d-inspector-plugins',
-    html: svg3dioLogo,
-    click: toggleMenu
-  }).appendTo(document.body)
+  // io3dButtonEl = el('<div>', {
+  //   id: 'io3d-inspector-plugins___3dio-button',
+  //   class: 'io3d-inspector-plugins',
+  //   html: svg3dioLogo,
+  //   click: toggleMenu
+  // }).appendTo(document.body)
 
   // launcher menu
   menuContainerEl = el('<div>', {
@@ -45,7 +45,7 @@ function init () {
 
   var headerEl = el('<div>', {
     id: 'io3d-inspector-plugins___plugins-menu___header',
-    text: '3d.io APIs'
+    text: 'Choose a library:'//'3d.io APIs'
   }).appendTo(menuEl)
 
   el('<div>', {
@@ -70,7 +70,7 @@ function init () {
 
   el('<div>', {
     id: 'io3d-inspector-plugins___plugins-menu___footer',
-    html: 'This project is <a target="_blank" href="https://github.com/archilogic-com/3dio-inspector-plugins">open source</a>. You can also use all APIs directly in your own webVR & webAR apps. <a target="_blank" href="https://3d.io/docs/api/1/">Read more</a>'
+    html: ''//'This project is <a target="_blank" href="https://github.com/archilogic-com/3dio-inspector-plugins">open source</a>. You can also use all APIs directly in your own webVR & webAR apps. <a target="_blank" href="https://3d.io/docs/api/1/">Read more</a>'
   }).appendTo(menuEl)
 
 }

@@ -2,9 +2,9 @@
  * @preserve
  * @name 3dio-inspector-plugins
  * @version 0.0.6
- * @date 2019/01/13 00:31
+ * @date 2019/01/23 04:56
  * @branch master
- * @commit 43426fbe17ce74e745e0a0f0a1a5b03a6c3a8901
+ * @commit beb5bbacd0359fdcefea4f2cb26311b42700d3c8
  * @description Connects A-Frame Inspector to 3d.io APIs
  * @see https://3d.io
  * @tutorial https://github.com/archilogic-com/3dio-inspector-plugins
@@ -18,9 +18,9 @@
 	(global.io3dInspectorPlugins = factory());
 }(this, (function () { 'use strict';
 
-	var BUILD_DATE='2019/01/13 00:31', GIT_BRANCH = 'master', GIT_COMMIT = '43426fbe17ce74e745e0a0f0a1a5b03a6c3a8901'
+	var BUILD_DATE='2019/01/23 04:56', GIT_BRANCH = 'master', GIT_COMMIT = 'beb5bbacd0359fdcefea4f2cb26311b42700d3c8'
 
-	var css = "#io3d-inspector-plugins * {\n  outline: none;\n  -webkit-box-sizing: border-box;\n  /* Safari/Chrome, other WebKit */\n  -moz-box-sizing: border-box;\n  /* Firefox, other Gecko */\n  box-sizing: border-box;\n  /* Opera/IE 8+ */\n}\n.io3d-inspector-plugins___truncate-message {\n  display: inline-block;\n  overflow: hidden;\n  white-space: nowrap;\n  max-width: 365px;\n  text-overflow: ellipsis;\n  margin-bottom: 0;\n}\n.io3d-inspector-plugins * {\n  outline: none;\n  -webkit-box-sizing: border-box;\n  /* Safari/Chrome, other WebKit */\n  -moz-box-sizing: border-box;\n  /* Firefox, other Gecko */\n  box-sizing: border-box;\n  /* Opera/IE 8+ */\n}\n.io3d-inspector-plugins___tab-container {\n  position: absolute;\n  font-family: Roboto, BlinkMacSystemFont, -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif;\n  font-size: 12px;\n  top: 30px;\n  left: 0;\n  bottom: 0;\n  z-index: 100000;\n}\n.io3d-inspector-plugins___tab-container a {\n  color: #bcbcbc;\n}\n.io3d-inspector-plugins___tab {\n  position: absolute;\n  font-size: 12px;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 230px;\n  background-color: #2b2b2b;\n}\n@-webkit-keyframes io3d-inspector-plugins___tab___slide-in {\n  0% {\n    -webkit-transform: translateX(-40%);\n    opacity: 0;\n  }\n  100% {\n    -webkit-transform: translateX(0%);\n    opacity: 1;\n  }\n}\n@keyframes io3d-inspector-plugins___tab___slide-in {\n  0% {\n    transform: translateX(-40%);\n    opacity: 0;\n  }\n  100% {\n    transform: translateX(0%);\n    opacity: 1;\n  }\n}\n@-webkit-keyframes io3d-inspector-plugins___tab___slide-out {\n  0% {\n    -webkit-transform: translateX(0%);\n    opacity: 1;\n  }\n  100% {\n    -webkit-transform: translateX(-40%);\n    opacity: 0;\n  }\n}\n@keyframes io3d-inspector-plugins___tab___slide-out {\n  0% {\n    transform: translateX(0%);\n    opacity: 1;\n  }\n  100% {\n    transform: translateX(-40%);\n    opacity: 0;\n  }\n}\n#io3d-inspector-plugins___3dio-button {\n  z-index: 100000;\n  position: absolute;\n  top: 39px;\n  left: 184px;\n  height: 18px;\n  text-align: right;\n  border-radius: 3px;\n  cursor: pointer;\n}\n#io3d-inspector-plugins___3dio-button svg {\n  height: 100%;\n}\n#io3d-inspector-plugins___3dio-button svg g {\n  fill: #bcbcbc;\n  stroke: #bcbcbc;\n  stroke-width: 13;\n}\n#io3d-inspector-plugins___3dio-button svg g:hover {\n  fill: #1faaf2;\n  stroke: #1faaf2;\n  stroke-width: 13;\n}\n#io3d-inspector-plugins___plugins-menu {\n  z-index: 100001;\n  position: absolute;\n  top: 0;\n  left: 250px;\n  width: 230px;\n  font-family: Roboto, BlinkMacSystemFont, -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif;\n  font-size: 12px;\n  letter-spacing: 0px;\n  color: #bcbcbc;\n}\n@-webkit-keyframes io3d-inspector-plugins___plugins-menu-slide-in {\n  0% {\n    -webkit-transform: translateY(-40%);\n    opacity: 0;\n  }\n  100% {\n    -webkit-transform: translateY(0%);\n    opacity: 1;\n  }\n}\n@keyframes io3d-inspector-plugins___plugins-menu-slide-in {\n  0% {\n    transform: translateY(-40%);\n    opacity: 0;\n  }\n  100% {\n    transform: translateY(0%);\n    opacity: 1;\n  }\n}\n@-webkit-keyframes io3d-inspector-plugins___plugins-menu-slide-out {\n  0% {\n    -webkit-transform: translateY(0%);\n    opacity: 1;\n  }\n  100% {\n    -webkit-transform: translateY(-40%);\n    opacity: 0;\n  }\n}\n@keyframes io3d-inspector-plugins___plugins-menu-slide-out {\n  0% {\n    transform: translateY(0%);\n    opacity: 1;\n  }\n  100% {\n    transform: translateY(-40%);\n    opacity: 0;\n  }\n}\n#io3d-inspector-plugins___plugins-menu___container {\n  background-color: rgba(0, 0, 0, 0.9);\n  padding: 0 12px 0 12px;\n}\n#io3d-inspector-plugins___plugins-menu___header {\n  padding: 14px 0 14px 0;\n  border-bottom: 1px solid #bcbcbc;\n}\n#io3d-inspector-plugins___plugins-menu___close-button {\n  position: absolute;\n  top: 0;\n  right: 12px;\n  padding: 14px 0 14px 0;\n  cursor: pointer;\n}\n#io3d-inspector-plugins___plugins-menu___button {\n  padding: 10px 0 10px 0;\n  border-bottom: 1px solid #bcbcbc;\n  cursor: pointer;\n}\n#io3d-inspector-plugins___plugins-menu___button:hover {\n  background-color: rgba(255, 255, 255, 0.2);\n}\n#io3d-inspector-plugins___plugins-menu___footer {\n  padding: 14px 0 14px 0;\n  line-height: 1.3;\n}\n#io3d-inspector-plugins___plugins-menu___footer a {\n  color: #bcbcbc;\n}\n#io3d-inspector-plugins___plugins-menu___footer a:hover {\n  color: white;\n}\n#io3d-inspector-plugins___bake-lightmaps___container {\n  font-family: Roboto, BlinkMacSystemFont, -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif;\n  position: absolute;\n  top: 0px;\n  left: 246px;\n  z-index: 100000;\n}\n#io3d-inspector-plugins___bake-lightmaps___main-bar span,\n#io3d-inspector-plugins___bake-lightmaps___main-bar a {\n  text-decoration: none;\n  display: inline-block;\n  height: 33px;\n  line-height: 33px;\n  padding: 0 12px 0 12px;\n  margin: 0 0 0 0;\n  border-left: 1px solid rgba(255, 255, 255, 0.5);\n  white-space: nowrap;\n  font-weight: 400;\n  letter-spacing: 1px;\n  font-size: 12px;\n  color: white;\n  background-color: rgba(0, 0, 0, 0.8);\n}\n#io3d-inspector-plugins___bake-lightmaps___bake-button {\n  display: inline-block;\n  cursor: pointer;\n  text-decoration: none;\n  color: white;\n  font-size: 16px;\n  font-weight: 500;\n  letter-spacing: 0px;\n  height: 38px;\n  line-height: 40px;\n  padding: 0 13px 0 13px;\n  background-color: #1faaf2;\n  border-radius: 2px;\n  margin: 16px 0 0 0;\n  position: relative;\n  left: 2px;\n  top: -2px;\n  box-shadow: -2px 2px 0px 0px #105576;\n}\n#io3d-inspector-plugins___bake-lightmaps___bake-button:hover {\n  background-color: #44c3f2;\n}\n#io3d-inspector-plugins___bake-lightmaps___bake-button:active {\n  left: -1px;\n  top: 1px;\n  background-color: #105576;\n  box-shadow: -2px 2px 0px 0px rgba(0, 0, 0, 0);\n}\n#io3d-inspector-plugins___list-tab___header {\n  position: absolute;\n  width: 100%;\n  height: 64px;\n  background-color: #333;\n  top: 0;\n  left: 0;\n}\n#io3d-inspector-plugins___list-tab___title {\n  position: absolute;\n  width: 100%;\n  height: 38px;\n  line-height: 38px;\n  color: #bcbcbc;\n  padding: 0 0 0 8px;\n  top: 0;\n  left: 0;\n  letter-spacing: 1px;\n}\n#io3d-inspector-plugins___list-tab___close-button {\n  -webkit-font-smoothing: antialiased;\n  font-family: FontAwesome;\n  font-size: 16px;\n  font-weight: 200;\n  position: absolute;\n  width: 20px;\n  height: 20px;\n  line-height: 20px;\n  border-radius: 50%;\n  text-align: center;\n  top: 9px;\n  right: 4px;\n  cursor: pointer;\n  color: #bcbcbc;\n}\n#io3d-inspector-plugins___list-tab___close-button:hover {\n  color: #1faaf2;\n}\n#io3d-inspector-plugins___list-tab___close-button:before {\n  content: \"\\f00d\";\n}\n#io3d-inspector-plugins___list-tab___search-input {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  writing-mode: horizontal-tb;\n  -webkit-rtl-ordering: logical;\n  -webkit-border-image: none;\n  font-family: \"Roboto Mono\", Consolas, \"Andale Mono\", Monaco, \"Courier New\", monospace;\n  font-size: 11px;\n  font-weight: normal;\n  letter-spacing: 0px;\n  position: absolute;\n  width: 218px;\n  height: 26px;\n  line-height: 26px;\n  top: 37px;\n  left: 6px;\n  padding: 0 0 0 7px;\n  border-radius: 5px;\n  border: 0;\n  background-color: #222222;\n}\n#io3d-inspector-plugins___list-tab___search-icon {\n  font-family: FontAwesome;\n  font-size: 12px;\n  position: absolute;\n  width: 26px;\n  height: 26px;\n  line-height: 26px;\n  top: 37px;\n  right: 0;\n  color: #4d4d4d;\n}\n#io3d-inspector-plugins___list-tab___search-icon:before {\n  content: \"\\f002\";\n}\n#io3d-inspector-plugins___list-tab___list-container {\n  position: absolute;\n  width: 100%;\n  top: 64px;\n  left: 0;\n  bottom: 0;\n  padding: 0 0 20px 0;\n  overflow: auto;\n  background-color: #2b2b2b;\n}\n#io3d-inspector-plugins___list-tab___list-info {\n  position: relative;\n  display: block;\n  padding: 10px;\n  width: 100%;\n  color: #bcbcbc;\n  line-height: 1.3;\n}\n#io3d-inspector-plugins___list-tab___list-info a {\n  color: #bcbcbc;\n}\n#io3d-inspector-plugins___list-tab___list-info a:hover {\n  color: white;\n}\n#io3d-inspector-plugins___list-tab___list-item-container {\n  position: relative;\n  display: block;\n  width: 100%;\n  padding: 4px 0 0 4px;\n}\n#io3d-inspector-plugins___list-tab___list-item-container .io3d-inspector-plugins___list-item {\n  display: inline-block;\n  margin: 4px 0 0 4px;\n  position: relative;\n  width: 98px;\n  height: 98px;\n  -moz-user-select: none;\n  -webkit-user-select: none;\n  user-select: none;\n  /* Required to make elements draggable in old WebKit */\n  -khtml-user-drag: element;\n  -webkit-user-drag: element;\n  border: 1px dotted rgba(255, 255, 255, 0.4);\n  border-radius: 3px;\n  overflow: hidden;\n  -webkit-transition: border-color 1500ms;\n  transition: border-color 1500ms;\n  cursor: move;\n  /* fallback if grab cursor is unsupported */\n  cursor: grab;\n  cursor: -moz-grab;\n  cursor: -webkit-grab;\n}\n#io3d-inspector-plugins___list-tab___list-item-container .io3d-inspector-plugins___list-item:active {\n  cursor: grabbing;\n  cursor: -moz-grabbing;\n  cursor: -webkit-grabbing;\n}\n#io3d-inspector-plugins___list-tab___list-item-container .io3d-inspector-plugins___list-item:hover {\n  background-color: #333;\n}\n#io3d-inspector-plugins___list-tab___list-item-container .io3d-inspector-plugins___list-item img {\n  position: absolute;\n  opacity: 0;\n  -webkit-transition: opacity 1500ms;\n  transition: opacity 1500ms;\n}\n#io3d-inspector-plugins___list-tab___drop-plane {\n  position: absolute;\n  top: 0;\n  right: 0;\n  left: 230px;\n  height: 100%;\n  background-color: rgba(33, 172, 242, 0.15);\n  border: 2px solid #21acf2;\n  z-index: 100000;\n  opacity: 0;\n  -webkit-transition: opacity 200ms;\n  transition: opacity 200ms;\n}\n#io3d-inspector-plugins___list-tab___drop-plane-info {\n  width: 100%;\n  height: 100%;\n  line-height: 100vh;\n  text-align: center;\n  color: rgba(33, 172, 242, 0.2);\n  font-size: 68px;\n  font-weight: 400;\n  letter-spacing: 2px;\n}\n";
+	var css = "#io3d-inspector-plugins * {\n  outline: none;\n  -webkit-box-sizing: border-box;\n  /* Safari/Chrome, other WebKit */\n  -moz-box-sizing: border-box;\n  /* Firefox, other Gecko */\n  box-sizing: border-box;\n  /* Opera/IE 8+ */\n}\n.io3d-inspector-plugins___truncate-message {\n  display: inline-block;\n  overflow: hidden;\n  white-space: nowrap;\n  max-width: 365px;\n  text-overflow: ellipsis;\n  margin-bottom: 0;\n}\n.io3d-inspector-plugins * {\n  outline: none;\n  -webkit-box-sizing: border-box;\n  /* Safari/Chrome, other WebKit */\n  -moz-box-sizing: border-box;\n  /* Firefox, other Gecko */\n  box-sizing: border-box;\n  /* Opera/IE 8+ */\n}\n.io3d-inspector-plugins___tab-container {\n  position: absolute;\n  font-family: Roboto, BlinkMacSystemFont, -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif;\n  font-size: 12px;\n  top: 50px;\n  left: 0;\n  bottom: 0;\n  z-index: 100000;\n}\n.io3d-inspector-plugins___tab-container a {\n  color: #bcbcbc;\n}\n.io3d-inspector-plugins___tab {\n  position: absolute;\n  font-size: 12px;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 230px;\n  background-color: #2b2b2b;\n}\n@-webkit-keyframes io3d-inspector-plugins___tab___slide-in {\n  0% {\n    -webkit-transform: translateX(-40%);\n    opacity: 0;\n  }\n  100% {\n    -webkit-transform: translateX(0%);\n    opacity: .7;\n  }\n}\n@keyframes io3d-inspector-plugins___tab___slide-in {\n  0% {\n    transform: translateX(-40%);\n    opacity: 0;\n  }\n  100% {\n    transform: translateX(0%);\n    opacity: .7;\n  }\n}\n@-webkit-keyframes io3d-inspector-plugins___tab___slide-out {\n  0% {\n    -webkit-transform: translateX(0%);\n    opacity: .7;\n  }\n  100% {\n    -webkit-transform: translateX(-40%);\n    opacity: 0;\n  }\n}\n@keyframes io3d-inspector-plugins___tab___slide-out {\n  0% {\n    transform: translateX(0%);\n    opacity: .7;\n  }\n  100% {\n    transform: translateX(-40%);\n    opacity: 0;\n  }\n}\n#io3d-inspector-plugins___3dio-button {\n  z-index: 100000;\n  position: absolute;\n  top: 39px;\n  left: 184px;\n  height: 18px;\n  text-align: right;\n  border-radius: 3px;\n  cursor: pointer;\n}\n#io3d-inspector-plugins___3dio-button svg {\n  height: 100%;\n}\n#io3d-inspector-plugins___3dio-button svg g {\n  fill: #bcbcbc;\n  stroke: #bcbcbc;\n  stroke-width: 13;\n}\n#io3d-inspector-plugins___3dio-button svg g:hover {\n  fill: #1faaf2;\n  stroke: #1faaf2;\n  stroke-width: 13;\n}\n#io3d-inspector-plugins___plugins-menu {\n  z-index: 100001;\n  position: absolute;\n  top: 50px;\n  left: 2px;\n  width: 230px;\n  font-family: Roboto, BlinkMacSystemFont, -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif;\n  font-size: 12px;\n  letter-spacing: 0px;\n  color: #bcbcbc;\n}\n@-webkit-keyframes io3d-inspector-plugins___plugins-menu-slide-in {\n  0% {\n    -webkit-transform: translateY(-40%);\n    opacity: 0;\n  }\n  100% {\n    -webkit-transform: translateY(0%);\n    opacity: 1;\n  }\n}\n@keyframes io3d-inspector-plugins___plugins-menu-slide-in {\n  0% {\n    transform: translateY(-40%);\n    opacity: 0;\n  }\n  100% {\n    transform: translateY(0%);\n    opacity: 1;\n  }\n}\n@-webkit-keyframes io3d-inspector-plugins___plugins-menu-slide-out {\n  0% {\n    -webkit-transform: translateY(0%);\n    opacity: 1;\n  }\n  100% {\n    -webkit-transform: translateY(-40%);\n    opacity: 0;\n  }\n}\n@keyframes io3d-inspector-plugins___plugins-menu-slide-out {\n  0% {\n    transform: translateY(0%);\n    opacity: 1;\n  }\n  100% {\n    transform: translateY(-40%);\n    opacity: 0;\n  }\n}\n#io3d-inspector-plugins___plugins-menu___container {\n  background-color: rgba(0, 0, 0, 0.7);\n  padding: 0 12px 0 12px;\n}\n#io3d-inspector-plugins___plugins-menu___header {\n  padding: 14px 0 14px 0;\n  border-bottom: 1px solid #bcbcbc;\n}\n#io3d-inspector-plugins___plugins-menu___close-button {\n  position: absolute;\n  top: 0;\n  right: 12px;\n  padding: 14px 0 14px 0;\n  cursor: pointer;\n}\n#io3d-inspector-plugins___plugins-menu___button {\n  padding: 10px 0 10px 0;\n  border-bottom: 1px solid #bcbcbc;\n  cursor: pointer;\n}\n#io3d-inspector-plugins___plugins-menu___button:hover {\n  background-color: rgba(255, 255, 255, 0.2);\n}\n#io3d-inspector-plugins___plugins-menu___footer {\n  padding: 14px 0 14px 0;\n  line-height: 1.3;\n}\n#io3d-inspector-plugins___plugins-menu___footer a {\n  color: #bcbcbc;\n}\n#io3d-inspector-plugins___plugins-menu___footer a:hover {\n  color: white;\n}\n#io3d-inspector-plugins___bake-lightmaps___container {\n  font-family: Roboto, BlinkMacSystemFont, -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif;\n  position: absolute;\n  top: 0px;\n  left: 246px;\n  z-index: 100000;\n}\n#io3d-inspector-plugins___bake-lightmaps___main-bar span,\n#io3d-inspector-plugins___bake-lightmaps___main-bar a {\n  text-decoration: none;\n  display: inline-block;\n  height: 33px;\n  line-height: 33px;\n  padding: 0 12px 0 12px;\n  margin: 0 0 0 0;\n  border-left: 1px solid rgba(255, 255, 255, 0.5);\n  white-space: nowrap;\n  font-weight: 400;\n  letter-spacing: 1px;\n  font-size: 12px;\n  color: white;\n  background-color: rgba(0, 0, 0, 0.8);\n}\n#io3d-inspector-plugins___bake-lightmaps___bake-button {\n  display: inline-block;\n  cursor: pointer;\n  text-decoration: none;\n  color: white;\n  font-size: 16px;\n  font-weight: 500;\n  letter-spacing: 0px;\n  height: 38px;\n  line-height: 40px;\n  padding: 0 13px 0 13px;\n  background-color: #1faaf2;\n  border-radius: 2px;\n  margin: 16px 0 0 0;\n  position: relative;\n  left: 2px;\n  top: -2px;\n  box-shadow: -2px 2px 0px 0px #105576;\n}\n#io3d-inspector-plugins___bake-lightmaps___bake-button:hover {\n  background-color: #44c3f2;\n}\n#io3d-inspector-plugins___bake-lightmaps___bake-button:active {\n  left: -1px;\n  top: 1px;\n  background-color: #105576;\n  box-shadow: -2px 2px 0px 0px rgba(0, 0, 0, 0);\n}\n#io3d-inspector-plugins___list-tab___header {\n  position: absolute;\n  width: 100%;\n  height: 64px;\n  background-color: #000000;\n  top: 0;\n  left: 0;\n}\n#io3d-inspector-plugins___list-tab___title {\n  position: absolute;\n  width: 100%;\n  height: 38px;\n  line-height: 38px;\n  color: #ffffff;\n  padding: 0 0 0 8px;\n  top: 0;\n  left: 0;\n  letter-spacing: 1px;\n}\n#io3d-inspector-plugins___list-tab___close-button {\n  -webkit-font-smoothing: antialiased;\n  font-size: 16px;\n  font-weight: 200;\n  position: absolute;\n  width: 20px;\n  height: 20px;\n  line-height: 20px;\n  border-radius: 50%;\n  text-align: center;\n  top: 9px;\n  right: 4px;\n  cursor: pointer;\n  color: #ffffff;\n}\n#io3d-inspector-plugins___list-tab___close-button:hover {\n  color: #1faaf2;\n}\n#io3d-inspector-plugins___list-tab___close-button:before {\n  content: \"x\";\n}\n#io3d-inspector-plugins___list-tab___search-input {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  writing-mode: horizontal-tb;\n  -webkit-rtl-ordering: logical;\n  -webkit-border-image: none;\n  font-family: \"Roboto Mono\", Consolas, \"Andale Mono\", Monaco, \"Courier New\", monospace;\n  font-size: 11px;\n  font-weight: normal;\n  letter-spacing: 0px;\n  position: absolute;\n  width: 218px;\n  height: 26px;\n  line-height: 26px;\n  top: 37px;\n  left: 6px;\n  padding: 0 0 0 7px;\n  border-radius: 5px;\n  border: 0;\n  background-color: #ffffff;\n  color: #000000;\n}\n#io3d-inspector-plugins___list-tab___search-icon {\n  font-size: 12px;\n  position: absolute;\n  width: 26px;\n  height: 26px;\n  line-height: 26px;\n  top: 37px;\n  right: 0;\n  color: #4d4d4d;\n}\n#io3d-inspector-plugins___list-tab___search-icon:before {\n  content: \"x\";\n}\n#io3d-inspector-plugins___list-tab___list-container {\n  position: absolute;\n  width: 100%;\n  top: 64px;\n  left: 0;\n  bottom: 0;\n  padding: 0 0 20px 0;\n  overflow: auto;\n  background-color: #000000;\n}\n#io3d-inspector-plugins___list-tab___list-info {\n  position: relative;\n  display: block;\n  padding: 10px;\n  width: 100%;\n  color: #ffffff;\n  line-height: 1.3;\n}\n#io3d-inspector-plugins___list-tab___list-info a {\n  color: #bcbcbc;\n}\n#io3d-inspector-plugins___list-tab___list-info a:hover {\n  color: white;\n}\n#io3d-inspector-plugins___list-tab___list-item-container {\n  position: relative;\n  display: block;\n  width: 100%;\n  padding: 4px 0 0 4px;\n}\n#io3d-inspector-plugins___list-tab___list-item-container .io3d-inspector-plugins___list-item {\n  display: inline-block;\n  margin: 4px 0 0 4px;\n  position: relative;\n  width: 98px;\n  height: 98px;\n  -moz-user-select: none;\n  -webkit-user-select: none;\n  user-select: none;\n  /* Required to make elements draggable in old WebKit */\n  -khtml-user-drag: element;\n  -webkit-user-drag: element;\n  border: 1px dotted rgba(255, 255, 255, 0.4);\n  border-radius: 3px;\n  overflow: hidden;\n  -webkit-transition: border-color 1500ms;\n  transition: border-color 1500ms;\n  cursor: move;\n  /* fallback if grab cursor is unsupported */\n  cursor: grab;\n  cursor: -moz-grab;\n  cursor: -webkit-grab;\n}\n#io3d-inspector-plugins___list-tab___list-item-container .io3d-inspector-plugins___list-item:active {\n  cursor: grabbing;\n  cursor: -moz-grabbing;\n  cursor: -webkit-grabbing;\n}\n#io3d-inspector-plugins___list-tab___list-item-container .io3d-inspector-plugins___list-item:hover {\n  background-color: #333;\n}\n#io3d-inspector-plugins___list-tab___list-item-container .io3d-inspector-plugins___list-item img {\n  position: absolute;\n  opacity: 0;\n  -webkit-transition: opacity 1500ms;\n  transition: opacity 1500ms;\n}\n#io3d-inspector-plugins___list-tab___drop-plane {\n  position: absolute;\n  top: 0;\n  right: 0;\n  left: 230px;\n  height: 100%;\n  background-color: rgba(33, 172, 242, 0.15);\n  border: 2px solid #21acf2;\n  z-index: 100000;\n  opacity: 0;\n  -webkit-transition: opacity 200ms;\n  transition: opacity 200ms;\n}\n#io3d-inspector-plugins___list-tab___drop-plane-info {\n  width: 100%;\n  height: 100%;\n  line-height: 100vh;\n  text-align: center;\n  color: rgba(33, 172, 242, 0.2);\n  font-size: 68px;\n  font-weight: 400;\n  letter-spacing: 2px;\n}\n";
 
 	// basic element utils for convenience inspired by jquery API
 
@@ -199,8 +199,6 @@
 	  }
 	}
 
-	var svg3dioLogo = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<!-- Generator: Adobe Illustrator 21.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->\n<svg version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\n\t viewBox=\"0 0 644 300\" enable-background=\"new 0 0 644 300\" xml:space=\"preserve\">\n<g>\n\t<rect stroke-width=\"0\" fill=\"#333333\" width=\"644\" height=\"300\"/>\n\t<path stroke-miterlimit=\"10\" d=\"M129.6,156.8c-5.4-5.4-11.8-9.8-18.8-12.9\n\t\tc-5.6-2.5-11.5-4.2-17.6-5c7.4-10.2,14.9-20.5,22.5-30.5c8.7-11.5,17.5-23.3,26.1-35.1c1-1.4,0.7-3.4-0.7-4.5\n\t\tc-0.5-0.4-1.2-0.6-1.9-0.6H46.7c-1.8,0-3.2,1.4-3.2,3.2v10.1c0,1.8,1.4,3.2,3.2,3.2h67.9c-7.7,10.7-15.6,21.6-23.5,32.4\n\t\tc-8.9,12.1-18,24.7-27.2,37.5c-1,1.4-0.7,3.4,0.7,4.5c1.1,0.8,2.6,0.8,3.7,0c4.5-3.4,10-5.3,15.6-5.3c6.1,0,12.2,1.2,17.9,3.6\n\t\tc5.5,2.3,10.5,5.6,14.8,9.6c4.2,4.1,7.6,9,10,14.3c2.5,5.6,3.7,11.6,3.7,17.7c0,6-1.2,11.9-3.7,17.4c-2.4,5.4-5.8,10.4-10,14.5\n\t\tc-4.3,4.2-9.3,7.5-14.8,9.9c-5.6,2.5-11.7,3.7-17.9,3.7c-6.3,0.1-12.6-1.5-18.2-4.4c-5.4-2.8-10.3-6.7-14.3-11.4\n\t\tc-1.1-1.3-3.2-1.5-4.5-0.4c-0.1,0.1-0.1,0.1-0.2,0.2l-7.6,7.6c-1.2,1.2-1.3,3.2-0.1,4.4c5.7,6.1,12.6,11.1,20.1,14.7\n\t\tc8,3.7,16.8,5.6,25.6,5.5c8.3,0,16.5-1.6,24.1-4.9c14.8-6.4,26.6-18.1,33.1-32.9c6.5-15.2,6.6-32.3,0.3-47.5\n\t\tC139.3,168.6,135,162.2,129.6,156.8z\"/>\n\t<path stroke-miterlimit=\"10\" d=\"M305.1,38.7h-9.9c-1.8,0-3.2,1.4-3.2,3.2v120.6\n\t\tc-0.5-0.6-1-1.3-1.5-1.9c-3.3-3.9-7.1-7.4-11.3-10.3c-4.5-3.1-9.4-5.4-14.5-7c-5.6-1.7-11.4-2.6-17.3-2.5c-8-0.1-16,1.5-23.4,4.6\n\t\tc-7.1,3-13.5,7.3-19,12.6c-5.5,5.4-9.9,11.9-12.8,19.1c-6.1,15.1-6.2,32-0.2,47.1c2.9,7.1,7.1,13.5,12.5,18.9\n\t\tc5.4,5.4,11.8,9.7,18.9,12.8c7.5,3.2,15.5,4.8,23.7,4.8c11.4,0.3,22.5-3,32-9.3c4.9-3.3,9.3-7.4,13.1-12c0,1,0,1.9,0,2.9v13.2\n\t\tc0,1.8,1.4,3.2,3.2,3.2h9.9c1.8,0,3.2-1.4,3.2-3.2V41.9C308.3,40.1,306.8,38.7,305.1,38.7z M265.2,241.2\n\t\tc-5.5,2.3-11.4,3.4-17.4,3.4v0c-6,0-11.9-1.1-17.4-3.4c-16.3-6.8-26.9-22.8-26.8-40.4c0-6,1.1-11.9,3.4-17.4\n\t\tc4.3-10.6,12.7-19.1,23.4-23.4c11.1-4.6,23.6-4.6,34.7,0c10.6,4.3,19.1,12.7,23.4,23.4c2.3,5.5,3.4,11.4,3.4,17.4\n\t\tC292.2,218.5,281.6,234.5,265.2,241.2z\"/>\n\t<path stroke-miterlimit=\"10\" d=\"M362.3,235.1c-3.1,0-6,1.2-8.2,3.5c-2.3,2.2-3.5,5.3-3.5,8.5\n\t\tc-0.1,3.2,1.2,6.2,3.5,8.4c4.5,4.4,11.7,4.4,16.2,0c2.3-2.2,3.6-5.2,3.5-8.4c0.1-3.2-1.2-6.2-3.5-8.5\n\t\tC368.3,236.3,365.4,235.1,362.3,235.1z\"/>\n\t<path stroke-miterlimit=\"10\" d=\"M424.6,96.4c-3.1,0-6,1.2-8.2,3.5c-2.3,2.2-3.5,5.3-3.5,8.5\n\t\tc-0.1,3.2,1.2,6.2,3.5,8.4c2.2,2.1,5.1,3.3,8.1,3.3c6.3-0.1,11.4-5.3,11.4-11.7c0.1-3.2-1.2-6.2-3.5-8.5\n\t\tC430.5,97.7,427.6,96.5,424.6,96.4z\"/>\n\t<path stroke-miterlimit=\"10\" d=\"M429.1,143.2h-9.6c-1.8,0-3.2,1.4-3.2,3.2v109\n\t\tc0,1.8,1.4,3.2,3.2,3.2h9.6c1.8,0,3.2-1.4,3.2-3.2v-109C432.3,144.7,430.9,143.2,429.1,143.2z\"/>\n\t<path stroke-miterlimit=\"10\" d=\"M597.2,177.3c-6.1-14.5-17.6-26-32.1-32.1\n\t\tc-15-6.4-32-6.4-47.1,0c-14.5,6.1-26,17.6-32.1,32.1c-6.4,15.1-6.4,32.1,0,47.2c3,7,7.4,13.4,12.8,18.9c5.5,5.4,11.9,9.7,19.1,12.7\n\t\tc7.4,3.1,15.4,4.7,23.5,4.6c8.2,0.1,16.3-1.6,23.8-4.8c7.1-3,13.6-7.4,19.1-12.8c5.5-5.4,9.9-11.8,12.9-18.9\n\t\tc3.2-7.4,4.8-15.4,4.8-23.4C602,192.7,600.4,184.7,597.2,177.3z M582,218c-2.2,5.2-5.4,9.9-9.4,13.9c-4.1,4-8.9,7.1-14.1,9.3\n\t\tc-5.4,2.3-11.3,3.4-17.2,3.4l0,0c-24.3-0.1-44-19.9-43.9-44.3c0-5.8,1.2-11.5,3.4-16.8c2.2-5.2,5.4-10,9.3-14.1\n\t\tc4-4,8.7-7.2,13.9-9.4c11-4.5,23.4-4.5,34.4,0c10.6,4.5,19.1,12.9,23.5,23.5C586.6,194.6,586.6,207,582,218z\"/>\n</g>\n</svg>\n";
-
 	// internals
 
 	var isInitialized = false;
@@ -225,12 +223,12 @@
 
 	  // 3d.io button in action bar
 
-	  io3dButtonEl = el('<div>', {
-	    id: 'io3d-inspector-plugins___3dio-button',
-	    class: 'io3d-inspector-plugins',
-	    html: svg3dioLogo,
-	    click: toggleMenu
-	  }).appendTo(document.body);
+	  // io3dButtonEl = el('<div>', {
+	  //   id: 'io3d-inspector-plugins___3dio-button',
+	  //   class: 'io3d-inspector-plugins',
+	  //   html: svg3dioLogo,
+	  //   click: toggleMenu
+	  // }).appendTo(document.body)
 
 	  // launcher menu
 	  menuContainerEl = el('<div>', {
@@ -245,7 +243,7 @@
 
 	  var headerEl = el('<div>', {
 	    id: 'io3d-inspector-plugins___plugins-menu___header',
-	    text: '3d.io APIs'
+	    text: 'Choose a library:'//'3d.io APIs'
 	  }).appendTo(menuEl);
 
 	  el('<div>', {
@@ -270,7 +268,7 @@
 
 	  el('<div>', {
 	    id: 'io3d-inspector-plugins___plugins-menu___footer',
-	    html: 'This project is <a target="_blank" href="https://github.com/archilogic-com/3dio-inspector-plugins">open source</a>. You can also use all APIs directly in your own webVR & webAR apps. <a target="_blank" href="https://3d.io/docs/api/1/">Read more</a>'
+	    html: ''//'This project is <a target="_blank" href="https://github.com/archilogic-com/3dio-inspector-plugins">open source</a>. You can also use all APIs directly in your own webVR & webAR apps. <a target="_blank" href="https://3d.io/docs/api/1/">Read more</a>'
 	  }).appendTo(menuEl);
 
 	}
@@ -11065,7 +11063,25 @@
 	      }
 
 	      itemEl.addEventListener('dragstart', function onItemDragStart(e) {
+
+	        //by jafet
+	        // if (e.preventDefault) e.preventDefault() // stops the browser from redirecting.
+
+
 	        if (e.stopPropagation) e.stopPropagation(); // stops the browser from redirecting.
+	        
+	        
+	                ////by jafet
+	        ////THIS BELOW IS A PATCH BECAUSE THIS PACKAGE IS PREVENTING DEFAULT AND STOPPING PROPAGATION OF MOUSE EVENTS
+	        ////WHICH MAKES ANOTHER APPLICATION FAIL. I TRIED DEACTIVATING THE DEFAULT PREVENTION AND PROPAGATION STOPS
+	        ////BUT THAT WOULD MAKE THIS APPLICATION FAIL FOR SOME REASON.
+	        var clickEvent = document.createEvent('MouseEvents');
+	        console.log('firing mouseup event');
+	        clickEvent.initEvent('mouseup', true, true);
+	        document.dispatchEvent(clickEvent);
+
+	        
+	        
 	        fadeInDropPlane();
 	        e.dataTransfer.effectAllowed = 'move';
 	        e.dataTransfer.setData('text/plain', JSON.stringify(item));
@@ -11081,7 +11097,7 @@
 	        cameraEl.setAttribute('camera', 'active', true);
 	        var camera2 = cameraEl.getObject3D('camera');
 	        // camera2.position.set(20, 10, 20);
-	        camera2.position.set(playerPosition.x+20, playerPosition.y+20, playerPosition.z+20);
+	        camera2.position.set(playerPosition.x + 20, playerPosition.y + 20, playerPosition.z + 20);
 	        // camera2.lookAt(new THREE.Vector3());
 	        camera2.lookAt(playerPosition);
 	        camera2.updateMatrixWorld();
@@ -11094,11 +11110,27 @@
 	      itemEl.addEventListener('dragend', function onItemDragEnd(e) {
 	        if (e.stopPropagation) e.stopPropagation(); // stops the browser from redirecting.
 	        fadeOutDropPlane();
+
+
+
+
 	        return false
 	      }, false);
 
 	      itemEl.addEventListener('click', function onItemDragStart(e) {
+
+	        //by jafet
+	        // if (e.preventDefault) e.preventDefault() // stops the browser from redirecting.
+	        
+	        
+
+	        
+
 	        if (e.stopPropagation) e.stopPropagation(); // stops the browser from redirecting.
+
+
+
+
 
 
 	        // this.currentCameraEl = AFRAME.scenes[0].camera.el;
@@ -11244,7 +11276,7 @@
 
 
 	    // var camera = AFRAME.scenes[0].camera.el.getObject3D('camera')
-	              var el$$1 = document.querySelector('#player');//was #player
+	    var el$$1 = document.querySelector('#player'); //was #player
 	    var playerPosition = el$$1.getAttribute('position');
 	    // var cameraEl = document.createElement('a-camera')
 	    // cameraEl.setAttribute('camera', 'active', true);
@@ -11269,9 +11301,9 @@
 	    var camera2 = cameraEl.getObject3D('camera');
 	    console.log("Jafet says camera 2 position is");
 	    console.log(camera2.position);
-	        //     camera2.position.set(20, 10, 20);
-	        // camera2.lookAt(new THREE.Vector3());
-	        // camera2.updateMatrixWorld();
+	    //     camera2.position.set(20, 10, 20);
+	    // camera2.lookAt(new THREE.Vector3());
+	    // camera2.updateMatrixWorld();
 
 
 
@@ -11280,9 +11312,9 @@
 	    // cameraEl.setAttribute('camera', 'active', false);
 
 
-	      cameraEl.setAttribute('camera', 'active', false);
-	          var camEl = document.querySelector('#thecam');//was #player
-	      camEl.setAttribute('camera', 'active', true);
+	    cameraEl.setAttribute('camera', 'active', false);
+	    var camEl = document.querySelector('#thecam'); //was #player
+	    camEl.setAttribute('camera', 'active', true);
 
 	    var position = pickPointOnGroundPlane({
 	      x: e.x,
@@ -11290,7 +11322,7 @@
 	      canvas: AFRAME.scenes[0].canvas, //,
 	      tempCamera: camera2, //AFRAME.INSPECTOR.EDITOR_CAMERA
 	      // tempCamera: cameraPass.getObject3D('camera'), //AFRAME.INSPECTOR.EDITOR_CAMERA
-	      playerPosition:camEl.getObject3D('camera').position//playerPosition
+	      playerPosition: camEl.getObject3D('camera').position //playerPosition
 	    });
 	    // var position = pickPointOnGroundPlane({
 	    //   x: playerPosition.x,
@@ -11302,19 +11334,19 @@
 
 	    console.log("Jafet says drop off location is:");
 	    console.log(position);
-	    
+
 	    // position.y=1
 	    // get item data
 	    var item = JSON.parse(e.dataTransfer.getData('text/plain'));
 	    // onItemDropCallback(item, position.add(el.getObject3D('camera').position), function() {
-	    
+
 	    // var newPos=position.add(el.getObject3D('camera').position)
 	    var newPos = new THREE.Vector3();
-	    newPos.addVectors(position,camEl.getObject3D('camera').position);
-	    newPos.y=0;
+	    newPos.addVectors(position, camEl.getObject3D('camera').position);
+	    newPos.y = 0;
 	    onItemDropCallback(item, newPos, function() {
 
-	    // onItemDropCallback(item, position, function() {
+	      // onItemDropCallback(item, position, function() {
 
 	      // cameraEl.setAttribute('camera', 'active', false);
 	      // el.setAttribute('camera', 'active', true);
@@ -11355,7 +11387,7 @@
 	  function fadeInDropPlane() {
 	    dropPlaneEl.style.display = 'block';
 	    setTimeout(function() {
-	      dropPlaneEl.style.opacity = 1;
+	      dropPlaneEl.style.opacity = 1; //WAS 1
 	    }, 50);
 	  }
 
@@ -11575,11 +11607,19 @@
 
 	}
 
-	function callSearchApi(offset, value) {
-	  return fetch('https://gblock.3d.io/api/search?limit=10&offset=' + offset + '&query=' + value).then(function(response) {
+	//JAFET ADDED
+	const API_KEY = 'AIzaSyD2l0Cy_cS9IqgA-W-bIHvYjbf24a6aUv4';
+
+	function callPolyApi(offset, value) {
+	  return fetch(`https://poly.googleapis.com/v1/assets?keywords=${value}&format=OBJ&key=${API_KEY}`).then(function(response) {
+	    console.log('THE OUTPUT FROM POLY IS');
+	    // console.log(response.json())
 	    return response.json()
 	  })
 	}
+
+
+
 
 	function search(value, offset) {
 
@@ -11589,24 +11629,44 @@
 	  Promise.all([
 	    // google has a limit fo max 10 result per call :/
 	    // so we do 3 api calls and merge the results into one
-	    callSearchApi(1, value),
-	    callSearchApi(11, value),
-	    callSearchApi(21, value)
+	    // callSearchApi(1, value),
+	    // callSearchApi(11, value),
+	    // callSearchApi(21, value),
+	    callPolyApi(1, value)
+	    // callPolyApi(11, value),
+	    // callPolyApi(21, value),
 	  ]).then(function(results) {
-	    return results[0].items.concat(results[1].items).concat(results[2].items)
+	    // return results[0].items.concat(results[1].items).concat(results[2].items)
+	    return results[0].assets
 	  }).then(function(results) {
 
 	    var items = results.map(function(item_) {
+	      // return {
+	      //   title: item_.title + ' by ' + item_.author,
+	      //   thumb: item_.image,
+	      //   url: item_.url,
+	      //   author: item_.author
+	      // }
+	      console.log(item_);
+
+	      var fifthSlashIndex = item_.formats[0].root.url.split('/', 5).join('/').length;
+	      var profileUrl = item_.formats[0].root.url.substr(0, fifthSlashIndex);
+	      profileUrl = profileUrl.replace('googleapis.com/downloads', 'google.com/view');
+
 	      return {
-	        title: item_.title + ' by ' + item_.author,
-	        thumb: item_.image,
-	        url: item_.url,
-	        author: item_.author
+	        title: item_.displayName + ' by ' + item_.authorName,
+	        thumb: item_.thumbnail.url,
+	        url: profileUrl, //please use gltf 2
+	        author: item_.authorName
 	      }
 	    });
 
 	    listTab$1.setList(items);
-	    var info = 'API code is open sourced on <a target="_blank" href="https://github.com/archilogic-com/aframe-gblock/blob/master/server/api-methods.js">github</a>';
+
+	    console.log('Bro items are:');
+	    console.log(items);
+
+	    var info = ''; //'API code is open sourced on <a target="_blank" href="https://github.com/archilogic-com/aframe-gblock/blob/master/server/api-methods.js">github</a>'
 	    listTab$1.setInfo(items.length ? info : 'No results found.');
 
 	  }).catch(function(error) {
@@ -11623,7 +11683,7 @@
 	  // add new entity to scene
 	  var newEntity = document.createElement('a-entity');
 	  //ADDED BY JAFET
-	    newEntity.setAttribute('position', position.x + ' ' + position.y + ' ' + position.z);
+	  newEntity.setAttribute('position', position.x + ' ' + position.y + ' ' + position.z);
 
 	  newEntity.addEventListener('model-loaded', function(event) {
 

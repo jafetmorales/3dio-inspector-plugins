@@ -103,7 +103,25 @@ function createListTabUi(args) {
       }
 
       itemEl.addEventListener('dragstart', function onItemDragStart(e) {
+
+        //by jafet
+        // if (e.preventDefault) e.preventDefault() // stops the browser from redirecting.
+
+
         if (e.stopPropagation) e.stopPropagation() // stops the browser from redirecting.
+        
+        
+                ////by jafet
+        ////THIS BELOW IS A PATCH BECAUSE THIS PACKAGE IS PREVENTING DEFAULT AND STOPPING PROPAGATION OF MOUSE EVENTS
+        ////WHICH MAKES ANOTHER APPLICATION FAIL. I TRIED DEACTIVATING THE DEFAULT PREVENTION AND PROPAGATION STOPS
+        ////BUT THAT WOULD MAKE THIS APPLICATION FAIL FOR SOME REASON.
+        var clickEvent = document.createEvent('MouseEvents');
+        console.log('firing mouseup event')
+        clickEvent.initEvent('mouseup', true, true);
+        document.dispatchEvent(clickEvent);
+
+        
+        
         fadeInDropPlane()
         e.dataTransfer.effectAllowed = 'move'
         e.dataTransfer.setData('text/plain', JSON.stringify(item))
@@ -119,7 +137,7 @@ function createListTabUi(args) {
         cameraEl.setAttribute('camera', 'active', true);
         var camera2 = cameraEl.getObject3D('camera');
         // camera2.position.set(20, 10, 20);
-        camera2.position.set(playerPosition.x+20, playerPosition.y+20, playerPosition.z+20);
+        camera2.position.set(playerPosition.x + 20, playerPosition.y + 20, playerPosition.z + 20);
         // camera2.lookAt(new THREE.Vector3());
         camera2.lookAt(playerPosition);
         camera2.updateMatrixWorld();
@@ -132,11 +150,27 @@ function createListTabUi(args) {
       itemEl.addEventListener('dragend', function onItemDragEnd(e) {
         if (e.stopPropagation) e.stopPropagation() // stops the browser from redirecting.
         fadeOutDropPlane()
+
+
+
+
         return false
       }, false)
 
       itemEl.addEventListener('click', function onItemDragStart(e) {
+
+        //by jafet
+        // if (e.preventDefault) e.preventDefault() // stops the browser from redirecting.
+        
+        
+
+        
+
         if (e.stopPropagation) e.stopPropagation() // stops the browser from redirecting.
+
+
+
+
 
 
         // this.currentCameraEl = AFRAME.scenes[0].camera.el;
@@ -282,7 +316,7 @@ function createListTabUi(args) {
 
 
     // var camera = AFRAME.scenes[0].camera.el.getObject3D('camera')
-              var el = document.querySelector('#player');//was #player
+    var el = document.querySelector('#player'); //was #player
     var playerPosition = el.getAttribute('position');
     // var cameraEl = document.createElement('a-camera')
     // cameraEl.setAttribute('camera', 'active', true);
@@ -307,9 +341,9 @@ function createListTabUi(args) {
     var camera2 = cameraEl.getObject3D('camera');
     console.log("Jafet says camera 2 position is")
     console.log(camera2.position)
-        //     camera2.position.set(20, 10, 20);
-        // camera2.lookAt(new THREE.Vector3());
-        // camera2.updateMatrixWorld();
+    //     camera2.position.set(20, 10, 20);
+    // camera2.lookAt(new THREE.Vector3());
+    // camera2.updateMatrixWorld();
 
 
 
@@ -318,9 +352,9 @@ function createListTabUi(args) {
     // cameraEl.setAttribute('camera', 'active', false);
 
 
-      cameraEl.setAttribute('camera', 'active', false);
-          var camEl = document.querySelector('#thecam');//was #player
-      camEl.setAttribute('camera', 'active', true);
+    cameraEl.setAttribute('camera', 'active', false);
+    var camEl = document.querySelector('#thecam'); //was #player
+    camEl.setAttribute('camera', 'active', true);
 
     var position = pickPointOnGroundPlane({
       x: e.x,
@@ -328,7 +362,7 @@ function createListTabUi(args) {
       canvas: AFRAME.scenes[0].canvas, //,
       tempCamera: camera2, //AFRAME.INSPECTOR.EDITOR_CAMERA
       // tempCamera: cameraPass.getObject3D('camera'), //AFRAME.INSPECTOR.EDITOR_CAMERA
-      playerPosition:camEl.getObject3D('camera').position//playerPosition
+      playerPosition: camEl.getObject3D('camera').position //playerPosition
     })
     // var position = pickPointOnGroundPlane({
     //   x: playerPosition.x,
@@ -340,19 +374,19 @@ function createListTabUi(args) {
 
     console.log("Jafet says drop off location is:")
     console.log(position)
-    
+
     // position.y=1
     // get item data
     var item = JSON.parse(e.dataTransfer.getData('text/plain'))
     // onItemDropCallback(item, position.add(el.getObject3D('camera').position), function() {
-    
+
     // var newPos=position.add(el.getObject3D('camera').position)
     var newPos = new THREE.Vector3()
-    newPos.addVectors(position,camEl.getObject3D('camera').position)
-    newPos.y=0
+    newPos.addVectors(position, camEl.getObject3D('camera').position)
+    newPos.y = 0
     onItemDropCallback(item, newPos, function() {
 
-    // onItemDropCallback(item, position, function() {
+      // onItemDropCallback(item, position, function() {
 
       // cameraEl.setAttribute('camera', 'active', false);
       // el.setAttribute('camera', 'active', true);
@@ -393,7 +427,7 @@ function createListTabUi(args) {
   function fadeInDropPlane() {
     dropPlaneEl.style.display = 'block'
     setTimeout(function() {
-      dropPlaneEl.style.opacity = 1
+      dropPlaneEl.style.opacity = 1 //WAS 1
     }, 50)
   }
 
