@@ -110,7 +110,7 @@ function show3dioButton () {
 
 function hide3dioButton (callback) {
 
-  io3dButtonEl.hide()
+  // io3dButtonEl.hide()
   if (activePluginName) plugins[activePluginName].module.hide(callback)
   hideMenu()
 
