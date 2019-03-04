@@ -1,5 +1,10 @@
 import createListTabUi from './common/create-list-tab-ui.js'
 
+
+// const dbFirebase = require('./FirebaseApp.js')
+// var firebase = require('firebase');
+
+
 // config
 
 var DEFAULT_SEARCH_VALUE = 'house'
@@ -43,7 +48,9 @@ function callSearchApi(offset, value) {
 }
 
 //JAFET ADDED
-const API_KEY = 'AIzaSyD2l0Cy_cS9IqgA-W-bIHvYjbf24a6aUv4';
+// const API_KEY = 'AIzaSyD2l0Cy_cS9IqgA-W-bIHvYjbf24a6aUv4';
+const API_KEY = 'AIzaSyCbzifLOPONyCkD-qKWrTZEYgGEJ7ENlCQ';
+
 
 function callPolyApi(offset, value) {
   return fetch(`https://poly.googleapis.com/v1/assets?keywords=${value}&format=OBJ&key=${API_KEY}`).then(function(response) {
@@ -149,6 +156,34 @@ function addToScene(item, position, callback) {
   var newEntity = document.createElement('a-entity')
   //ADDED BY JAFET
   newEntity.setAttribute('position', position.x + ' ' + position.y + ' ' + position.z)
+  newEntity.setAttribute('scale', 1 + ' ' + 1 + ' ' + 1)
+
+  // newEntity.addEventListener('loaded', function () {
+  //   console.log('the object has loaded')
+  //       //COMMENTED OUT BY JAFET
+  //   // // center model to picking position
+  //   var bb = new THREE.Box3().setFromObject(event.detail.model) // bounding box
+  //   var size = new THREE.Vector3(Math.abs(bb.max.x - bb.min.x), Math.abs(bb.max.y - bb.min.y), Math.abs(bb.max.z - bb.min.z))
+
+  //   console.log('the size is:')
+  //   console.log(size)
+
+  //   var scalingFactor=2//3/size.y
+  //   var scaleString=scalingFactor + ' ' + scalingFactor + ' ' + scalingFactor
+  //   console.log('scaleString is:')
+  //   console.log(scaleString)
+  //   newEntity.setAttribute('scale', scaleString)
+  //   console.log('newEntity is:')
+  //   console.log(newEntity)
+  //   console.log('object3D is:')
+  //   console.log(newEntity.object3D)
+
+  //   newEntity.setAttribute('position', position.x + ' ' + 5 + ' ' + position.z)
+  //   // newEntity.object3D.children[0].children[0].scale= new THREE.Vector3(scalingFactor, scalingFactor, scalingFactor) 
+  //   console.log(event.detail)
+  //   newEntity.object3D.scale= new THREE.Vector3(scalingFactor, scalingFactor, scalingFactor) 
+
+  // }.bind(this))
 
   newEntity.addEventListener('model-loaded', function(event) {
 
@@ -158,18 +193,127 @@ function addToScene(item, position, callback) {
     //COMMENTED OUT BY JAFET
     // // center model to picking position
     // var bb = new THREE.Box3().setFromObject(event.detail.model) // bounding box
+
+
+    // console.log('look for error here')
+    var node = document.getElementById(newEntity.id)
+    console.log('node is')
+    console.log(node)
+    // var bb = new THREE.Box3().setFromObject(el.object3D) // bounding box
     // var size = new THREE.Vector3(Math.abs(bb.max.x - bb.min.x), Math.abs(bb.max.y - bb.min.y), Math.abs(bb.max.z - bb.min.z))
+    // // console.log('the size is:')
+    // // console.log(size)
+    // var scalingFactor=1.1//3/size.y
+    // var scaleString=scalingFactor + ' ' + scalingFactor + ' ' + scalingFactor
+    // console.log('scaleString is:')
+    // console.log(scaleString)
+    // // newEntity.setAttribute('scale', scaleString)
+    // // console.log('newEntity is:')
+    // // console.log(newEntity)
+    // el.setAttribute('scale', scaleString)
+    // // el.object3D.scale= new THREE.Vector3(scalingFactor, scalingFactor, scalingFactor) 
+
+
+
+    // setTimeout(function(){ 
+    
+    const setYto=5
+    setScale(node,setYto)
+
+    function setScale(node) {
+      var boxHelper = new THREE.BoxHelper(node.object3D, 0xff0000)
+      boxHelper.geometry.computeBoundingBox()
+      const bb = boxHelper.geometry.boundingBox
+      console.log('look for error here')
+      // var el=document.getElementById(newEntity.id)
+      console.log('node object3D is')
+      console.log(node.object3D)
+      // var bb = new THREE.Box3().setFromObject(node.object3D) // bounding box
+      console.log('bb is')
+      console.log(bb)
+      if (bb.max.y == bb.min.y) {
+        console.log('inside the if man because bb.max.y==bb.min.y')
+        setTimeout(function() {
+          console.log('calling recursively')
+          setScale(node, setYto)
+        }, 50);
+      }
+      else {
+
+        var size = new THREE.Vector3(Math.abs(bb.max.x - bb.min.x), Math.abs(bb.max.y - bb.min.y), Math.abs(bb.max.z - bb.min.z))
+        // console.log('the size is:')
+        // console.log(size)
+        
+        
+        var scalingFactor = setYto / size.y
+        var scaleString = scalingFactor + ' ' + scalingFactor + ' ' + scalingFactor
+        console.log('scaleString is:')
+        console.log(scaleString)
+        // newEntity.setAttribute('scale', scaleString)
+        // console.log('newEntity is:')
+        // console.log(newEntity)
+
+        node.setAttribute('scale', scaleString)
+
+        // node.object3D.scale = new THREE.Vector3(scalingFactor, scalingFactor, scalingFactor)
+
+
+        var position = node.object3D.position
+        // position.set(
+        //   position.x - bb.min.x - size.x / 2, -bb.min.y,
+        //   position.z - bb.min.z - size.z / 2
+        // )
+        position.set(
+          position.x, setYto/2, position.z)
+        //   position.z - bb.min.z - size.z / 2
+        // )
+        // node.object3D.position = position
+
+    var positionString=position.x + ' ' + position.y + ' ' + position.z
+    node.setAttribute('position', positionString)
+
+
+        // world_ref.child("entities").child(objectId).child('scale').set(scaleString)
+        // }.bind(this), 100);
+
+      }
+    }
+
+    // var position=el.object3D.position
     // position.set(
     //   position.x - bb.min.x - size.x / 2, -bb.min.y,
     //   position.z - bb.min.z - size.z / 2
     // )
-    // newEntity.setAttribute('position', position.x + ' ' + position.y + ' ' + position.z)
+    // var positionString=position.x + ' ' + position.y + ' ' + position.z
+    // el.setAttribute('position', positionString)
+
+
+
+
+
+    // el.object3D.position= position 
+
+    // console.log('object3D is:')
+    // console.log(newEntity.object3D)
+
+
+
+
+
+    // event.detail.model.el.setAttribute('position', position.x + ' ' + 5 + ' ' + position.z)
+    // newEntity.object3D.children[0].children[0].scale= new THREE.Vector3(scalingFactor, scalingFactor, scalingFactor) 
+    // console.log(event.detail)
+    // event.detail.model.el.object3D.scale= new THREE.Vector3(scalingFactor, scalingFactor, scalingFactor) 
+    // event.detail.model.object3D.scale= new THREE.Vector3(scalingFactor, scalingFactor, scalingFactor) 
+
+
+    // el.setAttribute('position', position.x + ' ' + position.y + ' ' + position.z)
     // //ADDED BY JAFET
     // // newEntity.setAttribute('gblock', item.url)
 
     callback()
 
-  }, { once: true })
+  }.bind(this), { once: true })
 
   newEntity.addEventListener('model-error', function(event) {
 
