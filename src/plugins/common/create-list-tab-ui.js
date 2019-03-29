@@ -127,7 +127,8 @@ function createListTabUi(args) {
         e.dataTransfer.setData('text/plain', JSON.stringify(item))
 
         console.log("dragging just started")
-        var el = document.querySelector('#player');
+        // var el = document.querySelector('#player');
+        var el = document.querySelector('#enclosure');
         var playerPosition = el.getAttribute('position');
 
         document.querySelector('#thecam').setAttribute('camera', 'active', false);

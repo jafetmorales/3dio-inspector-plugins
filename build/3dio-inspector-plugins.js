@@ -2,9 +2,9 @@
  * @preserve
  * @name 3dio-inspector-plugins
  * @version 0.0.6
- * @date 2019/03/04 22:26
+ * @date 2019/03/25 22:28
  * @branch master
- * @commit 93c94e6f251590fe5adbed29e3d213fa6cd1b039
+ * @commit bc3f5d58c9fcd177e9a5cd05ac336ea9de1d98ad
  * @description Connects A-Frame Inspector to 3d.io APIs
  * @see https://3d.io
  * @tutorial https://github.com/archilogic-com/3dio-inspector-plugins
@@ -18,7 +18,7 @@
 	(global.io3dInspectorPlugins = factory());
 }(this, (function () { 'use strict';
 
-	var BUILD_DATE='2019/03/04 22:26', GIT_BRANCH = 'master', GIT_COMMIT = '93c94e6f251590fe5adbed29e3d213fa6cd1b039'
+	var BUILD_DATE='2019/03/25 22:28', GIT_BRANCH = 'master', GIT_COMMIT = 'bc3f5d58c9fcd177e9a5cd05ac336ea9de1d98ad'
 
 	var css = "#io3d-inspector-plugins * {\n  outline: none;\n  -webkit-box-sizing: border-box;\n  /* Safari/Chrome, other WebKit */\n  -moz-box-sizing: border-box;\n  /* Firefox, other Gecko */\n  box-sizing: border-box;\n  /* Opera/IE 8+ */\n}\n.io3d-inspector-plugins___truncate-message {\n  display: inline-block;\n  overflow: hidden;\n  white-space: nowrap;\n  max-width: 365px;\n  text-overflow: ellipsis;\n  margin-bottom: 0;\n}\n.io3d-inspector-plugins * {\n  outline: none;\n  -webkit-box-sizing: border-box;\n  /* Safari/Chrome, other WebKit */\n  -moz-box-sizing: border-box;\n  /* Firefox, other Gecko */\n  box-sizing: border-box;\n  /* Opera/IE 8+ */\n}\n.io3d-inspector-plugins___tab-container {\n  position: absolute;\n  font-family: Roboto, BlinkMacSystemFont, -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif;\n  font-size: 12px;\n  top: 50px;\n  left: 0;\n  bottom: 0;\n  z-index: 100000;\n}\n.io3d-inspector-plugins___tab-container a {\n  color: #bcbcbc;\n}\n.io3d-inspector-plugins___tab {\n  position: absolute;\n  font-size: 12px;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 230px;\n  background-color: #2b2b2b;\n}\n@-webkit-keyframes io3d-inspector-plugins___tab___slide-in {\n  0% {\n    -webkit-transform: translateX(-40%);\n    opacity: 0;\n  }\n  100% {\n    -webkit-transform: translateX(0%);\n    opacity: .7;\n  }\n}\n@keyframes io3d-inspector-plugins___tab___slide-in {\n  0% {\n    transform: translateX(-40%);\n    opacity: 0;\n  }\n  100% {\n    transform: translateX(0%);\n    opacity: .7;\n  }\n}\n@-webkit-keyframes io3d-inspector-plugins___tab___slide-out {\n  0% {\n    -webkit-transform: translateX(0%);\n    opacity: .7;\n  }\n  100% {\n    -webkit-transform: translateX(-40%);\n    opacity: 0;\n  }\n}\n@keyframes io3d-inspector-plugins___tab___slide-out {\n  0% {\n    transform: translateX(0%);\n    opacity: .7;\n  }\n  100% {\n    transform: translateX(-40%);\n    opacity: 0;\n  }\n}\n#io3d-inspector-plugins___3dio-button {\n  z-index: 100000;\n  position: absolute;\n  top: 39px;\n  left: 184px;\n  height: 18px;\n  text-align: right;\n  border-radius: 3px;\n  cursor: pointer;\n}\n#io3d-inspector-plugins___3dio-button svg {\n  height: 100%;\n}\n#io3d-inspector-plugins___3dio-button svg g {\n  fill: #bcbcbc;\n  stroke: #bcbcbc;\n  stroke-width: 13;\n}\n#io3d-inspector-plugins___3dio-button svg g:hover {\n  fill: #1faaf2;\n  stroke: #1faaf2;\n  stroke-width: 13;\n}\n#io3d-inspector-plugins___plugins-menu {\n  z-index: 100001;\n  position: absolute;\n  top: 50px;\n  left: 2px;\n  width: 230px;\n  font-family: Roboto, BlinkMacSystemFont, -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif;\n  font-size: 12px;\n  letter-spacing: 0px;\n  color: #bcbcbc;\n}\n@-webkit-keyframes io3d-inspector-plugins___plugins-menu-slide-in {\n  0% {\n    -webkit-transform: translateY(-40%);\n    opacity: 0;\n  }\n  100% {\n    -webkit-transform: translateY(0%);\n    opacity: 1;\n  }\n}\n@keyframes io3d-inspector-plugins___plugins-menu-slide-in {\n  0% {\n    transform: translateY(-40%);\n    opacity: 0;\n  }\n  100% {\n    transform: translateY(0%);\n    opacity: 1;\n  }\n}\n@-webkit-keyframes io3d-inspector-plugins___plugins-menu-slide-out {\n  0% {\n    -webkit-transform: translateY(0%);\n    opacity: 1;\n  }\n  100% {\n    -webkit-transform: translateY(-40%);\n    opacity: 0;\n  }\n}\n@keyframes io3d-inspector-plugins___plugins-menu-slide-out {\n  0% {\n    transform: translateY(0%);\n    opacity: 1;\n  }\n  100% {\n    transform: translateY(-40%);\n    opacity: 0;\n  }\n}\n#io3d-inspector-plugins___plugins-menu___container {\n  background-color: rgba(0, 0, 0, 0.7);\n  padding: 0 12px 0 12px;\n}\n#io3d-inspector-plugins___plugins-menu___header {\n  padding: 14px 0 14px 0;\n  border-bottom: 1px solid #bcbcbc;\n}\n#io3d-inspector-plugins___plugins-menu___close-button {\n  position: absolute;\n  top: 0;\n  right: 12px;\n  padding: 14px 0 14px 0;\n  cursor: pointer;\n}\n#io3d-inspector-plugins___plugins-menu___button {\n  padding: 10px 0 10px 0;\n  border-bottom: 1px solid #bcbcbc;\n  cursor: pointer;\n}\n#io3d-inspector-plugins___plugins-menu___button:hover {\n  background-color: rgba(255, 255, 255, 0.2);\n}\n#io3d-inspector-plugins___plugins-menu___footer {\n  padding: 14px 0 14px 0;\n  line-height: 1.3;\n}\n#io3d-inspector-plugins___plugins-menu___footer a {\n  color: #bcbcbc;\n}\n#io3d-inspector-plugins___plugins-menu___footer a:hover {\n  color: white;\n}\n#io3d-inspector-plugins___bake-lightmaps___container {\n  font-family: Roboto, BlinkMacSystemFont, -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif;\n  position: absolute;\n  top: 0px;\n  left: 246px;\n  z-index: 100000;\n}\n#io3d-inspector-plugins___bake-lightmaps___main-bar span,\n#io3d-inspector-plugins___bake-lightmaps___main-bar a {\n  text-decoration: none;\n  display: inline-block;\n  height: 33px;\n  line-height: 33px;\n  padding: 0 12px 0 12px;\n  margin: 0 0 0 0;\n  border-left: 1px solid rgba(255, 255, 255, 0.5);\n  white-space: nowrap;\n  font-weight: 400;\n  letter-spacing: 1px;\n  font-size: 12px;\n  color: white;\n  background-color: rgba(0, 0, 0, 0.8);\n}\n#io3d-inspector-plugins___bake-lightmaps___bake-button {\n  display: inline-block;\n  cursor: pointer;\n  text-decoration: none;\n  color: white;\n  font-size: 16px;\n  font-weight: 500;\n  letter-spacing: 0px;\n  height: 38px;\n  line-height: 40px;\n  padding: 0 13px 0 13px;\n  background-color: #1faaf2;\n  border-radius: 2px;\n  margin: 16px 0 0 0;\n  position: relative;\n  left: 2px;\n  top: -2px;\n  box-shadow: -2px 2px 0px 0px #105576;\n}\n#io3d-inspector-plugins___bake-lightmaps___bake-button:hover {\n  background-color: #44c3f2;\n}\n#io3d-inspector-plugins___bake-lightmaps___bake-button:active {\n  left: -1px;\n  top: 1px;\n  background-color: #105576;\n  box-shadow: -2px 2px 0px 0px rgba(0, 0, 0, 0);\n}\n#io3d-inspector-plugins___list-tab___header {\n  position: absolute;\n  width: 100%;\n  height: 64px;\n  background-color: #000000;\n  top: 0;\n  left: 0;\n}\n#io3d-inspector-plugins___list-tab___title {\n  position: absolute;\n  width: 100%;\n  height: 38px;\n  line-height: 38px;\n  color: #ffffff;\n  padding: 0 0 0 8px;\n  top: 0;\n  left: 0;\n  letter-spacing: 1px;\n}\n#io3d-inspector-plugins___list-tab___close-button {\n  -webkit-font-smoothing: antialiased;\n  font-size: 16px;\n  font-weight: 200;\n  position: absolute;\n  width: 20px;\n  height: 20px;\n  line-height: 20px;\n  border-radius: 50%;\n  text-align: center;\n  top: 9px;\n  right: 4px;\n  cursor: pointer;\n  color: #ffffff;\n}\n#io3d-inspector-plugins___list-tab___close-button:hover {\n  color: #1faaf2;\n}\n#io3d-inspector-plugins___list-tab___close-button:before {\n  content: \"x\";\n}\n#io3d-inspector-plugins___list-tab___search-input {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  writing-mode: horizontal-tb;\n  -webkit-rtl-ordering: logical;\n  -webkit-border-image: none;\n  font-family: \"Roboto Mono\", Consolas, \"Andale Mono\", Monaco, \"Courier New\", monospace;\n  font-size: 11px;\n  font-weight: normal;\n  letter-spacing: 0px;\n  position: absolute;\n  width: 218px;\n  height: 26px;\n  line-height: 26px;\n  top: 37px;\n  left: 6px;\n  padding: 0 0 0 7px;\n  border-radius: 5px;\n  border: 0;\n  background-color: #ffffff;\n  color: #000000;\n}\n#io3d-inspector-plugins___list-tab___search-icon {\n  font-size: 12px;\n  position: absolute;\n  width: 26px;\n  height: 26px;\n  line-height: 26px;\n  top: 37px;\n  right: 0;\n  color: #4d4d4d;\n}\n#io3d-inspector-plugins___list-tab___search-icon:before {\n  content: \"x\";\n}\n#io3d-inspector-plugins___list-tab___list-container {\n  position: absolute;\n  width: 100%;\n  top: 64px;\n  left: 0;\n  bottom: 0;\n  padding: 0 0 20px 0;\n  overflow: auto;\n  background-color: #000000;\n}\n#io3d-inspector-plugins___list-tab___list-info {\n  position: relative;\n  display: block;\n  padding: 10px;\n  width: 100%;\n  color: #ffffff;\n  line-height: 1.3;\n}\n#io3d-inspector-plugins___list-tab___list-info a {\n  color: #bcbcbc;\n}\n#io3d-inspector-plugins___list-tab___list-info a:hover {\n  color: white;\n}\n#io3d-inspector-plugins___list-tab___list-item-container {\n  position: relative;\n  display: block;\n  width: 100%;\n  padding: 4px 0 0 4px;\n}\n#io3d-inspector-plugins___list-tab___list-item-container .io3d-inspector-plugins___list-item {\n  display: inline-block;\n  margin: 4px 0 0 4px;\n  position: relative;\n  width: 98px;\n  height: 98px;\n  -moz-user-select: none;\n  -webkit-user-select: none;\n  user-select: none;\n  /* Required to make elements draggable in old WebKit */\n  -khtml-user-drag: element;\n  -webkit-user-drag: element;\n  border: 1px dotted rgba(255, 255, 255, 0.4);\n  border-radius: 3px;\n  overflow: hidden;\n  -webkit-transition: border-color 1500ms;\n  transition: border-color 1500ms;\n  cursor: move;\n  /* fallback if grab cursor is unsupported */\n  cursor: grab;\n  cursor: -moz-grab;\n  cursor: -webkit-grab;\n}\n#io3d-inspector-plugins___list-tab___list-item-container .io3d-inspector-plugins___list-item:active {\n  cursor: grabbing;\n  cursor: -moz-grabbing;\n  cursor: -webkit-grabbing;\n}\n#io3d-inspector-plugins___list-tab___list-item-container .io3d-inspector-plugins___list-item:hover {\n  background-color: #333;\n}\n#io3d-inspector-plugins___list-tab___list-item-container .io3d-inspector-plugins___list-item img {\n  position: absolute;\n  opacity: 0;\n  -webkit-transition: opacity 1500ms;\n  transition: opacity 1500ms;\n}\n#io3d-inspector-plugins___list-tab___drop-plane {\n  position: absolute;\n  top: 0;\n  right: 0;\n  left: 230px;\n  height: 100%;\n  background-color: rgba(33, 172, 242, 0.15);\n  border: 2px solid #21acf2;\n  z-index: 100000;\n  opacity: 0;\n  -webkit-transition: opacity 200ms;\n  transition: opacity 200ms;\n}\n#io3d-inspector-plugins___list-tab___drop-plane-info {\n  width: 100%;\n  height: 100%;\n  line-height: 100vh;\n  text-align: center;\n  color: rgba(33, 172, 242, 0.2);\n  font-size: 68px;\n  font-weight: 400;\n  letter-spacing: 2px;\n}\n";
 
@@ -11087,7 +11087,8 @@
 	        e.dataTransfer.setData('text/plain', JSON.stringify(item));
 
 	        console.log("dragging just started");
-	        var el$$1 = document.querySelector('#player');
+	        // var el = document.querySelector('#player');
+	        var el$$1 = document.querySelector('#enclosure');
 	        var playerPosition = el$$1.getAttribute('position');
 
 	        document.querySelector('#thecam').setAttribute('camera', 'active', false);
@@ -11617,7 +11618,7 @@
 
 
 	function callPolyApi(offset, value) {
-	  return fetch(`https://poly.googleapis.com/v1/assets?keywords=${value}&format=OBJ&key=${API_KEY}`).then(function(response) {
+	  return fetch(`https://poly.googleapis.com/v1/assets?keywords=${value}&format=OBJ&key=${API_KEY}&maxComplexity=MEDIUM`).then(function(response) {
 	    console.log('THE OUTPUT FROM POLY IS');
 	    // console.log(response.json())
 	    return response.json()
@@ -11655,14 +11656,30 @@
 	      // }
 	      console.log(item_);
 
-	      var fifthSlashIndex = item_.formats[0].root.url.split('/', 5).join('/').length;
-	      var profileUrl = item_.formats[0].root.url.substr(0, fifthSlashIndex);
-	      profileUrl = profileUrl.replace('googleapis.com/downloads', 'google.com/view');
+	      //OTHER PATH: https://poly.googleapis.com/downloads/42PQqEaxb-P
+
+	      //what you get
+	      // https://poly.googleapis.com/downloads/fp/1552383794785924/42PQqEaxb-P/fbI7x6Izt4N/RocketShip_1393.gltf
+	      //what you want
+	      // https://poly.google.com/view/42PQqEaxb-P
+	      // var fifthSlashIndex = item_.formats[0].root.url.split('/', 5).join('/').length
+	      // var fifthSlashIndex = item_.formats[0].root.url.split('/', 6).join('/').length
+	      var pieces = item_.formats[0].root.url.split('/');
+	      var indexPart = pieces[6];
+	      // var profileUrl = item_.formats[0].root.url.substr(0, fifthSlashIndex)
+	      // profileUrl = profileUrl.replace('googleapis.com/downloads', 'google.com/view')
+	      // var profileUrl = 'https://poly.google.com/view/'+indexPart+'?key=AIzaSyCbzifLOPONyCkD-qKWrTZEYgGEJ7ENlCQ'//profileUrl.replace('googleapis.com/downloads/fp', 'google.com/view')
+	      var profileUrl = item_.formats[1].root.url; //profileUrl.replace('googleapis.com/downloads/fp', 'google.com/view')
+
+	      // var profileUrl=item_.formats[0].root.url
+	      console.log('url for download is:');
+	      console.log(profileUrl);
 
 	      return {
 	        title: item_.displayName + ' by ' + item_.authorName,
 	        thumb: item_.thumbnail.url,
 	        url: profileUrl, //please use gltf 2
+	        // url: item_.formats[0].root.url, //please use gltf2
 	        author: item_.authorName
 	      }
 	    });
@@ -11719,96 +11736,100 @@
 
 	  // }.bind(this))
 
+	  // newEntity.addEventListener('model-loaded', function(event) {
 	  newEntity.addEventListener('model-loaded', function(event) {
 
-	    uiMessage.close();
-	    io3d.utils.ui.message.success('Added<br><a class="io3d-inspector-plugins___truncate-message" href="' + item.url + '" target="_blank">' + item.url + '</a>');
+	      uiMessage.close();
+	      io3d.utils.ui.message.success('Added<br><a class="io3d-inspector-plugins___truncate-message" href="' + item.url + '" target="_blank">' + item.url + '</a>');
 
-	    //COMMENTED OUT BY JAFET
-	    // // center model to picking position
-	    // var bb = new THREE.Box3().setFromObject(event.detail.model) // bounding box
-
-
-	    // console.log('look for error here')
-	    var node = document.getElementById(newEntity.id);
-	    console.log('node is');
-	    console.log(node);
-	    // var bb = new THREE.Box3().setFromObject(el.object3D) // bounding box
-	    // var size = new THREE.Vector3(Math.abs(bb.max.x - bb.min.x), Math.abs(bb.max.y - bb.min.y), Math.abs(bb.max.z - bb.min.z))
-	    // // console.log('the size is:')
-	    // // console.log(size)
-	    // var scalingFactor=1.1//3/size.y
-	    // var scaleString=scalingFactor + ' ' + scalingFactor + ' ' + scalingFactor
-	    // console.log('scaleString is:')
-	    // console.log(scaleString)
-	    // // newEntity.setAttribute('scale', scaleString)
-	    // // console.log('newEntity is:')
-	    // // console.log(newEntity)
-	    // el.setAttribute('scale', scaleString)
-	    // // el.object3D.scale= new THREE.Vector3(scalingFactor, scalingFactor, scalingFactor) 
+	      //COMMENTED OUT BY JAFET
+	      // // center model to picking position
+	      // var bb = new THREE.Box3().setFromObject(event.detail.model) // bounding box
 
 
+	      // console.log('look for error here')
 
-	    // setTimeout(function(){ 
-	    
-	    const setYto=5;
-	    setScale(node,setYto);
+	      const setYto = 12.0;
+	      setScale(newEntity.id, setYto, 1);
 
-	    function setScale(node) {
-	      var boxHelper = new THREE.BoxHelper(node.object3D, 0xff0000);
-	      boxHelper.geometry.computeBoundingBox();
-	      const bb = boxHelper.geometry.boundingBox;
-	      console.log('look for error here');
-	      // var el=document.getElementById(newEntity.id)
-	      console.log('node object3D is');
-	      console.log(node.object3D);
-	      // var bb = new THREE.Box3().setFromObject(node.object3D) // bounding box
-	      console.log('bb is');
-	      console.log(bb);
-	      if (bb.max.y == bb.min.y) {
-	        console.log('inside the if man because bb.max.y==bb.min.y');
-	        setTimeout(function() {
-	          console.log('calling recursively');
-	          setScale(node, setYto);
-	        }, 50);
-	      }
-	      else {
-
-	        var size = new THREE.Vector3(Math.abs(bb.max.x - bb.min.x), Math.abs(bb.max.y - bb.min.y), Math.abs(bb.max.z - bb.min.z));
-	        // console.log('the size is:')
-	        // console.log(size)
-	        
-	        
-	        var scalingFactor = setYto / size.y;
-	        var scaleString = scalingFactor + ' ' + scalingFactor + ' ' + scalingFactor;
-	        console.log('scaleString is:');
-	        console.log(scaleString);
-	        // newEntity.setAttribute('scale', scaleString)
-	        // console.log('newEntity is:')
-	        // console.log(newEntity)
-
-	        node.setAttribute('scale', scaleString);
-
-	        // node.object3D.scale = new THREE.Vector3(scalingFactor, scalingFactor, scalingFactor)
+	      // var bb = new THREE.Box3().setFromObject(el.object3D) // bounding box
+	      // var size = new THREE.Vector3(Math.abs(bb.max.x - bb.min.x), Math.abs(bb.max.y - bb.min.y), Math.abs(bb.max.z - bb.min.z))
+	      // // console.log('the size is:')
+	      // // console.log(size)
+	      // var scalingFactor=1.1//3/size.y
+	      // var scaleString=scalingFactor + ' ' + scalingFactor + ' ' + scalingFactor
+	      // console.log('scaleString is:')
+	      // console.log(scaleString)
+	      // // newEntity.setAttribute('scale', scaleString)
+	      // // console.log('newEntity is:')
+	      // // console.log(newEntity)
+	      // el.setAttribute('scale', scaleString)
+	      // // el.object3D.scale= new THREE.Vector3(scalingFactor, scalingFactor, scalingFactor) 
 
 
-	        var position = node.object3D.position;
-	        // position.set(
-	        //   position.x - bb.min.x - size.x / 2, -bb.min.y,
-	        //   position.z - bb.min.z - size.z / 2
-	        // )
-	        position.set(
-	          position.x, setYto/2, position.z);
-	        //   position.z - bb.min.z - size.z / 2
-	        // )
-	        // node.object3D.position = position
 
-	    var positionString=position.x + ' ' + position.y + ' ' + position.z;
-	    node.setAttribute('position', positionString);
+	      // setTimeout(function(){ 
 
 
-	        // world_ref.child("entities").child(objectId).child('scale').set(scaleString)
-	        // }.bind(this), 100);
+	      function setScale(id, setYto, iteration) {
+	        const numberOfTries=10;
+	        var node = document.getElementById(newEntity.id);
+	        // var node = document.getElementById(newEntity.getAttribute('id'))
+	        if (node !== null && iteration <= numberOfTries ) {
+
+	          var boxHelper = new THREE.BoxHelper(node.object3D, 0xff0000);
+	          boxHelper.geometry.computeBoundingBox();
+	          const bb = boxHelper.geometry.boundingBox;
+	          if (bb.max.y == bb.min.y) {
+	            console.log('inside the if man because bb.max.y==bb.min.y');
+	            setTimeout(function() {
+	              console.log('calling recursively');
+	              setScale(node, setYto, iteration+1);
+	            }, 50);
+	          }
+	          else {
+
+	            var size = new THREE.Vector3(Math.abs(bb.max.x - bb.min.x), Math.abs(bb.max.y - bb.min.y), Math.abs(bb.max.z - bb.min.z));
+	            // console.log('the size is:')
+	            // console.log(size)
+
+
+	            var scalingFactor = setYto / size.y;
+	            var scaleString = scalingFactor + ' ' + scalingFactor + ' ' + scalingFactor;
+	            node.setAttribute('scale', scaleString);
+
+	            // node.object3D.scale = new THREE.Vector3(scalingFactor, scalingFactor, scalingFactor)
+
+
+	            var position = node.object3D.position;
+	            // position.set(
+	            //   position.x - bb.min.x - size.x / 2, -bb.min.y,
+	            //   position.z - bb.min.z - size.z / 2
+	            // )
+	            position.set(
+	              position.x, -bb.min.y * scalingFactor, position.z);
+	            // position.x, setYto/2, position.z)
+	            //   position.z - bb.min.z - size.z / 2
+	            // )
+	            // node.object3D.position = position
+
+	            var positionString = position.x + ' ' + position.y + ' ' + position.z;
+	            node.setAttribute('position', positionString);
+
+
+	            // world_ref.child("entities").child(objectId).child('scale').set(scaleString)
+	            // }.bind(this), 100);
+
+
+	          }
+	        }
+	        else {
+	          setTimeout(function() {
+	            // var node = document.getElementById(newEntity.id)
+	            setScale(id, setYto, iteration+1);
+	          }, 50);
+	        // }
+
 
 	      }
 	    }
@@ -11849,15 +11870,16 @@
 
 	  }.bind(this), { once: true });
 
-	  newEntity.addEventListener('model-error', function(event) {
+	newEntity.addEventListener('model-error', function(event) {
 
-	    uiMessage.close();
-	    io3d.utils.ui.message.error('Sorry: ' + event.detail.message + '<br/><a class="io3d-inspector-plugins___truncate-message" href="' + item.url + '" target="_blank">' + item.url + '</a>');
+	  uiMessage.close();
+	  io3d.utils.ui.message.error('Sorry: ' + event.detail.message + '<br/><a class="io3d-inspector-plugins___truncate-message" href="' + item.url + '" target="_blank">' + item.url + '</a>');
 
-	  }, { once: true });
+	}, { once: true });
 
-	  newEntity.setAttribute('gblock', item.url);
-	  document.querySelector('a-scene').appendChild(newEntity);
+	// newEntity.setAttribute('gblock', item.url)
+	newEntity.setAttribute('gltf-model', "url(" + item.url + ")");
+	document.querySelector('a-scene').appendChild(newEntity);
 
 	}
 

@@ -53,7 +53,7 @@ const API_KEY = 'AIzaSyCbzifLOPONyCkD-qKWrTZEYgGEJ7ENlCQ';
 
 
 function callPolyApi(offset, value) {
-  return fetch(`https://poly.googleapis.com/v1/assets?keywords=${value}&format=OBJ&key=${API_KEY}`).then(function(response) {
+  return fetch(`https://poly.googleapis.com/v1/assets?keywords=${value}&format=OBJ&key=${API_KEY}&maxComplexity=MEDIUM`).then(function(response) {
     console.log('THE OUTPUT FROM POLY IS')
     // console.log(response.json())
     return response.json()
@@ -121,14 +121,30 @@ function search(value, offset) {
       // }
       console.log(item_)
 
-      var fifthSlashIndex = item_.formats[0].root.url.split('/', 5).join('/').length
-      var profileUrl = item_.formats[0].root.url.substr(0, fifthSlashIndex)
-      profileUrl = profileUrl.replace('googleapis.com/downloads', 'google.com/view')
+      //OTHER PATH: https://poly.googleapis.com/downloads/42PQqEaxb-P
+
+      //what you get
+      // https://poly.googleapis.com/downloads/fp/1552383794785924/42PQqEaxb-P/fbI7x6Izt4N/RocketShip_1393.gltf
+      //what you want
+      // https://poly.google.com/view/42PQqEaxb-P
+      // var fifthSlashIndex = item_.formats[0].root.url.split('/', 5).join('/').length
+      // var fifthSlashIndex = item_.formats[0].root.url.split('/', 6).join('/').length
+      var pieces = item_.formats[0].root.url.split('/')
+      var indexPart = pieces[6]
+      // var profileUrl = item_.formats[0].root.url.substr(0, fifthSlashIndex)
+      // profileUrl = profileUrl.replace('googleapis.com/downloads', 'google.com/view')
+      // var profileUrl = 'https://poly.google.com/view/'+indexPart+'?key=AIzaSyCbzifLOPONyCkD-qKWrTZEYgGEJ7ENlCQ'//profileUrl.replace('googleapis.com/downloads/fp', 'google.com/view')
+      var profileUrl = item_.formats[1].root.url //profileUrl.replace('googleapis.com/downloads/fp', 'google.com/view')
+
+      // var profileUrl=item_.formats[0].root.url
+      console.log('url for download is:')
+      console.log(profileUrl)
 
       return {
         title: item_.displayName + ' by ' + item_.authorName,
         thumb: item_.thumbnail.url,
         url: profileUrl, //please use gltf 2
+        // url: item_.formats[0].root.url, //please use gltf2
         author: item_.authorName
       }
     })
@@ -185,96 +201,100 @@ function addToScene(item, position, callback) {
 
   // }.bind(this))
 
+  // newEntity.addEventListener('model-loaded', function(event) {
   newEntity.addEventListener('model-loaded', function(event) {
 
-    uiMessage.close()
-    io3d.utils.ui.message.success('Added<br><a class="io3d-inspector-plugins___truncate-message" href="' + item.url + '" target="_blank">' + item.url + '</a>')
+      uiMessage.close()
+      io3d.utils.ui.message.success('Added<br><a class="io3d-inspector-plugins___truncate-message" href="' + item.url + '" target="_blank">' + item.url + '</a>')
 
-    //COMMENTED OUT BY JAFET
-    // // center model to picking position
-    // var bb = new THREE.Box3().setFromObject(event.detail.model) // bounding box
-
-
-    // console.log('look for error here')
-    var node = document.getElementById(newEntity.id)
-    console.log('node is')
-    console.log(node)
-    // var bb = new THREE.Box3().setFromObject(el.object3D) // bounding box
-    // var size = new THREE.Vector3(Math.abs(bb.max.x - bb.min.x), Math.abs(bb.max.y - bb.min.y), Math.abs(bb.max.z - bb.min.z))
-    // // console.log('the size is:')
-    // // console.log(size)
-    // var scalingFactor=1.1//3/size.y
-    // var scaleString=scalingFactor + ' ' + scalingFactor + ' ' + scalingFactor
-    // console.log('scaleString is:')
-    // console.log(scaleString)
-    // // newEntity.setAttribute('scale', scaleString)
-    // // console.log('newEntity is:')
-    // // console.log(newEntity)
-    // el.setAttribute('scale', scaleString)
-    // // el.object3D.scale= new THREE.Vector3(scalingFactor, scalingFactor, scalingFactor) 
+      //COMMENTED OUT BY JAFET
+      // // center model to picking position
+      // var bb = new THREE.Box3().setFromObject(event.detail.model) // bounding box
 
 
+      // console.log('look for error here')
 
-    // setTimeout(function(){ 
-    
-    const setYto=5
-    setScale(node,setYto)
+      const setYto = 12.0
+      setScale(newEntity.id, setYto, 1)
 
-    function setScale(node) {
-      var boxHelper = new THREE.BoxHelper(node.object3D, 0xff0000)
-      boxHelper.geometry.computeBoundingBox()
-      const bb = boxHelper.geometry.boundingBox
-      console.log('look for error here')
-      // var el=document.getElementById(newEntity.id)
-      console.log('node object3D is')
-      console.log(node.object3D)
-      // var bb = new THREE.Box3().setFromObject(node.object3D) // bounding box
-      console.log('bb is')
-      console.log(bb)
-      if (bb.max.y == bb.min.y) {
-        console.log('inside the if man because bb.max.y==bb.min.y')
-        setTimeout(function() {
-          console.log('calling recursively')
-          setScale(node, setYto)
-        }, 50);
-      }
-      else {
-
-        var size = new THREE.Vector3(Math.abs(bb.max.x - bb.min.x), Math.abs(bb.max.y - bb.min.y), Math.abs(bb.max.z - bb.min.z))
-        // console.log('the size is:')
-        // console.log(size)
-        
-        
-        var scalingFactor = setYto / size.y
-        var scaleString = scalingFactor + ' ' + scalingFactor + ' ' + scalingFactor
-        console.log('scaleString is:')
-        console.log(scaleString)
-        // newEntity.setAttribute('scale', scaleString)
-        // console.log('newEntity is:')
-        // console.log(newEntity)
-
-        node.setAttribute('scale', scaleString)
-
-        // node.object3D.scale = new THREE.Vector3(scalingFactor, scalingFactor, scalingFactor)
+      // var bb = new THREE.Box3().setFromObject(el.object3D) // bounding box
+      // var size = new THREE.Vector3(Math.abs(bb.max.x - bb.min.x), Math.abs(bb.max.y - bb.min.y), Math.abs(bb.max.z - bb.min.z))
+      // // console.log('the size is:')
+      // // console.log(size)
+      // var scalingFactor=1.1//3/size.y
+      // var scaleString=scalingFactor + ' ' + scalingFactor + ' ' + scalingFactor
+      // console.log('scaleString is:')
+      // console.log(scaleString)
+      // // newEntity.setAttribute('scale', scaleString)
+      // // console.log('newEntity is:')
+      // // console.log(newEntity)
+      // el.setAttribute('scale', scaleString)
+      // // el.object3D.scale= new THREE.Vector3(scalingFactor, scalingFactor, scalingFactor) 
 
 
-        var position = node.object3D.position
-        // position.set(
-        //   position.x - bb.min.x - size.x / 2, -bb.min.y,
-        //   position.z - bb.min.z - size.z / 2
-        // )
-        position.set(
-          position.x, setYto/2, position.z)
-        //   position.z - bb.min.z - size.z / 2
-        // )
-        // node.object3D.position = position
 
-    var positionString=position.x + ' ' + position.y + ' ' + position.z
-    node.setAttribute('position', positionString)
+      // setTimeout(function(){ 
 
 
-        // world_ref.child("entities").child(objectId).child('scale').set(scaleString)
-        // }.bind(this), 100);
+      function setScale(id, setYto, iteration) {
+        const numberOfTries=10
+        var node = document.getElementById(newEntity.id)
+        // var node = document.getElementById(newEntity.getAttribute('id'))
+        if (node !== null && iteration <= numberOfTries ) {
+
+          var boxHelper = new THREE.BoxHelper(node.object3D, 0xff0000)
+          boxHelper.geometry.computeBoundingBox()
+          const bb = boxHelper.geometry.boundingBox
+          if (bb.max.y == bb.min.y) {
+            console.log('inside the if man because bb.max.y==bb.min.y')
+            setTimeout(function() {
+              console.log('calling recursively')
+              setScale(node, setYto, iteration+1)
+            }, 50);
+          }
+          else {
+
+            var size = new THREE.Vector3(Math.abs(bb.max.x - bb.min.x), Math.abs(bb.max.y - bb.min.y), Math.abs(bb.max.z - bb.min.z))
+            // console.log('the size is:')
+            // console.log(size)
+
+
+            var scalingFactor = setYto / size.y
+            var scaleString = scalingFactor + ' ' + scalingFactor + ' ' + scalingFactor
+            node.setAttribute('scale', scaleString)
+
+            // node.object3D.scale = new THREE.Vector3(scalingFactor, scalingFactor, scalingFactor)
+
+
+            var position = node.object3D.position
+            // position.set(
+            //   position.x - bb.min.x - size.x / 2, -bb.min.y,
+            //   position.z - bb.min.z - size.z / 2
+            // )
+            position.set(
+              position.x, -bb.min.y * scalingFactor, position.z)
+            // position.x, setYto/2, position.z)
+            //   position.z - bb.min.z - size.z / 2
+            // )
+            // node.object3D.position = position
+
+            var positionString = position.x + ' ' + position.y + ' ' + position.z
+            node.setAttribute('position', positionString)
+
+
+            // world_ref.child("entities").child(objectId).child('scale').set(scaleString)
+            // }.bind(this), 100);
+
+
+          }
+        }
+        else {
+          setTimeout(function() {
+            // var node = document.getElementById(newEntity.id)
+            setScale(id, setYto, iteration+1)
+          }, 50);
+        // }
+
 
       }
     }
@@ -315,15 +335,16 @@ function addToScene(item, position, callback) {
 
   }.bind(this), { once: true })
 
-  newEntity.addEventListener('model-error', function(event) {
+newEntity.addEventListener('model-error', function(event) {
 
-    uiMessage.close()
-    io3d.utils.ui.message.error('Sorry: ' + event.detail.message + '<br/><a class="io3d-inspector-plugins___truncate-message" href="' + item.url + '" target="_blank">' + item.url + '</a>')
+  uiMessage.close()
+  io3d.utils.ui.message.error('Sorry: ' + event.detail.message + '<br/><a class="io3d-inspector-plugins___truncate-message" href="' + item.url + '" target="_blank">' + item.url + '</a>')
 
-  }, { once: true })
+}, { once: true })
 
-  newEntity.setAttribute('gblock', item.url)
-  document.querySelector('a-scene').appendChild(newEntity)
+// newEntity.setAttribute('gblock', item.url)
+newEntity.setAttribute('gltf-model', "url(" + item.url + ")")
+document.querySelector('a-scene').appendChild(newEntity)
 
 }
 
