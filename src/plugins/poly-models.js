@@ -4,13 +4,27 @@ import createListTabUi from './common/create-list-tab-ui.js'
 // const dbFirebase = require('./FirebaseApp.js')
 // var firebase = require('firebase');
 
+// const dbFirebase = require('./common/FirebaseApp.js')
+// import dbFirebase from './FirebaseApp.js'
+
+var firebase = require('firebase');
+  var config = {
+    apiKey: "AIzaSyCbzifLOPONyCkD-qKWrTZEYgGEJ7ENlCQ",
+    authDomain: "vrquitect.firebaseapp.com",
+    databaseURL: "https://vrquitect.firebaseio.com",
+    projectId: "vrquitect",
+    storageBucket: "vrquitect.appspot.com",
+    messagingSenderId: "64632163737"
+  };
+const dbFirebase = firebase.initializeApp(config).database();
+
 
 // config
 
 var DEFAULT_SEARCH_VALUE = 'house'
 
 // export
-
+ 
 var scope = {
   show: show,
   hide: hide,
@@ -204,147 +218,76 @@ function addToScene(item, position, callback) {
   // newEntity.addEventListener('model-loaded', function(event) {
   newEntity.addEventListener('model-loaded', function(event) {
 
-      uiMessage.close()
-      io3d.utils.ui.message.success('Added<br><a class="io3d-inspector-plugins___truncate-message" href="' + item.url + '" target="_blank">' + item.url + '</a>')
+    uiMessage.close()
+    io3d.utils.ui.message.success('Added<br><a class="io3d-inspector-plugins___truncate-message" href="' + item.url + '" target="_blank">' + item.url + '</a>')
 
-      //COMMENTED OUT BY JAFET
-      // // center model to picking position
-      // var bb = new THREE.Box3().setFromObject(event.detail.model) // bounding box
+    // //COMMENTED OUT BY JAFET
+    // const user = firebase.auth().currentUser;
+    // console.log('The user in 3dio is:')
+    // console.log(user)
+    // const setYto = 12.0
+    // // setScale(newEntity.id, setYto, 1)
+    
+    // function setScale(id, setYto, iteration) {
+    //   const numberOfTries = 10
+    //   var node = document.getElementById(newEntity.id)
+    //   if (node !== null && iteration <= numberOfTries) {
+    //     var boxHelper = new THREE.BoxHelper(node.object3D, 0xff0000)
+    //     boxHelper.geometry.computeBoundingBox()
+    //     const bb = boxHelper.geometry.boundingBox
+    //     if (bb.max.y == bb.min.y) {
+    //       console.log('inside the if man because bb.max.y==bb.min.y')
+    //       setTimeout(function() {
+    //         console.log('calling recursively')
+    //         setScale(node, setYto, iteration + 1)
+    //       }, 50); //was 50
+    //     }
+    //     else {
+    //       console.log('about to set scale online')
+    //       var size = new THREE.Vector3(Math.abs(bb.max.x - bb.min.x), Math.abs(bb.max.y - bb.min.y), Math.abs(bb.max.z - bb.min.z))
+    //       var scalingFactor = setYto / size.y
+    //       var scaleString = scalingFactor + ' ' + scalingFactor + ' ' + scalingFactor
+    //       var position = node.object3D.position
+    //       position.set(
+    //         position.x, -bb.min.y * scalingFactor, position.z)
+    //       var positionString = position.x + ' ' + position.y + ' ' + position.z
+    //       node.setAttribute('scale', scaleString)
+    //       node.setAttribute('position', positionString)
 
-
-      // console.log('look for error here')
-
-      const setYto = 12.0
-      setScale(newEntity.id, setYto, 1)
-
-      // var bb = new THREE.Box3().setFromObject(el.object3D) // bounding box
-      // var size = new THREE.Vector3(Math.abs(bb.max.x - bb.min.x), Math.abs(bb.max.y - bb.min.y), Math.abs(bb.max.z - bb.min.z))
-      // // console.log('the size is:')
-      // // console.log(size)
-      // var scalingFactor=1.1//3/size.y
-      // var scaleString=scalingFactor + ' ' + scalingFactor + ' ' + scalingFactor
-      // console.log('scaleString is:')
-      // console.log(scaleString)
-      // // newEntity.setAttribute('scale', scaleString)
-      // // console.log('newEntity is:')
-      // // console.log(newEntity)
-      // el.setAttribute('scale', scaleString)
-      // // el.object3D.scale= new THREE.Vector3(scalingFactor, scalingFactor, scalingFactor) 
-
-
-
-      // setTimeout(function(){ 
-
-
-      function setScale(id, setYto, iteration) {
-        const numberOfTries=10
-        var node = document.getElementById(newEntity.id)
-        // var node = document.getElementById(newEntity.getAttribute('id'))
-        if (node !== null && iteration <= numberOfTries ) {
-
-          var boxHelper = new THREE.BoxHelper(node.object3D, 0xff0000)
-          boxHelper.geometry.computeBoundingBox()
-          const bb = boxHelper.geometry.boundingBox
-          if (bb.max.y == bb.min.y) {
-            console.log('inside the if man because bb.max.y==bb.min.y')
-            setTimeout(function() {
-              console.log('calling recursively')
-              setScale(node, setYto, iteration+1)
-            }, 50);
-          }
-          else {
-
-            var size = new THREE.Vector3(Math.abs(bb.max.x - bb.min.x), Math.abs(bb.max.y - bb.min.y), Math.abs(bb.max.z - bb.min.z))
-            // console.log('the size is:')
-            // console.log(size)
-
-
-            var scalingFactor = setYto / size.y
-            var scaleString = scalingFactor + ' ' + scalingFactor + ' ' + scalingFactor
-            node.setAttribute('scale', scaleString)
-
-            // node.object3D.scale = new THREE.Vector3(scalingFactor, scalingFactor, scalingFactor)
-
-
-            var position = node.object3D.position
-            // position.set(
-            //   position.x - bb.min.x - size.x / 2, -bb.min.y,
-            //   position.z - bb.min.z - size.z / 2
-            // )
-            position.set(
-              position.x, -bb.min.y * scalingFactor, position.z)
-            // position.x, setYto/2, position.z)
-            //   position.z - bb.min.z - size.z / 2
-            // )
-            // node.object3D.position = position
-
-            var positionString = position.x + ' ' + position.y + ' ' + position.z
-            node.setAttribute('position', positionString)
-
-
-            // world_ref.child("entities").child(objectId).child('scale').set(scaleString)
-            // }.bind(this), 100);
-
-
-          }
-        }
-        else {
-          setTimeout(function() {
-            // var node = document.getElementById(newEntity.id)
-            setScale(id, setYto, iteration+1)
-          }, 50);
-        // }
-
-
-      }
-    }
-
-    // var position=el.object3D.position
-    // position.set(
-    //   position.x - bb.min.x - size.x / 2, -bb.min.y,
-    //   position.z - bb.min.z - size.z / 2
-    // )
-    // var positionString=position.x + ' ' + position.y + ' ' + position.z
-    // el.setAttribute('position', positionString)
-
-
-
-
-
-    // el.object3D.position= position 
-
-    // console.log('object3D is:')
-    // console.log(newEntity.object3D)
-
-
-
-
-
-    // event.detail.model.el.setAttribute('position', position.x + ' ' + 5 + ' ' + position.z)
-    // newEntity.object3D.children[0].children[0].scale= new THREE.Vector3(scalingFactor, scalingFactor, scalingFactor) 
-    // console.log(event.detail)
-    // event.detail.model.el.object3D.scale= new THREE.Vector3(scalingFactor, scalingFactor, scalingFactor) 
-    // event.detail.model.object3D.scale= new THREE.Vector3(scalingFactor, scalingFactor, scalingFactor) 
-
-
-    // el.setAttribute('position', position.x + ' ' + position.y + ' ' + position.z)
-    // //ADDED BY JAFET
-    // // newEntity.setAttribute('gblock', item.url)
+    //       // dbFirebase.ref("users").child(user.uid).child("currentWorld").once("value").then(function(snapshot) {
+    //       //   const currentWorld = snapshot.toJSON();
+    //       //   console.log('the world for this user is')
+    //       //   console.log(currentWorld)
+    //       //   // this.dbFirebase.ref("worlds").child(user.uid).child(currentWorld).child("entities").child(newEntity.id).child('gltf-model').set("url(" + url + ")").then(function() {})
+            
+    //       //   const refString=`/worlds/${user.uid}/${currentWorld}/entities/${newEntity.id}/scale`
+    //       //   console.log('ref string is')
+    //       //   console.log(refString)
+    //       //   dbFirebase.ref(refString+'/scale').set({ "x": scalingFactor, "y": scalingFactor, "z": scalingFactor })
+    //       //   dbFirebase.ref(refString+'/position').set({ "x": position.x, "y": -bb.min.y * scalingFactor, "z": position.z })
+    //       // }.bind(this))
+    //     }
+    //   }
+    //   else {
+    //     setTimeout(function() {
+    //       setScale(id, setYto, iteration + 1)
+    //     }, 50);
+    //   }
+    // }
 
     callback()
-
   }.bind(this), { once: true })
 
-newEntity.addEventListener('model-error', function(event) {
+  newEntity.addEventListener('model-error', function(event) {
 
-  uiMessage.close()
-  io3d.utils.ui.message.error('Sorry: ' + event.detail.message + '<br/><a class="io3d-inspector-plugins___truncate-message" href="' + item.url + '" target="_blank">' + item.url + '</a>')
+    uiMessage.close()
+    io3d.utils.ui.message.error('Sorry: ' + event.detail.message + '<br/><a class="io3d-inspector-plugins___truncate-message" href="' + item.url + '" target="_blank">' + item.url + '</a>')
 
-}, { once: true })
+  }, { once: true })
 
-// newEntity.setAttribute('gblock', item.url)
-newEntity.setAttribute('gltf-model', "url(" + item.url + ")")
-document.querySelector('a-scene').appendChild(newEntity)
+  // newEntity.setAttribute('gblock', item.url)
+  newEntity.setAttribute('gltf-model', "url(" + item.url + ")")
+  document.querySelector('a-scene').appendChild(newEntity)
 
 }
 

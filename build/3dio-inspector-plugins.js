@@ -2,9 +2,9 @@
  * @preserve
  * @name 3dio-inspector-plugins
  * @version 0.0.6
- * @date 2019/03/25 22:28
+ * @date 2019/04/14 02:08
  * @branch master
- * @commit bc3f5d58c9fcd177e9a5cd05ac336ea9de1d98ad
+ * @commit 340ba74f95bda478f5a0f0924e286010abc2d767
  * @description Connects A-Frame Inspector to 3d.io APIs
  * @see https://3d.io
  * @tutorial https://github.com/archilogic-com/3dio-inspector-plugins
@@ -18,7 +18,7 @@
 	(global.io3dInspectorPlugins = factory());
 }(this, (function () { 'use strict';
 
-	var BUILD_DATE='2019/03/25 22:28', GIT_BRANCH = 'master', GIT_COMMIT = 'bc3f5d58c9fcd177e9a5cd05ac336ea9de1d98ad'
+	var BUILD_DATE='2019/04/14 02:08', GIT_BRANCH = 'master', GIT_COMMIT = '340ba74f95bda478f5a0f0924e286010abc2d767'
 
 	var css = "#io3d-inspector-plugins * {\n  outline: none;\n  -webkit-box-sizing: border-box;\n  /* Safari/Chrome, other WebKit */\n  -moz-box-sizing: border-box;\n  /* Firefox, other Gecko */\n  box-sizing: border-box;\n  /* Opera/IE 8+ */\n}\n.io3d-inspector-plugins___truncate-message {\n  display: inline-block;\n  overflow: hidden;\n  white-space: nowrap;\n  max-width: 365px;\n  text-overflow: ellipsis;\n  margin-bottom: 0;\n}\n.io3d-inspector-plugins * {\n  outline: none;\n  -webkit-box-sizing: border-box;\n  /* Safari/Chrome, other WebKit */\n  -moz-box-sizing: border-box;\n  /* Firefox, other Gecko */\n  box-sizing: border-box;\n  /* Opera/IE 8+ */\n}\n.io3d-inspector-plugins___tab-container {\n  position: absolute;\n  font-family: Roboto, BlinkMacSystemFont, -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif;\n  font-size: 12px;\n  top: 50px;\n  left: 0;\n  bottom: 0;\n  z-index: 100000;\n}\n.io3d-inspector-plugins___tab-container a {\n  color: #bcbcbc;\n}\n.io3d-inspector-plugins___tab {\n  position: absolute;\n  font-size: 12px;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 230px;\n  background-color: #2b2b2b;\n}\n@-webkit-keyframes io3d-inspector-plugins___tab___slide-in {\n  0% {\n    -webkit-transform: translateX(-40%);\n    opacity: 0;\n  }\n  100% {\n    -webkit-transform: translateX(0%);\n    opacity: .7;\n  }\n}\n@keyframes io3d-inspector-plugins___tab___slide-in {\n  0% {\n    transform: translateX(-40%);\n    opacity: 0;\n  }\n  100% {\n    transform: translateX(0%);\n    opacity: .7;\n  }\n}\n@-webkit-keyframes io3d-inspector-plugins___tab___slide-out {\n  0% {\n    -webkit-transform: translateX(0%);\n    opacity: .7;\n  }\n  100% {\n    -webkit-transform: translateX(-40%);\n    opacity: 0;\n  }\n}\n@keyframes io3d-inspector-plugins___tab___slide-out {\n  0% {\n    transform: translateX(0%);\n    opacity: .7;\n  }\n  100% {\n    transform: translateX(-40%);\n    opacity: 0;\n  }\n}\n#io3d-inspector-plugins___3dio-button {\n  z-index: 100000;\n  position: absolute;\n  top: 39px;\n  left: 184px;\n  height: 18px;\n  text-align: right;\n  border-radius: 3px;\n  cursor: pointer;\n}\n#io3d-inspector-plugins___3dio-button svg {\n  height: 100%;\n}\n#io3d-inspector-plugins___3dio-button svg g {\n  fill: #bcbcbc;\n  stroke: #bcbcbc;\n  stroke-width: 13;\n}\n#io3d-inspector-plugins___3dio-button svg g:hover {\n  fill: #1faaf2;\n  stroke: #1faaf2;\n  stroke-width: 13;\n}\n#io3d-inspector-plugins___plugins-menu {\n  z-index: 100001;\n  position: absolute;\n  top: 50px;\n  left: 2px;\n  width: 230px;\n  font-family: Roboto, BlinkMacSystemFont, -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif;\n  font-size: 12px;\n  letter-spacing: 0px;\n  color: #bcbcbc;\n}\n@-webkit-keyframes io3d-inspector-plugins___plugins-menu-slide-in {\n  0% {\n    -webkit-transform: translateY(-40%);\n    opacity: 0;\n  }\n  100% {\n    -webkit-transform: translateY(0%);\n    opacity: 1;\n  }\n}\n@keyframes io3d-inspector-plugins___plugins-menu-slide-in {\n  0% {\n    transform: translateY(-40%);\n    opacity: 0;\n  }\n  100% {\n    transform: translateY(0%);\n    opacity: 1;\n  }\n}\n@-webkit-keyframes io3d-inspector-plugins___plugins-menu-slide-out {\n  0% {\n    -webkit-transform: translateY(0%);\n    opacity: 1;\n  }\n  100% {\n    -webkit-transform: translateY(-40%);\n    opacity: 0;\n  }\n}\n@keyframes io3d-inspector-plugins___plugins-menu-slide-out {\n  0% {\n    transform: translateY(0%);\n    opacity: 1;\n  }\n  100% {\n    transform: translateY(-40%);\n    opacity: 0;\n  }\n}\n#io3d-inspector-plugins___plugins-menu___container {\n  background-color: rgba(0, 0, 0, 0.7);\n  padding: 0 12px 0 12px;\n}\n#io3d-inspector-plugins___plugins-menu___header {\n  padding: 14px 0 14px 0;\n  border-bottom: 1px solid #bcbcbc;\n}\n#io3d-inspector-plugins___plugins-menu___close-button {\n  position: absolute;\n  top: 0;\n  right: 12px;\n  padding: 14px 0 14px 0;\n  cursor: pointer;\n}\n#io3d-inspector-plugins___plugins-menu___button {\n  padding: 10px 0 10px 0;\n  border-bottom: 1px solid #bcbcbc;\n  cursor: pointer;\n}\n#io3d-inspector-plugins___plugins-menu___button:hover {\n  background-color: rgba(255, 255, 255, 0.2);\n}\n#io3d-inspector-plugins___plugins-menu___footer {\n  padding: 14px 0 14px 0;\n  line-height: 1.3;\n}\n#io3d-inspector-plugins___plugins-menu___footer a {\n  color: #bcbcbc;\n}\n#io3d-inspector-plugins___plugins-menu___footer a:hover {\n  color: white;\n}\n#io3d-inspector-plugins___bake-lightmaps___container {\n  font-family: Roboto, BlinkMacSystemFont, -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif;\n  position: absolute;\n  top: 0px;\n  left: 246px;\n  z-index: 100000;\n}\n#io3d-inspector-plugins___bake-lightmaps___main-bar span,\n#io3d-inspector-plugins___bake-lightmaps___main-bar a {\n  text-decoration: none;\n  display: inline-block;\n  height: 33px;\n  line-height: 33px;\n  padding: 0 12px 0 12px;\n  margin: 0 0 0 0;\n  border-left: 1px solid rgba(255, 255, 255, 0.5);\n  white-space: nowrap;\n  font-weight: 400;\n  letter-spacing: 1px;\n  font-size: 12px;\n  color: white;\n  background-color: rgba(0, 0, 0, 0.8);\n}\n#io3d-inspector-plugins___bake-lightmaps___bake-button {\n  display: inline-block;\n  cursor: pointer;\n  text-decoration: none;\n  color: white;\n  font-size: 16px;\n  font-weight: 500;\n  letter-spacing: 0px;\n  height: 38px;\n  line-height: 40px;\n  padding: 0 13px 0 13px;\n  background-color: #1faaf2;\n  border-radius: 2px;\n  margin: 16px 0 0 0;\n  position: relative;\n  left: 2px;\n  top: -2px;\n  box-shadow: -2px 2px 0px 0px #105576;\n}\n#io3d-inspector-plugins___bake-lightmaps___bake-button:hover {\n  background-color: #44c3f2;\n}\n#io3d-inspector-plugins___bake-lightmaps___bake-button:active {\n  left: -1px;\n  top: 1px;\n  background-color: #105576;\n  box-shadow: -2px 2px 0px 0px rgba(0, 0, 0, 0);\n}\n#io3d-inspector-plugins___list-tab___header {\n  position: absolute;\n  width: 100%;\n  height: 64px;\n  background-color: #000000;\n  top: 0;\n  left: 0;\n}\n#io3d-inspector-plugins___list-tab___title {\n  position: absolute;\n  width: 100%;\n  height: 38px;\n  line-height: 38px;\n  color: #ffffff;\n  padding: 0 0 0 8px;\n  top: 0;\n  left: 0;\n  letter-spacing: 1px;\n}\n#io3d-inspector-plugins___list-tab___close-button {\n  -webkit-font-smoothing: antialiased;\n  font-size: 16px;\n  font-weight: 200;\n  position: absolute;\n  width: 20px;\n  height: 20px;\n  line-height: 20px;\n  border-radius: 50%;\n  text-align: center;\n  top: 9px;\n  right: 4px;\n  cursor: pointer;\n  color: #ffffff;\n}\n#io3d-inspector-plugins___list-tab___close-button:hover {\n  color: #1faaf2;\n}\n#io3d-inspector-plugins___list-tab___close-button:before {\n  content: \"x\";\n}\n#io3d-inspector-plugins___list-tab___search-input {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  writing-mode: horizontal-tb;\n  -webkit-rtl-ordering: logical;\n  -webkit-border-image: none;\n  font-family: \"Roboto Mono\", Consolas, \"Andale Mono\", Monaco, \"Courier New\", monospace;\n  font-size: 11px;\n  font-weight: normal;\n  letter-spacing: 0px;\n  position: absolute;\n  width: 218px;\n  height: 26px;\n  line-height: 26px;\n  top: 37px;\n  left: 6px;\n  padding: 0 0 0 7px;\n  border-radius: 5px;\n  border: 0;\n  background-color: #ffffff;\n  color: #000000;\n}\n#io3d-inspector-plugins___list-tab___search-icon {\n  font-size: 12px;\n  position: absolute;\n  width: 26px;\n  height: 26px;\n  line-height: 26px;\n  top: 37px;\n  right: 0;\n  color: #4d4d4d;\n}\n#io3d-inspector-plugins___list-tab___search-icon:before {\n  content: \"x\";\n}\n#io3d-inspector-plugins___list-tab___list-container {\n  position: absolute;\n  width: 100%;\n  top: 64px;\n  left: 0;\n  bottom: 0;\n  padding: 0 0 20px 0;\n  overflow: auto;\n  background-color: #000000;\n}\n#io3d-inspector-plugins___list-tab___list-info {\n  position: relative;\n  display: block;\n  padding: 10px;\n  width: 100%;\n  color: #ffffff;\n  line-height: 1.3;\n}\n#io3d-inspector-plugins___list-tab___list-info a {\n  color: #bcbcbc;\n}\n#io3d-inspector-plugins___list-tab___list-info a:hover {\n  color: white;\n}\n#io3d-inspector-plugins___list-tab___list-item-container {\n  position: relative;\n  display: block;\n  width: 100%;\n  padding: 4px 0 0 4px;\n}\n#io3d-inspector-plugins___list-tab___list-item-container .io3d-inspector-plugins___list-item {\n  display: inline-block;\n  margin: 4px 0 0 4px;\n  position: relative;\n  width: 98px;\n  height: 98px;\n  -moz-user-select: none;\n  -webkit-user-select: none;\n  user-select: none;\n  /* Required to make elements draggable in old WebKit */\n  -khtml-user-drag: element;\n  -webkit-user-drag: element;\n  border: 1px dotted rgba(255, 255, 255, 0.4);\n  border-radius: 3px;\n  overflow: hidden;\n  -webkit-transition: border-color 1500ms;\n  transition: border-color 1500ms;\n  cursor: move;\n  /* fallback if grab cursor is unsupported */\n  cursor: grab;\n  cursor: -moz-grab;\n  cursor: -webkit-grab;\n}\n#io3d-inspector-plugins___list-tab___list-item-container .io3d-inspector-plugins___list-item:active {\n  cursor: grabbing;\n  cursor: -moz-grabbing;\n  cursor: -webkit-grabbing;\n}\n#io3d-inspector-plugins___list-tab___list-item-container .io3d-inspector-plugins___list-item:hover {\n  background-color: #333;\n}\n#io3d-inspector-plugins___list-tab___list-item-container .io3d-inspector-plugins___list-item img {\n  position: absolute;\n  opacity: 0;\n  -webkit-transition: opacity 1500ms;\n  transition: opacity 1500ms;\n}\n#io3d-inspector-plugins___list-tab___drop-plane {\n  position: absolute;\n  top: 0;\n  right: 0;\n  left: 230px;\n  height: 100%;\n  background-color: rgba(33, 172, 242, 0.15);\n  border: 2px solid #21acf2;\n  z-index: 100000;\n  opacity: 0;\n  -webkit-transition: opacity 200ms;\n  transition: opacity 200ms;\n}\n#io3d-inspector-plugins___list-tab___drop-plane-info {\n  width: 100%;\n  height: 100%;\n  line-height: 100vh;\n  text-align: center;\n  color: rgba(33, 172, 242, 0.2);\n  font-size: 68px;\n  font-weight: 400;\n  letter-spacing: 2px;\n}\n";
 
@@ -11577,13 +11577,27 @@
 	// const dbFirebase = require('./FirebaseApp.js')
 	// var firebase = require('firebase');
 
+	// const dbFirebase = require('./common/FirebaseApp.js')
+	// import dbFirebase from './FirebaseApp.js'
+
+	var firebase = require('firebase');
+	  var config = {
+	    apiKey: "AIzaSyCbzifLOPONyCkD-qKWrTZEYgGEJ7ENlCQ",
+	    authDomain: "vrquitect.firebaseapp.com",
+	    databaseURL: "https://vrquitect.firebaseio.com",
+	    projectId: "vrquitect",
+	    storageBucket: "vrquitect.appspot.com",
+	    messagingSenderId: "64632163737"
+	  };
+	const dbFirebase = firebase.initializeApp(config).database();
+
 
 	// config
 
 	var DEFAULT_SEARCH_VALUE$1 = 'house';
 
 	// export
-
+	 
 	var scope$1 = {
 	  show: show$1,
 	  hide: hide$1,
@@ -11739,147 +11753,32 @@
 	  // newEntity.addEventListener('model-loaded', function(event) {
 	  newEntity.addEventListener('model-loaded', function(event) {
 
-	      uiMessage.close();
-	      io3d.utils.ui.message.success('Added<br><a class="io3d-inspector-plugins___truncate-message" href="' + item.url + '" target="_blank">' + item.url + '</a>');
+	    uiMessage.close();
+	    io3d.utils.ui.message.success('Added<br><a class="io3d-inspector-plugins___truncate-message" href="' + item.url + '" target="_blank">' + item.url + '</a>');
 
-	      //COMMENTED OUT BY JAFET
-	      // // center model to picking position
-	      // var bb = new THREE.Box3().setFromObject(event.detail.model) // bounding box
-
-
-	      // console.log('look for error here')
-
-	      const setYto = 12.0;
-	      setScale(newEntity.id, setYto, 1);
-
-	      // var bb = new THREE.Box3().setFromObject(el.object3D) // bounding box
-	      // var size = new THREE.Vector3(Math.abs(bb.max.x - bb.min.x), Math.abs(bb.max.y - bb.min.y), Math.abs(bb.max.z - bb.min.z))
-	      // // console.log('the size is:')
-	      // // console.log(size)
-	      // var scalingFactor=1.1//3/size.y
-	      // var scaleString=scalingFactor + ' ' + scalingFactor + ' ' + scalingFactor
-	      // console.log('scaleString is:')
-	      // console.log(scaleString)
-	      // // newEntity.setAttribute('scale', scaleString)
-	      // // console.log('newEntity is:')
-	      // // console.log(newEntity)
-	      // el.setAttribute('scale', scaleString)
-	      // // el.object3D.scale= new THREE.Vector3(scalingFactor, scalingFactor, scalingFactor) 
+	    //COMMENTED OUT BY JAFET
+	    // // center model to picking position
 
 
-
-	      // setTimeout(function(){ 
-
-
-	      function setScale(id, setYto, iteration) {
-	        const numberOfTries=10;
-	        var node = document.getElementById(newEntity.id);
-	        // var node = document.getElementById(newEntity.getAttribute('id'))
-	        if (node !== null && iteration <= numberOfTries ) {
-
-	          var boxHelper = new THREE.BoxHelper(node.object3D, 0xff0000);
-	          boxHelper.geometry.computeBoundingBox();
-	          const bb = boxHelper.geometry.boundingBox;
-	          if (bb.max.y == bb.min.y) {
-	            console.log('inside the if man because bb.max.y==bb.min.y');
-	            setTimeout(function() {
-	              console.log('calling recursively');
-	              setScale(node, setYto, iteration+1);
-	            }, 50);
-	          }
-	          else {
-
-	            var size = new THREE.Vector3(Math.abs(bb.max.x - bb.min.x), Math.abs(bb.max.y - bb.min.y), Math.abs(bb.max.z - bb.min.z));
-	            // console.log('the size is:')
-	            // console.log(size)
-
-
-	            var scalingFactor = setYto / size.y;
-	            var scaleString = scalingFactor + ' ' + scalingFactor + ' ' + scalingFactor;
-	            node.setAttribute('scale', scaleString);
-
-	            // node.object3D.scale = new THREE.Vector3(scalingFactor, scalingFactor, scalingFactor)
-
-
-	            var position = node.object3D.position;
-	            // position.set(
-	            //   position.x - bb.min.x - size.x / 2, -bb.min.y,
-	            //   position.z - bb.min.z - size.z / 2
-	            // )
-	            position.set(
-	              position.x, -bb.min.y * scalingFactor, position.z);
-	            // position.x, setYto/2, position.z)
-	            //   position.z - bb.min.z - size.z / 2
-	            // )
-	            // node.object3D.position = position
-
-	            var positionString = position.x + ' ' + position.y + ' ' + position.z;
-	            node.setAttribute('position', positionString);
-
-
-	            // world_ref.child("entities").child(objectId).child('scale').set(scaleString)
-	            // }.bind(this), 100);
-
-
-	          }
-	        }
-	        else {
-	          setTimeout(function() {
-	            // var node = document.getElementById(newEntity.id)
-	            setScale(id, setYto, iteration+1);
-	          }, 50);
-	        // }
-
-
-	      }
-	    }
-
-	    // var position=el.object3D.position
-	    // position.set(
-	    //   position.x - bb.min.x - size.x / 2, -bb.min.y,
-	    //   position.z - bb.min.z - size.z / 2
-	    // )
-	    // var positionString=position.x + ' ' + position.y + ' ' + position.z
-	    // el.setAttribute('position', positionString)
-
-
-
-
-
-	    // el.object3D.position= position 
-
-	    // console.log('object3D is:')
-	    // console.log(newEntity.object3D)
-
-
-
-
-
-	    // event.detail.model.el.setAttribute('position', position.x + ' ' + 5 + ' ' + position.z)
-	    // newEntity.object3D.children[0].children[0].scale= new THREE.Vector3(scalingFactor, scalingFactor, scalingFactor) 
-	    // console.log(event.detail)
-	    // event.detail.model.el.object3D.scale= new THREE.Vector3(scalingFactor, scalingFactor, scalingFactor) 
-	    // event.detail.model.object3D.scale= new THREE.Vector3(scalingFactor, scalingFactor, scalingFactor) 
-
-
-	    // el.setAttribute('position', position.x + ' ' + position.y + ' ' + position.z)
-	    // //ADDED BY JAFET
-	    // // newEntity.setAttribute('gblock', item.url)
-
+	    const user = firebase.auth().currentUser;
+	    console.log('The user in 3dio is:');
+	    console.log(user);
+	    const setYto = 12.0;
+	    // setScale(newEntity.id, setYto, 1)
+	    
 	    callback();
-
 	  }.bind(this), { once: true });
 
-	newEntity.addEventListener('model-error', function(event) {
+	  newEntity.addEventListener('model-error', function(event) {
 
-	  uiMessage.close();
-	  io3d.utils.ui.message.error('Sorry: ' + event.detail.message + '<br/><a class="io3d-inspector-plugins___truncate-message" href="' + item.url + '" target="_blank">' + item.url + '</a>');
+	    uiMessage.close();
+	    io3d.utils.ui.message.error('Sorry: ' + event.detail.message + '<br/><a class="io3d-inspector-plugins___truncate-message" href="' + item.url + '" target="_blank">' + item.url + '</a>');
 
-	}, { once: true });
+	  }, { once: true });
 
-	// newEntity.setAttribute('gblock', item.url)
-	newEntity.setAttribute('gltf-model', "url(" + item.url + ")");
-	document.querySelector('a-scene').appendChild(newEntity);
+	  // newEntity.setAttribute('gblock', item.url)
+	  newEntity.setAttribute('gltf-model', "url(" + item.url + ")");
+	  document.querySelector('a-scene').appendChild(newEntity);
 
 	}
 
@@ -16193,7 +16092,7 @@
 	 * See the License for the specific language governing permissions and
 	 * limitations under the License.
 	 */
-	var firebase$1 = createFirebaseNamespace();
+	var firebase$2 = createFirebaseNamespace();
 
 	(function() {var g,aa=aa||{},k=this;function l(a){return"string"==typeof a}function ba(a){return"boolean"==typeof a}function ca(){}
 	function da(a){var b=typeof a;if("object"==b)if(a){if(a instanceof Array)return"array";if(a instanceof Object)return b;var c=Object.prototype.toString.call(a);if("[object Window]"==c)return"object";if("[object Array]"==c||"number"==typeof a.length&&"undefined"!=typeof a.splice&&"undefined"!=typeof a.propertyIsEnumerable&&!a.propertyIsEnumerable("splice"))return"array";if("[object Function]"==c||"undefined"!=typeof a.call&&"undefined"!=typeof a.propertyIsEnumerable&&!a.propertyIsEnumerable("call"))return"function"}else return"null";
@@ -16255,7 +16154,7 @@
 	h.setAttribute("rel","noreferrer"),a=document.createEvent("MouseEvent"),a.initMouseEvent("click",!0,!0,d,1),h.dispatchEvent(a),h={}):a.noreferrer?(h=d.open("",c,h),a=Ad(b),h&&(Rb&&y(a,";")&&(a="'"+a.replace(/'/g,"%27")+"'"),h.opener=null,qd("b/12014412, meta tag with sanitized URL"),a='<meta name="referrer" content="no-referrer"><meta http-equiv="refresh" content="0; url='+Ma(a)+'">',a=Hd(a),h.document.write(Gd(a)),h.document.close())):(h=d.open(Ad(b),c,h))&&a.noopener&&(h.opener=null);if(h)try{h.focus();}catch(m){}return h}
 	function ee(a){return new A(function(b){function c(){Hc(2E3).then(function(){if(!a||a.closed)b();else return c()});}return c()})}var fe=/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/;function ge(){var a=null;return(new A(function(b){"complete"==k.document.readyState?b():(a=function(){b();},sc(window,"load",a));})).s(function(b){E(window,"load",a);throw b;})}
 	function he(){return ie(void 0)?ge().then(function(){return new A(function(a,b){var c=k.document,d=setTimeout(function(){b(Error("Cordova framework is not ready."));},1E3);c.addEventListener("deviceready",function(){clearTimeout(d);a();},!1);})}):C(Error("Cordova must run in an Android or iOS file scheme."))}function ie(a){a=a||H();return!("file:"!==je()||!a.toLowerCase().match(/iphone|ipad|ipod|android/))}function ke(){var a=k.window;try{return!(!a||a==a.top)}catch(b){return!1}}
-	function le(){return"object"!==typeof k.window&&"function"===typeof k.importScripts}function me(){return firebase$1.INTERNAL.hasOwnProperty("reactNative")?"ReactNative":firebase$1.INTERNAL.hasOwnProperty("node")?"Node":le()?"Worker":"Browser"}function ne(){var a=me();return"ReactNative"===a||"Node"===a}function oe(){for(var a=50,b=[];0<a;)b.push("1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".charAt(Math.floor(62*Math.random()))),a--;return b.join("")}var de="Firefox",$d="Chrome";
+	function le(){return"object"!==typeof k.window&&"function"===typeof k.importScripts}function me(){return firebase$2.INTERNAL.hasOwnProperty("reactNative")?"ReactNative":firebase$2.INTERNAL.hasOwnProperty("node")?"Node":le()?"Worker":"Browser"}function ne(){var a=me();return"ReactNative"===a||"Node"===a}function oe(){for(var a=50,b=[];0<a;)b.push("1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".charAt(Math.floor(62*Math.random()))),a--;return b.join("")}var de="Firefox",$d="Chrome";
 	function Zd(a){var b=a.toLowerCase();if(y(b,"opera/")||y(b,"opr/")||y(b,"opios/"))return"Opera";if(y(b,"iemobile"))return"IEMobile";if(y(b,"msie")||y(b,"trident/"))return"IE";if(y(b,"edge/"))return"Edge";if(y(b,"firefox/"))return de;if(y(b,"silk/"))return"Silk";if(y(b,"blackberry"))return"Blackberry";if(y(b,"webos"))return"Webos";if(!y(b,"safari/")||y(b,"chrome/")||y(b,"crios/")||y(b,"android"))if(!y(b,"chrome/")&&!y(b,"crios/")||y(b,"edge/")){if(y(b,"android"))return"Android";if((a=a.match(/([a-zA-Z\d\.]+)\/[a-zA-Z\d\.]*$/))&&
 	2==a.length)return a[1]}else return $d;else return"Safari";return"Other"}var pe={Tc:"FirebaseCore-web",Vc:"FirebaseUI-web"};function qe(a,b){b=b||[];var c=[],d={},e;for(e in pe)d[pe[e]]=!0;for(e=0;e<b.length;e++)"undefined"!==typeof d[b[e]]&&(delete d[b[e]],c.push(b[e]));c.sort();b=c;b.length||(b=["FirebaseCore-web"]);c=me();"Browser"===c?(d=H(),c=Zd(d)):"Worker"===c&&(d=H(),c=Zd(d)+"-"+c);return c+"/JsCore/"+a+"/"+b.join(",")}function H(){return k.navigator&&k.navigator.userAgent||""}
 	function I(a,b){a=a.split(".");b=b||k;for(var c=0;c<a.length&&"object"==typeof b&&null!=b;c++)b=b[a[c]];c!=a.length&&(b=void 0);return b}function re(){try{var a=k.localStorage,b=se();if(a)return a.setItem(b,"1"),a.removeItem(b),Ud()?!!k.indexedDB:!0}catch(c){return le()&&!!k.indexedDB}return!1}function te(){return(ue()||"chrome-extension:"===je()||ie())&&!ne()&&re()&&!le()}function ue(){return"http:"===je()||"https:"===je()}function je(){return k.location&&k.location.protocol||null}
@@ -16298,7 +16197,7 @@
 	function O(){K(this,{providerId:"password",isOAuthProvider:!1});}function dg(a,b){b=eg(b);if(!b)throw new L("argument-error","Invalid email link!");return new Zf(a,b,O.EMAIL_LINK_SIGN_IN_METHOD)}function eg(a){a=Jf(a);a=new If(a);var b=cd(a.a,"oobCode")||null;return"signIn"===(cd(a.a,"mode")||null)&&b?b:null}K(O,{PROVIDER_ID:"password"});K(O,{EMAIL_LINK_SIGN_IN_METHOD:"emailLink"});K(O,{EMAIL_PASSWORD_SIGN_IN_METHOD:"password"});
 	function fg(a){if(!(a.Sa&&a.Ra||a.Fa&&a.$))throw new L("internal-error");this.a=a;J(this,"providerId","phone");J(this,"signInMethod","phone");}fg.prototype.ya=function(a){return a.Ta(gg(this))};fg.prototype.c=function(a,b){var c=gg(this);c.idToken=b;return P(a,hg,c)};fg.prototype.f=function(a,b){var c=gg(this);c.operation="REAUTH";a=P(a,ig,c);return Kf(a,b)};
 	fg.prototype.D=function(){var a={providerId:"phone"};this.a.Sa&&(a.verificationId=this.a.Sa);this.a.Ra&&(a.verificationCode=this.a.Ra);this.a.Fa&&(a.temporaryProof=this.a.Fa);this.a.$&&(a.phoneNumber=this.a.$);return a};function gg(a){return a.a.Fa&&a.a.$?{temporaryProof:a.a.Fa,phoneNumber:a.a.$}:{sessionInfo:a.a.Sa,code:a.a.Ra}}
-	function jg(a){try{this.a=a||firebase$1.auth();}catch(b){throw new L("argument-error","Either an instance of firebase.auth.Auth must be passed as an argument to the firebase.auth.PhoneAuthProvider constructor, or the default firebase App instance must be initialized via firebase.initializeApp().");}K(this,{providerId:"phone",isOAuthProvider:!1});}
+	function jg(a){try{this.a=a||firebase$2.auth();}catch(b){throw new L("argument-error","Either an instance of firebase.auth.Auth must be passed as an argument to the firebase.auth.PhoneAuthProvider constructor, or the default firebase App instance must be initialized via firebase.initializeApp().");}K(this,{providerId:"phone",isOAuthProvider:!1});}
 	jg.prototype.Ta=function(a,b){var c=this.a.b;return B(b.verify()).then(function(d){if(!l(d))throw new L("argument-error","An implementation of firebase.auth.ApplicationVerifier.prototype.verify() must return a firebase.Promise that resolves with a string.");switch(b.type){case "recaptcha":return kg(c,{phoneNumber:a,recaptchaToken:d}).then(function(a){"function"===typeof b.reset&&b.reset();return a},function(a){"function"===typeof b.reset&&b.reset();throw a;});default:throw new L("argument-error",
 	'Only firebase.auth.ApplicationVerifiers with type="recaptcha" are currently supported.');}})};function lg(a,b){if(!a)throw new L("missing-verification-id");if(!b)throw new L("missing-verification-code");return new fg({Sa:a,Ra:b})}K(jg,{PROVIDER_ID:"phone"});K(jg,{PHONE_SIGN_IN_METHOD:"phone"});
 	function mg(a){if(a.temporaryProof&&a.phoneNumber)return new fg({Fa:a.temporaryProof,$:a.phoneNumber});var b=a&&a.providerId;if(!b||"password"===b)return null;var c=a&&a.oauthAccessToken,d=a&&a.oauthTokenSecret;a=a&&a.oauthIdToken;try{switch(b){case "google.com":return Wf(a,c);case "facebook.com":return Sf(c);case "github.com":return Uf(c);case "twitter.com":return Yf(c,d);default:return(new N(b)).credential(a,c)}}catch(e){return null}}
@@ -16332,7 +16231,7 @@
 	new th(b),sh[b.a]=b,a.h=b.a);}function oh(){u.call(this);}t(oh,u);oh.prototype.message="Deferred has already fired";oh.prototype.name="AlreadyCalledError";function kh(){u.call(this);}t(kh,u);kh.prototype.message="Deferred was canceled";kh.prototype.name="CanceledError";function th(a){this.a=k.setTimeout(r(this.c,this),0);this.b=a;}th.prototype.c=function(){delete sh[this.a];throw this.b;};var sh={};function uh(a){var b={},c=b.document||document,d=td(a),e=document.createElement("SCRIPT"),f={Kb:e,Ga:void 0},h=new jh(vh,f),m=null,p=null!=b.timeout?b.timeout:5E3;0<p&&(m=window.setTimeout(function(){wh(e,!0);var a=new xh(yh,"Timeout reached for loading script "+d);lh(h);mh(h,!1,a);},p),f.Ga=m);e.onload=e.onreadystatechange=function(){e.readyState&&"loaded"!=e.readyState&&"complete"!=e.readyState||(wh(e,b.ed||!1,m),h.C());};e.onerror=function(){wh(e,!0,m);var a=new xh(zh,"Error while loading script "+
 	d);lh(h);mh(h,!1,a);};f=b.attributes||{};bb(f,{type:"text/javascript",charset:"UTF-8"});Jd(e,f);e.src=td(a);Ah(c).appendChild(e);return h}function Ah(a){var b;return(b=(a||document).getElementsByTagName("HEAD"))&&0!=b.length?b[0]:a.documentElement}function vh(){if(this&&this.Kb){var a=this.Kb;a&&"SCRIPT"==a.tagName&&wh(a,!0,this.Ga);}}
 	function wh(a,b,c){null!=c&&k.clearTimeout(c);a.onload=ca;a.onerror=ca;a.onreadystatechange=ca;b&&window.setTimeout(function(){a&&a.parentNode&&a.parentNode.removeChild(a);},0);}var zh=0,yh=1;function xh(a,b){var c="Jsloader error (code #"+a+")";b&&(c+=": "+b);u.call(this,c);this.code=a;}t(xh,u);function Bh(a){this.f=a;}t(Bh,wg);Bh.prototype.a=function(){return new this.f};Bh.prototype.b=function(){return{}};
-	function Ch(a,b,c){this.b=a;a=b||{};this.i=a.secureTokenEndpoint||"https://securetoken.googleapis.com/v1/token";this.l=a.secureTokenTimeout||Dh;this.f=$a(a.secureTokenHeaders||Eh);this.g=a.firebaseEndpoint||"https://www.googleapis.com/identitytoolkit/v3/relyingparty/";this.h=a.firebaseTimeout||Fh;this.a=$a(a.firebaseHeaders||Gh);c&&(this.a["X-Client-Version"]=c,this.f["X-Client-Version"]=c);c="Node"==me();c=k.XMLHttpRequest||c&&firebase$1.INTERNAL.node&&firebase$1.INTERNAL.node.XMLHttpRequest;if(!c&&
+	function Ch(a,b,c){this.b=a;a=b||{};this.i=a.secureTokenEndpoint||"https://securetoken.googleapis.com/v1/token";this.l=a.secureTokenTimeout||Dh;this.f=$a(a.secureTokenHeaders||Eh);this.g=a.firebaseEndpoint||"https://www.googleapis.com/identitytoolkit/v3/relyingparty/";this.h=a.firebaseTimeout||Fh;this.a=$a(a.firebaseHeaders||Gh);c&&(this.a["X-Client-Version"]=c,this.f["X-Client-Version"]=c);c="Node"==me();c=k.XMLHttpRequest||c&&firebase$2.INTERNAL.node&&firebase$2.INTERNAL.node.XMLHttpRequest;if(!c&&
 	!le())throw new L("internal-error","The XMLHttpRequest compatibility library was not found.");this.c=void 0;le()?this.c=new Rg(self):ne()?this.c=new Bh(c):this.c=new Bg;}var Hh,M="idToken",Dh=new Be(3E4,6E4),Eh={"Content-Type":"application/x-www-form-urlencoded"},Fh=new Be(3E4,6E4),Gh={"Content-Type":"application/json"};function Ih(a,b){b?a.a["X-Firebase-Locale"]=b:delete a.a["X-Firebase-Locale"];}
 	function Jh(a,b){b?(a.a["X-Client-Version"]=b,a.f["X-Client-Version"]=b):(delete a.a["X-Client-Version"],delete a.f["X-Client-Version"]);}function Kh(a,b,c,d,e,f,h){Yd()||le()?a=r(a.o,a):(Hh||(Hh=new A(function(a,b){Lh(a,b);})),a=r(a.m,a));a(b,c,d,e,f,h);}
 	Ch.prototype.o=function(a,b,c,d,e,f){if(le()&&("undefined"===typeof k.fetch||"undefined"===typeof k.Headers||"undefined"===typeof k.Request))throw new L("operation-not-supported-in-this-environment","fetch, Headers and Request native APIs or equivalent Polyfills must be available to support HTTP requests from a Worker environment.");var h=new Vg(this.c);if(f){h.g=Math.max(0,f);var m=setTimeout(function(){h.dispatchEvent("timeout");},f);}uc(h,"complete",function(){m&&clearTimeout(m);var a=null;try{a=
@@ -16363,8 +16262,8 @@
 	function Ci(a){return Di().then(function(){return new A(function(b,c){I("gapi.iframes.getContext")().open({where:document.body,url:a.b,messageHandlersFilter:I("gapi.iframes.CROSS_ORIGIN_IFRAMES_FILTER"),attributes:{style:{position:"absolute",top:"-100px",width:"1px",height:"1px"}},dontclear:!0},function(d){function e(){clearTimeout(f);b();}a.a=d;a.a.restyle({setHideOnLeave:!1});var f=setTimeout(function(){c(Error("Network Error"));},Ei.get());d.ping(e).then(e,function(){c(Error("Network Error"));});});})})}
 	function Fi(a,b){return a.eb.then(function(){return new A(function(c){a.a.send(b.type,b,c,I("gapi.iframes.CROSS_ORIGIN_IFRAMES_FILTER"));})})}function Gi(a,b){a.eb.then(function(){a.a.register("authEvent",b,I("gapi.iframes.CROSS_ORIGIN_IFRAMES_FILTER"));});}var Hi=qd("https://apis.google.com/js/api.js?onload=%{onload}"),Ii=new Be(3E4,6E4),Ei=new Be(5E3,15E3),Ji=null;
 	function Di(){return Ji?Ji:Ji=(new A(function(a,b){function c(){Ae();I("gapi.load")("gapi.iframes",{callback:a,ontimeout:function(){Ae();b(Error("Network Error"));},timeout:Ii.get()});}if(I("gapi.iframes.Iframe"))a();else if(I("gapi.load"))c();else{var d="__iframefcb"+Math.floor(1E6*Math.random()).toString();k[d]=function(){I("gapi.load")?c():b(Error("Network Error"));};d=ud(Hi,{onload:d});B(uh(d)).s(function(){b(Error("Network Error"));});}})).s(function(a){Ji=null;throw a;})}function Ki(a,b,c){this.i=a;this.g=b;this.h=c;this.f=null;this.a=ed(this.i,"/__/auth/iframe");G(this.a,"apiKey",this.g);G(this.a,"appName",this.h);this.b=null;this.c=[];}Ki.prototype.toString=function(){this.f?G(this.a,"v",this.f):kd(this.a.a,"v");this.b?G(this.a,"eid",this.b):kd(this.a.a,"eid");this.c.length?G(this.a,"fw",this.c.join(",")):kd(this.a.a,"fw");return this.a.toString()};function Li(a,b,c,d,e){this.o=a;this.m=b;this.c=c;this.l=d;this.h=this.g=this.i=null;this.a=e;this.f=null;}
-	Li.prototype.toString=function(){var a=ed(this.o,"/__/auth/handler");G(a,"apiKey",this.m);G(a,"appName",this.c);G(a,"authType",this.l);if(this.a.isOAuthProvider){var b=this.a;try{var c=firebase$1.app(this.c).auth().ea();}catch(m){c=null;}b.Za=c;G(a,"providerId",this.a.providerId);b=this.a;c=xe(b.xb);for(var d in c)c[d]=c[d].toString();d=b.Cc;c=$a(c);for(var e=0;e<d.length;e++){var f=d[e];f in c&&delete c[f];}b.bb&&b.Za&&!c[b.bb]&&(c[b.bb]=b.Za);Za(c)||G(a,"customParameters",we(c));}"function"===typeof this.a.Db&&
-	(b=this.a.Db(),b.length&&G(a,"scopes",b.join(",")));this.i?G(a,"redirectUrl",this.i):kd(a.a,"redirectUrl");this.g?G(a,"eventId",this.g):kd(a.a,"eventId");this.h?G(a,"v",this.h):kd(a.a,"v");if(this.b)for(var h in this.b)this.b.hasOwnProperty(h)&&!cd(a,h)&&G(a,h,this.b[h]);this.f?G(a,"eid",this.f):kd(a.a,"eid");h=Mi(this.c);h.length&&G(a,"fw",h.join(","));return a.toString()};function Mi(a){try{return firebase$1.app(a).auth().xa()}catch(b){return[]}}
+	Li.prototype.toString=function(){var a=ed(this.o,"/__/auth/handler");G(a,"apiKey",this.m);G(a,"appName",this.c);G(a,"authType",this.l);if(this.a.isOAuthProvider){var b=this.a;try{var c=firebase$2.app(this.c).auth().ea();}catch(m){c=null;}b.Za=c;G(a,"providerId",this.a.providerId);b=this.a;c=xe(b.xb);for(var d in c)c[d]=c[d].toString();d=b.Cc;c=$a(c);for(var e=0;e<d.length;e++){var f=d[e];f in c&&delete c[f];}b.bb&&b.Za&&!c[b.bb]&&(c[b.bb]=b.Za);Za(c)||G(a,"customParameters",we(c));}"function"===typeof this.a.Db&&
+	(b=this.a.Db(),b.length&&G(a,"scopes",b.join(",")));this.i?G(a,"redirectUrl",this.i):kd(a.a,"redirectUrl");this.g?G(a,"eventId",this.g):kd(a.a,"eventId");this.h?G(a,"v",this.h):kd(a.a,"v");if(this.b)for(var h in this.b)this.b.hasOwnProperty(h)&&!cd(a,h)&&G(a,h,this.b[h]);this.f?G(a,"eid",this.f):kd(a.a,"eid");h=Mi(this.c);h.length&&G(a,"fw",h.join(","));return a.toString()};function Mi(a){try{return firebase$2.app(a).auth().xa()}catch(b){return[]}}
 	function Ni(a,b,c,d,e){this.m=a;this.f=b;this.b=c;this.c=d||null;this.h=e||null;this.o=this.u=this.v=null;this.g=[];this.l=this.a=null;}
 	function Oi(a){var b=Vd();return Wh(a).then(function(a){a:{var c=dd(b),e=c.c;c=c.b;for(var f=0;f<a.length;f++){var h=a[f];var m=c;var p=e;0==h.indexOf("chrome-extension://")?m=dd(h).b==m&&"chrome-extension"==p:"http"!=p&&"https"!=p?m=!1:fe.test(h)?m=m==h:(h=h.split(".").join("\\."),m=(new RegExp("^(.+\\."+h+"|"+h+")$","i")).test(m));if(m){a=!0;break a}}a=!1;}if(!a)throw new sg(Vd());})}
 	function Pi(a){if(a.l)return a.l;a.l=ge().then(function(){if(!a.u){var b=a.c,c=a.h,d=Mi(a.b),e=new Ki(a.m,a.f,a.b);e.f=b;e.b=c;e.c=Ja(d||[]);a.u=e.toString();}a.i=new Bi(a.u);Qi(a);});return a.l}g=Ni.prototype;g.Ea=function(a,b,c){var d=new L("popup-closed-by-user"),e=new L("web-storage-unsupported"),f=this,h=!1;return this.ga().then(function(){Ri(f).then(function(c){c||(a&&be(a),b(e),h=!0);});}).s(function(){}).then(function(){if(!h)return ee(a)}).then(function(){if(!h)return Hc(c).then(function(){b(d);})})};
@@ -16372,7 +16271,7 @@
 	g.Bb=function(a,b,c,d,e,f,h){if(!a)return C(new L("popup-blocked"));if(h&&!ve())return this.ga().s(function(b){be(a);e(b);}),d(),B();this.a||(this.a=Oi(Si(this)));var m=this;return this.a.then(function(){var b=m.ga().s(function(b){be(a);e(b);throw b;});d();return b}).then(function(){ng(c);if(!h){var d=Ti(m.m,m.f,m.b,b,c,null,f,m.c,void 0,m.h);Wd(d,a);}}).s(function(a){"auth/network-request-failed"==a.code&&(m.a=null);throw a;})};
 	function Si(a){a.o||(a.v=a.c?qe(a.c,Mi(a.b)):null,a.o=new Ch(a.f,zi(a.h),a.v));return a.o}g.Ca=function(a,b,c){this.a||(this.a=Oi(Si(this)));var d=this;return this.a.then(function(){ng(b);var e=Ti(d.m,d.f,d.b,a,b,Vd(),c,d.c,void 0,d.h);Wd(e);}).s(function(a){"auth/network-request-failed"==a.code&&(d.a=null);throw a;})};g.ga=function(){var a=this;return Pi(this).then(function(){return a.i.eb}).s(function(){a.a=null;throw new L("network-request-failed");})};g.Pb=function(){return!0};
 	function Ti(a,b,c,d,e,f,h,m,p,x){a=new Li(a,b,c,d,e);a.i=f;a.g=h;a.h=m;a.b=$a(p||null);a.f=x;return a.toString()}function Qi(a){if(!a.i)throw Error("IfcHandler must be initialized!");Gi(a.i,function(b){var c={};if(b&&b.authEvent){var d=!1;b=pg(b.authEvent);for(c=0;c<a.g.length;c++)d=a.g[c](b)||d;c={};c.status=d?"ACK":"ERROR";return B(c)}c.status="ERROR";return B(c)});}
-	function Ri(a){var b={type:"webStorageSupport"};return Pi(a).then(function(){return Fi(a.i,b)}).then(function(a){if(a&&a.length&&"undefined"!==typeof a[0].webStorageSupport)return a[0].webStorageSupport;throw Error();})}g.va=function(a){this.g.push(a);};g.Ka=function(a){w(this.g,function(b){return b==a});};function Ui(a){this.a=a||firebase$1.INTERNAL.reactNative&&firebase$1.INTERNAL.reactNative.AsyncStorage;if(!this.a)throw new L("internal-error","The React Native compatibility library was not found.");this.type="asyncStorage";}g=Ui.prototype;g.get=function(a){return B(this.a.getItem(a)).then(function(a){return a&&ye(a)})};g.set=function(a,b){return B(this.a.setItem(a,we(b)))};g.P=function(a){return B(this.a.removeItem(a))};g.Y=function(){};g.ca=function(){};function Vi(a){this.b=a;this.a={};this.c=r(this.f,this);}var Wi=[];function Xi(){var a=le()?self:null;v(Wi,function(c){c.b==a&&(b=c);});if(!b){var b=new Vi(a);Wi.push(b);}return b}
+	function Ri(a){var b={type:"webStorageSupport"};return Pi(a).then(function(){return Fi(a.i,b)}).then(function(a){if(a&&a.length&&"undefined"!==typeof a[0].webStorageSupport)return a[0].webStorageSupport;throw Error();})}g.va=function(a){this.g.push(a);};g.Ka=function(a){w(this.g,function(b){return b==a});};function Ui(a){this.a=a||firebase$2.INTERNAL.reactNative&&firebase$2.INTERNAL.reactNative.AsyncStorage;if(!this.a)throw new L("internal-error","The React Native compatibility library was not found.");this.type="asyncStorage";}g=Ui.prototype;g.get=function(a){return B(this.a.getItem(a)).then(function(a){return a&&ye(a)})};g.set=function(a,b){return B(this.a.setItem(a,we(b)))};g.P=function(a){return B(this.a.removeItem(a))};g.Y=function(){};g.ca=function(){};function Vi(a){this.b=a;this.a={};this.c=r(this.f,this);}var Wi=[];function Xi(){var a=le()?self:null;v(Wi,function(c){c.b==a&&(b=c);});if(!b){var b=new Vi(a);Wi.push(b);}return b}
 	Vi.prototype.f=function(a){var b=a.data.eventType,c=a.data.eventId,d=this.a[b];if(d&&0<d.length){a.ports[0].postMessage({status:"ack",eventId:c,eventType:b,response:null});var e=[];v(d,function(b){e.push(B().then(function(){return b(a.origin,a.data.data)}));});wb(e).then(function(d){var e=[];v(d,function(a){e.push({fulfilled:a.Cb,value:a.value,reason:a.reason?a.reason.message:void 0});});v(e,function(a){for(var b in a)"undefined"===typeof a[b]&&delete a[b];});a.ports[0].postMessage({status:"done",eventId:c,
 	eventType:b,response:e});});}};Vi.prototype.subscribe=function(a,b){Za(this.a)&&this.b.addEventListener("message",this.c);"undefined"===typeof this.a[a]&&(this.a[a]=[]);this.a[a].push(b);};Vi.prototype.unsubscribe=function(a,b){"undefined"!==typeof this.a[a]&&b?(w(this.a[a],function(a){return a==b}),0==this.a[a].length&&delete this.a[a]):b||delete this.a[a];Za(this.a)&&this.b.removeEventListener("message",this.c);};function Yi(a){this.a=a;}Yi.prototype.postMessage=function(a,b){this.a.postMessage(a,b);};function Zi(a){this.c=a;this.b=!1;this.a=[];}
 	function $i(a,b,c,d){var e,f=c||{},h,m,p,x=null;if(a.b)return C(Error("connection_unavailable"));var db=d?800:50,la="undefined"!==typeof MessageChannel?new MessageChannel:null;return(new A(function(c,d){la?(e=Math.floor(Math.random()*Math.pow(10,20)).toString(),la.port1.start(),m=setTimeout(function(){d(Error("unsupported_event"));},db),h=function(a){a.data.eventId===e&&("ack"===a.data.status?(clearTimeout(m),p=setTimeout(function(){d(Error("timeout"));},3E3)):"done"===a.data.status?(clearTimeout(p),
@@ -16385,10 +16284,10 @@
 	g.get=function(a){return hj(this).then(function(b){return kj(ij(jj(b,!1)).get(a))}).then(function(a){return a&&a.value})};g.P=function(a){var b=!1,c=this;return hj(this).then(function(d){b=!0;c.b++;return kj(ij(jj(d,!0))["delete"](a))}).then(function(){delete c.c[a];return lj(c,a)}).ia(function(){b&&c.b--;})};
 	function dj(a){return hj(a).then(function(a){var b=ij(jj(a,!1));return b.getAll?kj(b.getAll()):new A(function(a,c){var d=[],e=b.openCursor();e.onsuccess=function(b){(b=b.target.result)?(d.push(b.value),b["continue"]()):a(d);};e.onerror=function(a){c(Error(a.target.errorCode));};})}).then(function(b){var c={},d=[];if(0==a.b){for(d=0;d<b.length;d++)c[b[d].fbase_key]=b[d].value;d=Xd(a.c,c);a.c=c;}return d})}g.Y=function(a){0==this.a.length&&mj(this);this.a.push(a);};
 	g.ca=function(a){w(this.a,function(b){return b==a});0==this.a.length&&nj(this);};function mj(a){function b(){a.f=setTimeout(function(){a.i=dj(a).then(function(b){0<b.length&&v(a.a,function(a){a(b);});}).then(function(){b();}).s(function(a){"STOP_EVENT"!=a.message&&b();});},800);}nj(a);b();}function nj(a){a.i&&a.i.cancel("STOP_EVENT");a.f&&(clearTimeout(a.f),a.f=null);}function oj(a){var b=this,c=null;this.a=[];this.type="indexedDB";this.c=a;this.b=B().then(function(){if(cj()){var a=se(),e="__sak"+a;ej||(ej=new bj);c=ej;return c.set(e,a).then(function(){return c.get(e)}).then(function(b){if(b!==a)throw Error("indexedDB not supported!");return c.P(e)}).then(function(){return c}).s(function(){return b.c})}return b.c}).then(function(a){b.type=a.type;a.Y(function(a){v(b.a,function(b){b(a);});});return a});}g=oj.prototype;g.get=function(a){return this.b.then(function(b){return b.get(a)})};
-	g.set=function(a,b){return this.b.then(function(c){return c.set(a,b)})};g.P=function(a){return this.b.then(function(b){return b.P(a)})};g.Y=function(a){this.a.push(a);};g.ca=function(a){w(this.a,function(b){return b==a});};function pj(){this.a={};this.type="inMemory";}g=pj.prototype;g.get=function(a){return B(this.a[a])};g.set=function(a,b){this.a[a]=b;return B()};g.P=function(a){delete this.a[a];return B()};g.Y=function(){};g.ca=function(){};function qj(){if(!rj()){if("Node"==me())throw new L("internal-error","The LocalStorage compatibility library was not found.");throw new L("web-storage-unsupported");}this.a=sj()||firebase$1.INTERNAL.node.localStorage;this.type="localStorage";}function sj(){try{var a=k.localStorage,b=se();a&&(a.setItem(b,"1"),a.removeItem(b));return a}catch(c){return null}}
-	function rj(){var a="Node"==me();a=sj()||a&&firebase$1.INTERNAL.node&&firebase$1.INTERNAL.node.localStorage;if(!a)return!1;try{return a.setItem("__sak","1"),a.removeItem("__sak"),!0}catch(b){return!1}}g=qj.prototype;g.get=function(a){var b=this;return B().then(function(){var c=b.a.getItem(a);return ye(c)})};g.set=function(a,b){var c=this;return B().then(function(){var d=we(b);null===d?c.P(a):c.a.setItem(a,d);})};g.P=function(a){var b=this;return B().then(function(){b.a.removeItem(a);})};
-	g.Y=function(a){k.window&&rc(k.window,"storage",a);};g.ca=function(a){k.window&&E(k.window,"storage",a);};function tj(){this.type="nullStorage";}g=tj.prototype;g.get=function(){return B(null)};g.set=function(){return B()};g.P=function(){return B()};g.Y=function(){};g.ca=function(){};function uj(){if(!vj()){if("Node"==me())throw new L("internal-error","The SessionStorage compatibility library was not found.");throw new L("web-storage-unsupported");}this.a=wj()||firebase$1.INTERNAL.node.sessionStorage;this.type="sessionStorage";}function wj(){try{var a=k.sessionStorage,b=se();a&&(a.setItem(b,"1"),a.removeItem(b));return a}catch(c){return null}}
-	function vj(){var a="Node"==me();a=wj()||a&&firebase$1.INTERNAL.node&&firebase$1.INTERNAL.node.sessionStorage;if(!a)return!1;try{return a.setItem("__sak","1"),a.removeItem("__sak"),!0}catch(b){return!1}}g=uj.prototype;g.get=function(a){var b=this;return B().then(function(){var c=b.a.getItem(a);return ye(c)})};g.set=function(a,b){var c=this;return B().then(function(){var d=we(b);null===d?c.P(a):c.a.setItem(a,d);})};g.P=function(a){var b=this;return B().then(function(){b.a.removeItem(a);})};g.Y=function(){};
+	g.set=function(a,b){return this.b.then(function(c){return c.set(a,b)})};g.P=function(a){return this.b.then(function(b){return b.P(a)})};g.Y=function(a){this.a.push(a);};g.ca=function(a){w(this.a,function(b){return b==a});};function pj(){this.a={};this.type="inMemory";}g=pj.prototype;g.get=function(a){return B(this.a[a])};g.set=function(a,b){this.a[a]=b;return B()};g.P=function(a){delete this.a[a];return B()};g.Y=function(){};g.ca=function(){};function qj(){if(!rj()){if("Node"==me())throw new L("internal-error","The LocalStorage compatibility library was not found.");throw new L("web-storage-unsupported");}this.a=sj()||firebase$2.INTERNAL.node.localStorage;this.type="localStorage";}function sj(){try{var a=k.localStorage,b=se();a&&(a.setItem(b,"1"),a.removeItem(b));return a}catch(c){return null}}
+	function rj(){var a="Node"==me();a=sj()||a&&firebase$2.INTERNAL.node&&firebase$2.INTERNAL.node.localStorage;if(!a)return!1;try{return a.setItem("__sak","1"),a.removeItem("__sak"),!0}catch(b){return!1}}g=qj.prototype;g.get=function(a){var b=this;return B().then(function(){var c=b.a.getItem(a);return ye(c)})};g.set=function(a,b){var c=this;return B().then(function(){var d=we(b);null===d?c.P(a):c.a.setItem(a,d);})};g.P=function(a){var b=this;return B().then(function(){b.a.removeItem(a);})};
+	g.Y=function(a){k.window&&rc(k.window,"storage",a);};g.ca=function(a){k.window&&E(k.window,"storage",a);};function tj(){this.type="nullStorage";}g=tj.prototype;g.get=function(){return B(null)};g.set=function(){return B()};g.P=function(){return B()};g.Y=function(){};g.ca=function(){};function uj(){if(!vj()){if("Node"==me())throw new L("internal-error","The SessionStorage compatibility library was not found.");throw new L("web-storage-unsupported");}this.a=wj()||firebase$2.INTERNAL.node.sessionStorage;this.type="sessionStorage";}function wj(){try{var a=k.sessionStorage,b=se();a&&(a.setItem(b,"1"),a.removeItem(b));return a}catch(c){return null}}
+	function vj(){var a="Node"==me();a=wj()||a&&firebase$2.INTERNAL.node&&firebase$2.INTERNAL.node.sessionStorage;if(!a)return!1;try{return a.setItem("__sak","1"),a.removeItem("__sak"),!0}catch(b){return!1}}g=uj.prototype;g.get=function(a){var b=this;return B().then(function(){var c=b.a.getItem(a);return ye(c)})};g.set=function(a,b){var c=this;return B().then(function(){var d=we(b);null===d?c.P(a):c.a.setItem(a,d);})};g.P=function(a){var b=this;return B().then(function(){b.a.removeItem(a);})};g.Y=function(){};
 	g.ca=function(){};function xj(){var a={};a.Browser=yj;a.Node=zj;a.ReactNative=Aj;a.Worker=Bj;this.a=a[me()];}var Cj,yj={A:qj,Qa:uj},zj={A:qj,Qa:uj},Aj={A:Ui,Qa:tj},Bj={A:qj,Qa:tj};var Dj={Yc:"local",NONE:"none",$c:"session"};function Ej(a){var b=new L("invalid-persistence-type"),c=new L("unsupported-persistence-type");a:{for(d in Dj)if(Dj[d]==a){var d=!0;break a}d=!1;}if(!d||"string"!==typeof a)throw b;switch(me()){case "ReactNative":if("session"===a)throw c;break;case "Node":if("none"!==a)throw c;break;default:if(!re()&&"none"!==a)throw c;}}
 	function Fj(){var a=!ze(H())&&ke()?!0:!1,b=ve(),c=re();this.o=a;this.h=b;this.l=c;this.a={};Cj||(Cj=new xj);a=Cj;try{this.g=!Ud()&&Fe()||!k.indexedDB?new a.a.A:new oj(le()?new pj:new a.a.A);}catch(d){this.g=new pj,this.h=!0;}try{this.i=new a.a.Qa;}catch(d){this.i=new pj;}this.m=new pj;this.f=r(this.Ob,this);this.b={};}var Gj;function Hj(){Gj||(Gj=new Fj);return Gj}function Ij(a,b){switch(b){case "session":return a.i;case "none":return a.m;default:return a.g}}
 	function Jj(a,b){return"firebase:"+a.name+(b?":"+b:"")}function Kj(a,b,c){var d=Jj(b,c),e=Ij(a,b.A);return a.get(b,c).then(function(f){var h=null;try{h=ye(k.localStorage.getItem(d));}catch(m){}if(h&&!f)return k.localStorage.removeItem(d),a.set(b,h,c);h&&f&&"localStorage"!=e.type&&k.localStorage.removeItem(d);})}g=Fj.prototype;g.get=function(a,b){return Ij(this,a.A).get(Jj(a,b))};function Lj(a,b,c){c=Jj(b,c);"local"==b.A&&(a.b[c]=null);return Ij(a,b.A).P(c)}
@@ -16410,7 +16309,7 @@
 	a.h;return a.v.a.set(Pj,f.D(),b)}).then(function(){var b=I("cordova.plugins.browsertab.isAvailable",k);if("function"!==typeof b)throw new L("invalid-cordova-configuration");var c=null;b(function(b){if(b){c=I("cordova.plugins.browsertab.openUrl",k);if("function"!==typeof c)throw new L("invalid-cordova-configuration");c(x);}else{c=I("cordova.InAppBrowser.open",k);if("function"!==typeof c)throw new L("invalid-cordova-configuration");b=H();b=!(!b.match(/(iPad|iPhone|iPod).*OS 7_\d/i)&&!b.match(/(iPad|iPhone|iPod).*OS 8_\d/i));
 	a.a=c(x,b?"_blank":"_system","location=yes");}});})}function mk(a,b){for(var c=0;c<a.b.length;c++)try{a.b[c](b);}catch(d){}}function jk(a){a.f||(a.f=a.ga().then(function(){return new A(function(b){function c(d){b(d);a.Ka(c);return!1}a.va(c);nk(a);})}));return a.f}function lk(a){var b=null;return Qj(a.g).then(function(c){b=c;c=a.g;return Lj(c.b,Pj,c.a)}).then(function(){return b})}
 	function nk(a){function b(b){d=!0;e&&e.cancel();lk(a).then(function(d){var e=c;if(d&&b&&b.url){var f=null;e=Jf(b.url);-1!=e.indexOf("/__/auth/callback")&&(f=dd(e),f=ye(cd(f,"firebaseError")||null),f=(f="object"===typeof f?af(f):null)?new og(d.b,d.c,null,null,f):new og(d.b,d.c,e,d.g));e=f||c;}mk(a,e);});}var c=new og("unknown",null,null,null,new L("no-auth-event")),d=!1,e=Hc(500).then(function(){return lk(a).then(function(){d||mk(a,c);})}),f=k.handleOpenURL;k.handleOpenURL=function(a){0==a.toLowerCase().indexOf(I("BuildInfo.packageName",
-	k).toLowerCase()+"://")&&b({url:a});if("function"===typeof f)try{f(a);}catch(m){console.error(m);}};rg||(rg=new qg);rg.subscribe(b);}g.va=function(a){this.b.push(a);jk(this).s(function(b){"auth/invalid-cordova-configuration"===b.code&&(b=new og("unknown",null,null,null,new L("no-auth-event")),a(b));});};g.Ka=function(a){w(this.b,function(b){return b==a});};function ok(a){this.a=a;this.b=Hj();}var pk={name:"pendingRedirect",A:"session"};function qk(a){return a.b.set(pk,"pending",a.a)}function rk(a){return Lj(a.b,pk,a.a)}function sk(a){return a.b.get(pk,a.a).then(function(a){return"pending"==a})}function tk(a,b,c){this.u=a;this.l=b;this.m=c;this.h=[];this.f=!1;this.i=r(this.ab,this);this.b=new uk;this.o=new vk;this.g=new ok(this.l+":"+this.m);this.c={};this.c.unknown=this.b;this.c.signInViaRedirect=this.b;this.c.linkViaRedirect=this.b;this.c.reauthViaRedirect=this.b;this.c.signInViaPopup=this.o;this.c.linkViaPopup=this.o;this.c.reauthViaPopup=this.o;this.a=wk(this.u,this.l,this.m,Ai);}function wk(a,b,c,d){var e=firebase$1.SDK_VERSION||null;return ie()?new fk(a,b,c,e,d):new Ni(a,b,c,e,d)}g=tk.prototype;
+	k).toLowerCase()+"://")&&b({url:a});if("function"===typeof f)try{f(a);}catch(m){console.error(m);}};rg||(rg=new qg);rg.subscribe(b);}g.va=function(a){this.b.push(a);jk(this).s(function(b){"auth/invalid-cordova-configuration"===b.code&&(b=new og("unknown",null,null,null,new L("no-auth-event")),a(b));});};g.Ka=function(a){w(this.b,function(b){return b==a});};function ok(a){this.a=a;this.b=Hj();}var pk={name:"pendingRedirect",A:"session"};function qk(a){return a.b.set(pk,"pending",a.a)}function rk(a){return Lj(a.b,pk,a.a)}function sk(a){return a.b.get(pk,a.a).then(function(a){return"pending"==a})}function tk(a,b,c){this.u=a;this.l=b;this.m=c;this.h=[];this.f=!1;this.i=r(this.ab,this);this.b=new uk;this.o=new vk;this.g=new ok(this.l+":"+this.m);this.c={};this.c.unknown=this.b;this.c.signInViaRedirect=this.b;this.c.linkViaRedirect=this.b;this.c.reauthViaRedirect=this.b;this.c.signInViaPopup=this.o;this.c.linkViaPopup=this.o;this.c.reauthViaPopup=this.o;this.a=wk(this.u,this.l,this.m,Ai);}function wk(a,b,c,d){var e=firebase$2.SDK_VERSION||null;return ie()?new fk(a,b,c,e,d):new Ni(a,b,c,e,d)}g=tk.prototype;
 	g.reset=function(){this.f=!1;this.a.Ka(this.i);this.a=wk(this.u,this.l,this.m);};g.Xa=function(){this.b.Xa();};function xk(a){a.f||(a.f=!0,a.a.va(a.i));var b=a.a;return a.a.ga().s(function(c){a.a==b&&a.reset();throw c;})}function yk(a){a.a.Lb()&&xk(a).s(function(b){var c=new og("unknown",null,null,null,new L("operation-not-supported-in-this-environment"));zk(b)&&a.ab(c);});a.a.Gb()||Ak(a.b);}
 	g.subscribe=function(a){Ga(this.h,a)||this.h.push(a);if(!this.f){var b=this;sk(this.g).then(function(a){a?rk(b.g).then(function(){xk(b).s(function(a){var c=new og("unknown",null,null,null,new L("operation-not-supported-in-this-environment"));zk(a)&&b.ab(c);});}):yk(b);}).s(function(){yk(b);});}};g.unsubscribe=function(a){w(this.h,function(b){return b==a});};
 	g.ab=function(a){if(!a)throw new L("invalid-auth-event");for(var b=!1,c=0;c<this.h.length;c++){var d=this.h[c];if(d.ub(a.b,a.c)){(b=this.c[a.b])&&b.h(a,d);b=!0;break}}Ak(this.b);return b};var Bk=new Be(2E3,1E4),Ck=new Be(3E4,6E4);tk.prototype.fa=function(){return this.b.fa()};function Dk(a,b,c,d,e,f){return a.a.Bb(b,c,d,function(){a.f||(a.f=!0,a.a.va(a.i));},function(){a.reset();},e,f)}function zk(a){return a&&"auth/cordova-not-ready"==a.code?!0:!1}
@@ -16422,9 +16321,9 @@
 	function Lk(a,b){var c=a.c,d=a.b;b.wa(d,c)(a.f,a.g).then(function(a){b.ha(d,a,null,c);}).s(function(a){b.ha(d,null,a,c);});}function Mk(){this.rb=!1;Object.defineProperty(this,"appVerificationDisabled",{get:function(){return this.rb},set:function(a){this.rb=a;},enumerable:!1});}function Nk(a,b){this.a=b;J(this,"verificationId",a);}Nk.prototype.confirm=function(a){a=lg(this.verificationId,a);return this.a(a)};function Ok(a,b,c,d){return(new jg(a)).Ta(b,c).then(function(a){return new Nk(a,d)})}function Pk(a){var b=uf(a);if(!(b&&b.exp&&b.auth_time&&b.iat))throw new L("internal-error","An internal error occurred. The token obtained by Firebase appears to be malformed. Please retry the operation.");K(this,{token:a,expirationTime:Ee(1E3*b.exp),authTime:Ee(1E3*b.auth_time),issuedAtTime:Ee(1E3*b.iat),signInProvider:b.firebase&&b.firebase.sign_in_provider?b.firebase.sign_in_provider:null,claims:b});}function Qk(a,b,c){this.h=a;this.i=b;this.g=c;this.c=3E4;this.f=96E4;this.b=null;this.a=this.c;if(this.f<this.c)throw Error("Proactive refresh lower bound greater than upper bound!");}Qk.prototype.start=function(){this.a=this.c;Rk(this,!0);};function Sk(a,b){if(b)return a.a=a.c,a.g();b=a.a;a.a*=2;a.a>a.f&&(a.a=a.f);return b}function Rk(a,b){a.stop();a.b=Hc(Sk(a,b)).then(function(){return De()}).then(function(){return a.h()}).then(function(){Rk(a,!0);}).s(function(b){a.i(b)&&Rk(a,!1);});}
 	Qk.prototype.stop=function(){this.b&&(this.b.cancel(),this.b=null);};function Tk(a){this.f=a;this.b=this.a=null;this.c=0;}Tk.prototype.D=function(){return{apiKey:this.f.b,refreshToken:this.a,accessToken:this.b,expirationTime:this.c}};function Uk(a,b){var c=b[M],d=b.refreshToken;b=Vk(b.expiresIn);a.b=c;a.c=b;a.a=d;}function Wk(a,b){a.b=b.b;a.a=b.a;a.c=b.c;}function Vk(a){return oa()+1E3*parseInt(a,10)}
 	function Xk(a,b){return Oh(a.f,b).then(function(b){a.b=b.access_token;a.c=Vk(b.expires_in);a.a=b.refresh_token;return{accessToken:a.b,expirationTime:a.c,refreshToken:a.a}}).s(function(b){"auth/user-token-expired"==b.code&&(a.a=null);throw b;})}Tk.prototype.getToken=function(a){a=!!a;return this.b&&!this.a?C(new L("user-token-expired")):a||!this.b||oa()>this.c-3E4?this.a?Xk(this,{grant_type:"refresh_token",refresh_token:this.a}):B(null):B({accessToken:this.b,expirationTime:this.c,refreshToken:this.a})};function Yk(a,b){this.a=a||null;this.b=b||null;K(this,{lastSignInTime:Ee(b||null),creationTime:Ee(a||null)});}function Zk(a){return new Yk(a.a,a.b)}Yk.prototype.D=function(){return{lastLoginAt:this.b,createdAt:this.a}};function $k(a,b,c,d,e,f){K(this,{uid:a,displayName:d||null,photoURL:e||null,email:c||null,phoneNumber:f||null,providerId:b});}function al(a,b){D.call(this,a);for(var c in b)this[c]=b[c];}t(al,D);
-	function Q(a,b,c){this.G=[];this.m=a.apiKey;this.o=a.appName;this.u=a.authDomain||null;a=firebase$1.SDK_VERSION?qe(firebase$1.SDK_VERSION):null;this.b=new Ch(this.m,zi(Ai),a);this.h=new Tk(this.b);bl(this,b[M]);Uk(this.h,b);J(this,"refreshToken",this.h.a);cl(this,c||{});F.call(this);this.I=!1;this.u&&te()&&(this.a=Fk(this.u,this.m,this.o));this.N=[];this.i=null;this.w=dl(this);this.V=r(this.Ha,this);var d=this;this.ka=null;this.sa=function(a){d.oa(a.g);};this.X=null;this.O=[];this.ra=function(a){el(d,
-	a.c);};this.W=null;}t(Q,F);Q.prototype.oa=function(a){this.ka=a;Ih(this.b,a);};Q.prototype.ea=function(){return this.ka};function fl(a,b){a.X&&E(a.X,"languageCodeChanged",a.sa);(a.X=b)&&rc(b,"languageCodeChanged",a.sa);}function el(a,b){a.O=b;Jh(a.b,firebase$1.SDK_VERSION?qe(firebase$1.SDK_VERSION,a.O):null);}Q.prototype.xa=function(){return Ja(this.O)};function gl(a,b){a.W&&E(a.W,"frameworkChanged",a.ra);(a.W=b)&&rc(b,"frameworkChanged",a.ra);}Q.prototype.Ha=function(){this.w.b&&(this.w.stop(),this.w.start());};
-	function hl(a){try{return firebase$1.app(a.o).auth()}catch(b){throw new L("internal-error","No firebase.auth.Auth instance is available for the Firebase App '"+a.o+"'!");}}function dl(a){return new Qk(function(){return a.F(!0)},function(a){return a&&"auth/network-request-failed"==a.code?!0:!1},function(){var b=a.h.c-oa()-3E5;return 0<b?b:0})}function il(a){a.C||a.w.b||(a.w.start(),E(a,"tokenChanged",a.V),rc(a,"tokenChanged",a.V));}function jl(a){E(a,"tokenChanged",a.V);a.w.stop();}
+	function Q(a,b,c){this.G=[];this.m=a.apiKey;this.o=a.appName;this.u=a.authDomain||null;a=firebase$2.SDK_VERSION?qe(firebase$2.SDK_VERSION):null;this.b=new Ch(this.m,zi(Ai),a);this.h=new Tk(this.b);bl(this,b[M]);Uk(this.h,b);J(this,"refreshToken",this.h.a);cl(this,c||{});F.call(this);this.I=!1;this.u&&te()&&(this.a=Fk(this.u,this.m,this.o));this.N=[];this.i=null;this.w=dl(this);this.V=r(this.Ha,this);var d=this;this.ka=null;this.sa=function(a){d.oa(a.g);};this.X=null;this.O=[];this.ra=function(a){el(d,
+	a.c);};this.W=null;}t(Q,F);Q.prototype.oa=function(a){this.ka=a;Ih(this.b,a);};Q.prototype.ea=function(){return this.ka};function fl(a,b){a.X&&E(a.X,"languageCodeChanged",a.sa);(a.X=b)&&rc(b,"languageCodeChanged",a.sa);}function el(a,b){a.O=b;Jh(a.b,firebase$2.SDK_VERSION?qe(firebase$2.SDK_VERSION,a.O):null);}Q.prototype.xa=function(){return Ja(this.O)};function gl(a,b){a.W&&E(a.W,"frameworkChanged",a.ra);(a.W=b)&&rc(b,"frameworkChanged",a.ra);}Q.prototype.Ha=function(){this.w.b&&(this.w.stop(),this.w.start());};
+	function hl(a){try{return firebase$2.app(a.o).auth()}catch(b){throw new L("internal-error","No firebase.auth.Auth instance is available for the Firebase App '"+a.o+"'!");}}function dl(a){return new Qk(function(){return a.F(!0)},function(a){return a&&"auth/network-request-failed"==a.code?!0:!1},function(){var b=a.h.c-oa()-3E5;return 0<b?b:0})}function il(a){a.C||a.w.b||(a.w.start(),E(a,"tokenChanged",a.V),rc(a,"tokenChanged",a.V));}function jl(a){E(a,"tokenChanged",a.V);a.w.stop();}
 	function bl(a,b){a.qa=b;J(a,"_lat",b);}function kl(a,b){w(a.N,function(a){return a==b});}function ll(a){for(var b=[],c=0;c<a.N.length;c++)b.push(a.N[c](a));return wb(b).then(function(){return a})}function ml(a){a.a&&!a.I&&(a.I=!0,a.a.subscribe(a));}
 	function cl(a,b){K(a,{uid:b.uid,displayName:b.displayName||null,photoURL:b.photoURL||null,email:b.email||null,emailVerified:b.emailVerified||!1,phoneNumber:b.phoneNumber||null,isAnonymous:b.isAnonymous||!1,metadata:new Yk(b.createdAt,b.lastLoginAt),providerData:[]});}J(Q.prototype,"providerId","firebase");function nl(){}function ol(a){return B().then(function(){if(a.C)throw new L("app-deleted");})}function pl(a){return Ca(a.providerData,function(a){return a.providerId})}
 	function ql(a,b){b&&(rl(a,b.providerId),a.providerData.push(b));}function rl(a,b){w(a.providerData,function(a){return a.providerId==b});}function sl(a,b,c){("uid"!=b||c)&&a.hasOwnProperty(b)&&J(a,b,c);}
@@ -16442,7 +16341,7 @@
 	g.delete=function(){var a=this;return R(this,this.F().then(function(b){return P(a.b,ui,{idToken:b})}).then(function(){a.dispatchEvent(new al("userDeleted"));})).then(function(){for(var b=0;b<a.G.length;b++)a.G[b].cancel("app-deleted");fl(a,null);gl(a,null);a.G=[];a.C=!0;jl(a);J(a,"refreshToken",null);a.a&&a.a.unsubscribe(a);})};
 	g.ub=function(a,b){return"linkViaPopup"==a&&(this.g||null)==b&&this.f||"reauthViaPopup"==a&&(this.g||null)==b&&this.f||"linkViaRedirect"==a&&(this.aa||null)==b||"reauthViaRedirect"==a&&(this.aa||null)==b?!0:!1};g.ha=function(a,b,c,d){"linkViaPopup"!=a&&"reauthViaPopup"!=a||d!=(this.g||null)||(c&&this.v?this.v(c):b&&!c&&this.f&&this.f(b),this.c&&(this.c.cancel(),this.c=null),delete this.f,delete this.v);};
 	g.wa=function(a,b){return"linkViaPopup"==a&&b==(this.g||null)?r(this.zb,this):"reauthViaPopup"==a&&b==(this.g||null)?r(this.Ab,this):"linkViaRedirect"==a&&(this.aa||null)==b?r(this.zb,this):"reauthViaRedirect"==a&&(this.aa||null)==b?r(this.Ab,this):null};g.qc=function(a){var b=this;return Bl(this,"linkViaPopup",a,function(){return zl(b,a.providerId).then(function(){return ll(b)})},!1)};g.zc=function(a){return Bl(this,"reauthViaPopup",a,function(){return B()},!0)};
-	function Bl(a,b,c,d,e){if(!te())return C(new L("operation-not-supported-in-this-environment"));if(a.i&&!e)return C(a.i);var f=yf(c.providerId),h=se(a.uid+":::"),m=null;(!ve()||ke())&&a.u&&c.isOAuthProvider&&(m=Ti(a.u,a.m,a.o,b,c,null,h,firebase$1.SDK_VERSION||null));var p=ce(m,f&&f.Ba,f&&f.Aa);d=d().then(function(){Cl(a);if(!e)return a.F().then(function(){})}).then(function(){return Dk(a.a,p,b,c,h,!!m)}).then(function(){return new A(function(c,d){a.ha(b,null,new L("cancelled-popup-request"),a.g||null);
+	function Bl(a,b,c,d,e){if(!te())return C(new L("operation-not-supported-in-this-environment"));if(a.i&&!e)return C(a.i);var f=yf(c.providerId),h=se(a.uid+":::"),m=null;(!ve()||ke())&&a.u&&c.isOAuthProvider&&(m=Ti(a.u,a.m,a.o,b,c,null,h,firebase$2.SDK_VERSION||null));var p=ce(m,f&&f.Ba,f&&f.Aa);d=d().then(function(){Cl(a);if(!e)return a.F().then(function(){})}).then(function(){return Dk(a.a,p,b,c,h,!!m)}).then(function(){return new A(function(c,d){a.ha(b,null,new L("cancelled-popup-request"),a.g||null);
 	a.f=c;a.v=d;a.g=h;a.c=a.a.Ea(a,b,p,h);})}).then(function(a){p&&be(p);return a?Me(a):null}).s(function(a){p&&be(p);throw a;});return R(a,d,e)}g.rc=function(a){var b=this;return Dl(this,"linkViaRedirect",a,function(){return zl(b,a.providerId)},!1)};g.Ac=function(a){return Dl(this,"reauthViaRedirect",a,function(){return B()},!0)};
 	function Dl(a,b,c,d,e){if(!te())return C(new L("operation-not-supported-in-this-environment"));if(a.i&&!e)return C(a.i);var f=null,h=se(a.uid+":::");d=d().then(function(){Cl(a);if(!e)return a.F().then(function(){})}).then(function(){a.aa=h;return ll(a)}).then(function(b){a.ba&&(b=a.ba,b=b.b.set(El,a.D(),b.a));return b}).then(function(){return a.a.Ca(b,c,h)}).s(function(b){f=b;if(a.ba)return Fl(a.ba);throw f;}).then(function(){if(f)throw f;});return R(a,d,e)}
 	function Cl(a){if(!a.a||!a.I){if(a.a&&!a.I)throw new L("internal-error");throw new L("auth-domain-config-required");}}g.zb=function(a,b){var c=this;this.c&&(this.c.cancel(),this.c=null);var d=null,e=this.F().then(function(d){return Of(c.b,{requestUri:a,sessionId:b,idToken:d})}).then(function(a){d=yl(c,a,"link");return Al(c,a)}).then(function(){return d});return R(this,e)};
@@ -16453,14 +16352,14 @@
 	function Il(a,b,c,d){var e=new Q(a,b);c&&(e.ba=c);d&&el(e,d);return e.reload().then(function(){return e})}function Jl(a,b,c,d){b=b||{apiKey:a.m,authDomain:a.u,appName:a.o};var e=a.h,f={};f[M]=e.b;f.refreshToken=e.a;f.expiresIn=(e.c-oa())/1E3;b=new Q(b,f);c&&(b.ba=c);d&&el(b,d);tl(b,a);return b}function Kl(a){this.a=a;this.b=Hj();}var El={name:"redirectUser",A:"session"};function Fl(a){return Lj(a.b,El,a.a)}function Ll(a,b){return a.b.get(El,a.a).then(function(a){a&&b&&(a.authDomain=b);return Hl(a||{})})}function Nl(a){this.a=a;this.b=Hj();this.c=null;this.f=Ol(this);this.b.addListener(Pl("local"),this.a,r(this.g,this));}Nl.prototype.g=function(){var a=this,b=Pl("local");Ql(this,function(){return B().then(function(){return a.c&&"local"!=a.c.A?a.b.get(b,a.a):null}).then(function(c){if(c)return Rl(a,"local").then(function(){a.c=b;})})});};function Rl(a,b){var c=[],d;for(d in Dj)Dj[d]!==b&&c.push(Lj(a.b,Pl(Dj[d]),a.a));c.push(Lj(a.b,Sl,a.a));return vb(c)}
 	function Ol(a){var b=Pl("local"),c=Pl("session"),d=Pl("none");return Kj(a.b,b,a.a).then(function(){return a.b.get(c,a.a)}).then(function(e){return e?c:a.b.get(d,a.a).then(function(c){return c?d:a.b.get(b,a.a).then(function(c){return c?b:a.b.get(Sl,a.a).then(function(a){return a?Pl(a):b})})})}).then(function(b){a.c=b;return Rl(a,b.A)}).s(function(){a.c||(a.c=b);})}var Sl={name:"persistence",A:"session"};function Pl(a){return{name:"authUser",A:a}}
 	Nl.prototype.lb=function(a){var b=null,c=this;Ej(a);return Ql(this,function(){return a!=c.c.A?c.b.get(c.c,c.a).then(function(d){b=d;return Rl(c,a)}).then(function(){c.c=Pl(a);if(b)return c.b.set(c.c,b,c.a)}):B()})};function Tl(a){return Ql(a,function(){return a.b.set(Sl,a.c.A,a.a)})}function Ul(a,b){return Ql(a,function(){return a.b.set(a.c,b.D(),a.a)})}function Vl(a){return Ql(a,function(){return Lj(a.b,a.c,a.a)})}
-	function Wl(a,b){return Ql(a,function(){return a.b.get(a.c,a.a).then(function(a){a&&b&&(a.authDomain=b);return Hl(a||{})})})}function Ql(a,b){a.f=a.f.then(b,b);return a.f}function Xl(a){this.m=!1;J(this,"settings",new Mk);J(this,"app",a);if(S(this).options&&S(this).options.apiKey)a=firebase$1.SDK_VERSION?qe(firebase$1.SDK_VERSION):null,this.b=new Ch(S(this).options&&S(this).options.apiKey,zi(Ai),a);else throw new L("invalid-api-key");this.N=[];this.o=[];this.I=[];this.Sb=firebase$1.INTERNAL.createSubscribe(r(this.kc,this));this.O=void 0;this.Tb=firebase$1.INTERNAL.createSubscribe(r(this.mc,this));Yl(this,null);this.h=new Nl(S(this).options.apiKey+":"+S(this).name);this.w=
+	function Wl(a,b){return Ql(a,function(){return a.b.get(a.c,a.a).then(function(a){a&&b&&(a.authDomain=b);return Hl(a||{})})})}function Ql(a,b){a.f=a.f.then(b,b);return a.f}function Xl(a){this.m=!1;J(this,"settings",new Mk);J(this,"app",a);if(S(this).options&&S(this).options.apiKey)a=firebase$2.SDK_VERSION?qe(firebase$2.SDK_VERSION):null,this.b=new Ch(S(this).options&&S(this).options.apiKey,zi(Ai),a);else throw new L("invalid-api-key");this.N=[];this.o=[];this.I=[];this.Sb=firebase$2.INTERNAL.createSubscribe(r(this.kc,this));this.O=void 0;this.Tb=firebase$2.INTERNAL.createSubscribe(r(this.mc,this));Yl(this,null);this.h=new Nl(S(this).options.apiKey+":"+S(this).name);this.w=
 	new Kl(S(this).options.apiKey+":"+S(this).name);this.V=T(this,Zl(this));this.i=T(this,$l(this));this.X=!1;this.ka=r(this.Lc,this);this.Ha=r(this.Z,this);this.qa=r(this.ac,this);this.ra=r(this.ic,this);this.sa=r(this.jc,this);am(this);this.INTERNAL={};this.INTERNAL["delete"]=r(this.delete,this);this.INTERNAL.logFramework=r(this.sc,this);this.u=0;F.call(this);bm(this);this.G=[];}t(Xl,F);function cm(a){D.call(this,"languageCodeChanged");this.g=a;}t(cm,D);
-	function dm(a){D.call(this,"frameworkChanged");this.c=a;}t(dm,D);g=Xl.prototype;g.lb=function(a){a=this.h.lb(a);return T(this,a)};g.oa=function(a){this.W===a||this.m||(this.W=a,Ih(this.b,this.W),this.dispatchEvent(new cm(this.ea())));};g.ea=function(){return this.W};g.Rc=function(){var a=k.navigator;this.oa(a?a.languages&&a.languages[0]||a.language||a.userLanguage||null:null);};g.sc=function(a){this.G.push(a);Jh(this.b,firebase$1.SDK_VERSION?qe(firebase$1.SDK_VERSION,this.G):null);this.dispatchEvent(new dm(this.G));};
+	function dm(a){D.call(this,"frameworkChanged");this.c=a;}t(dm,D);g=Xl.prototype;g.lb=function(a){a=this.h.lb(a);return T(this,a)};g.oa=function(a){this.W===a||this.m||(this.W=a,Ih(this.b,this.W),this.dispatchEvent(new cm(this.ea())));};g.ea=function(){return this.W};g.Rc=function(){var a=k.navigator;this.oa(a?a.languages&&a.languages[0]||a.language||a.userLanguage||null:null);};g.sc=function(a){this.G.push(a);Jh(this.b,firebase$2.SDK_VERSION?qe(firebase$2.SDK_VERSION,this.G):null);this.dispatchEvent(new dm(this.G));};
 	g.xa=function(){return Ja(this.G)};function bm(a){Object.defineProperty(a,"lc",{get:function(){return this.ea()},set:function(a){this.oa(a);},enumerable:!1});a.W=null;}g.toJSON=function(){return{apiKey:S(this).options.apiKey,authDomain:S(this).options.authDomain,appName:S(this).name,currentUser:U(this)&&U(this).D()}};function em(a){return a.Rb||C(new L("auth-domain-config-required"))}
 	function am(a){var b=S(a).options.authDomain,c=S(a).options.apiKey;b&&te()&&(a.Rb=a.V.then(function(){if(!a.m){a.a=Fk(b,c,S(a).name);a.a.subscribe(a);U(a)&&ml(U(a));if(a.C){ml(a.C);var d=a.C;d.oa(a.ea());fl(d,a);d=a.C;el(d,a.G);gl(d,a);a.C=null;}return a.a}}));}g.ub=function(a,b){switch(a){case "unknown":case "signInViaRedirect":return!0;case "signInViaPopup":return this.g==b&&!!this.f;default:return!1}};
 	g.ha=function(a,b,c,d){"signInViaPopup"==a&&this.g==d&&(c&&this.v?this.v(c):b&&!c&&this.f&&this.f(b),this.c&&(this.c.cancel(),this.c=null),delete this.f,delete this.v);};g.wa=function(a,b){return"signInViaRedirect"==a||"signInViaPopup"==a&&this.g==b&&this.f?r(this.$b,this):null};
 	g.$b=function(a,b){var c=this;a={requestUri:a,sessionId:b};this.c&&(this.c.cancel(),this.c=null);var d=null,e=null,f=Mf(c.b,a).then(function(a){d=mg(a);e=zf(a);return a});a=c.V.then(function(){return f}).then(function(a){return fm(c,a)}).then(function(){return Me({user:U(c),credential:d,additionalUserInfo:e,operationType:"signIn"})});return T(this,a)};
-	g.Jc=function(a){if(!te())return C(new L("operation-not-supported-in-this-environment"));var b=this,c=yf(a.providerId),d=se(),e=null;(!ve()||ke())&&S(this).options.authDomain&&a.isOAuthProvider&&(e=Ti(S(this).options.authDomain,S(this).options.apiKey,S(this).name,"signInViaPopup",a,null,d,firebase$1.SDK_VERSION||null));var f=ce(e,c&&c.Ba,c&&c.Aa);c=em(this).then(function(b){return Dk(b,f,"signInViaPopup",a,d,!!e)}).then(function(){return new A(function(a,c){b.ha("signInViaPopup",null,new L("cancelled-popup-request"),
+	g.Jc=function(a){if(!te())return C(new L("operation-not-supported-in-this-environment"));var b=this,c=yf(a.providerId),d=se(),e=null;(!ve()||ke())&&S(this).options.authDomain&&a.isOAuthProvider&&(e=Ti(S(this).options.authDomain,S(this).options.apiKey,S(this).name,"signInViaPopup",a,null,d,firebase$2.SDK_VERSION||null));var f=ce(e,c&&c.Ba,c&&c.Aa);c=em(this).then(function(b){return Dk(b,f,"signInViaPopup",a,d,!!e)}).then(function(){return new A(function(a,c){b.ha("signInViaPopup",null,new L("cancelled-popup-request"),
 	b.g);b.f=a;b.v=c;b.g=d;b.c=b.a.Ea(b,"signInViaPopup",f,d);})}).then(function(a){f&&be(f);return a?Me(a):null}).s(function(a){f&&be(f);throw a;});return T(this,c)};g.Kc=function(a){if(!te())return C(new L("operation-not-supported-in-this-environment"));var b=this,c=em(this).then(function(){return Tl(b.h)}).then(function(){return b.a.Ca("signInViaRedirect",a)});return T(this,c)};
 	g.fa=function(){if(!te())return C(new L("operation-not-supported-in-this-environment"));var a=this,b=em(this).then(function(){return a.a.fa()}).then(function(a){return a?Me(a):null});return T(this,b)};
 	g.Pc=function(a){if(!a)return C(new L("null-user"));var b=this,c={};c.apiKey=S(this).options.apiKey;c.authDomain=S(this).options.authDomain;c.appName=S(this).name;var d=Jl(a,c,b.w,b.xa());return T(this,this.i.then(function(){if(S(b).options.apiKey!=a.m)return d.reload()}).then(function(){if(U(b)&&a.uid==U(b).uid)return tl(U(b),a),b.Z(a);Yl(b,d);ml(d);return b.Z(d)}).then(function(){gm(b);}))};
@@ -16469,15 +16368,15 @@
 	function hm(a){var b=Ll(a.w,S(a).options.authDomain).then(function(b){if(a.C=b)b.ba=a.w;return Fl(a.w)});return T(a,b)}function Zl(a){var b=S(a).options.authDomain,c=hm(a).then(function(){return Wl(a.h,b)}).then(function(b){return b?(b.ba=a.w,a.C&&(a.C.aa||null)==(b.aa||null)?b:b.reload().then(function(){return Ul(a.h,b).then(function(){return b})}).s(function(c){return"auth/network-request-failed"==c.code?b:Vl(a.h)})):null}).then(function(b){Yl(a,b||null);});return T(a,c)}
 	function $l(a){return a.V.then(function(){return a.fa()}).s(function(){}).then(function(){if(!a.m)return a.ka()}).s(function(){}).then(function(){if(!a.m){a.X=!0;var b=a.h;b.b.addListener(Pl("local"),b.a,a.ka);}})}
 	g.Lc=function(){var a=this;return Wl(this.h,S(this).options.authDomain).then(function(b){if(!a.m){var c;if(c=U(a)&&b){c=U(a).uid;var d=b.uid;c=void 0===c||null===c||""===c||void 0===d||null===d||""===d?!1:c==d;}if(c)return tl(U(a),b),U(a).F();if(U(a)||b)Yl(a,b),b&&(ml(b),b.ba=a.w),a.a&&a.a.subscribe(a),gm(a);}})};g.Z=function(a){return Ul(this.h,a)};g.ac=function(){gm(this);this.Z(U(this));};g.ic=function(){this.mb();};g.jc=function(){this.mb();};
-	function im(a,b){var c=null,d=null;return T(a,b.then(function(b){c=mg(b);d=zf(b);return fm(a,b)}).then(function(){return Me({user:U(a),credential:c,additionalUserInfo:d,operationType:"signIn"})}))}g.kc=function(a){var b=this;this.addAuthTokenListener(function(){a.next(U(b));});};g.mc=function(a){var b=this;jm(this,function(){a.next(U(b));});};g.uc=function(a,b,c){var d=this;this.X&&firebase$1.Promise.resolve().then(function(){n(a)?a(U(d)):n(a.next)&&a.next(U(d));});return this.Sb(a,b,c)};
-	g.tc=function(a,b,c){var d=this;this.X&&firebase$1.Promise.resolve().then(function(){d.O=d.getUid();n(a)?a(U(d)):n(a.next)&&a.next(U(d));});return this.Tb(a,b,c)};g.bc=function(a){var b=this,c=this.i.then(function(){return U(b)?U(b).F(a).then(function(a){return{accessToken:a}}):null});return T(this,c)};g.Mb=function(a){var b=this;return this.i.then(function(){return im(b,P(b.b,xi,{token:a}))}).then(function(a){var c=a.user;sl(c,"isAnonymous",!1);b.Z(c);return a})};
+	function im(a,b){var c=null,d=null;return T(a,b.then(function(b){c=mg(b);d=zf(b);return fm(a,b)}).then(function(){return Me({user:U(a),credential:c,additionalUserInfo:d,operationType:"signIn"})}))}g.kc=function(a){var b=this;this.addAuthTokenListener(function(){a.next(U(b));});};g.mc=function(a){var b=this;jm(this,function(){a.next(U(b));});};g.uc=function(a,b,c){var d=this;this.X&&firebase$2.Promise.resolve().then(function(){n(a)?a(U(d)):n(a.next)&&a.next(U(d));});return this.Sb(a,b,c)};
+	g.tc=function(a,b,c){var d=this;this.X&&firebase$2.Promise.resolve().then(function(){d.O=d.getUid();n(a)?a(U(d)):n(a.next)&&a.next(U(d));});return this.Tb(a,b,c)};g.bc=function(a){var b=this,c=this.i.then(function(){return U(b)?U(b).F(a).then(function(a){return{accessToken:a}}):null});return T(this,c)};g.Mb=function(a){var b=this;return this.i.then(function(){return im(b,P(b.b,xi,{token:a}))}).then(function(a){var c=a.user;sl(c,"isAnonymous",!1);b.Z(c);return a})};
 	g.Dc=function(a){Je("firebase.auth.Auth.prototype.signInAndRetrieveDataWithCustomToken is deprecated. Please use firebase.auth.Auth.prototype.signInWithCustomToken instead.");return this.Mb(a)};g.Ec=function(a,b){Je("firebase.auth.Auth.prototype.signInAndRetrieveDataWithEmailAndPassword is deprecated. Please use firebase.auth.Auth.prototype.signInWithEmailAndPassword instead.");return this.Nb(a,b)};g.Nb=function(a,b){var c=this;return this.i.then(function(){return im(c,P(c.b,ag,{email:a,password:b}))})};
 	g.wb=function(a,b){var c=this;return this.i.then(function(){return im(c,P(c.b,ti,{email:a,password:b}))})};g.Vb=function(a,b){Je("firebase.auth.Auth.prototype.createUserAndRetrieveDataWithEmailAndPassword is deprecated. Please use firebase.auth.Auth.prototype.createUserWithEmailAndPassword instead.");return this.wb(a,b)};g.Gc=function(a){Je("firebase.auth.Auth.prototype.signInWithCredential is deprecated. Please use firebase.auth.Auth.prototype.signInAndRetrieveDataWithCredential instead.");return this.Oa(a).then(function(a){return a.user})};
 	g.Oa=function(a){var b=this;return this.i.then(function(){return im(b,a.ya(b.b))})};g.Pa=function(){var a=this;return this.i.then(function(){var b=U(a);if(b&&b.isAnonymous){var c=Me({providerId:null,isNewUser:!1});return Me({user:b,credential:null,additionalUserInfo:c,operationType:"signIn"})}return im(a,a.b.Pa()).then(function(b){var c=b.user;sl(c,"isAnonymous",!0);a.Z(c);return b})})};
 	g.Fc=function(){Je("firebase.auth.Auth.prototype.signInAnonymouslyAndRetrieveData is deprecated. Please use firebase.auth.Auth.prototype.signInAnonymously instead.");return this.Pa()};function S(a){return a.app}function U(a){return a.currentUser}g.getUid=function(){return U(this)&&U(this).uid||null};function km(a){return U(a)&&U(a)._lat||null}
 	function gm(a){if(a.X){for(var b=0;b<a.o.length;b++)if(a.o[b])a.o[b](km(a));if(a.O!==a.getUid()&&a.I.length)for(a.O=a.getUid(),b=0;b<a.I.length;b++)if(a.I[b])a.I[b](km(a));}}g.Ub=function(a){this.addAuthTokenListener(a);this.u++;0<this.u&&U(this)&&il(U(this));};g.Bc=function(a){var b=this;v(this.o,function(c){c==a&&b.u--;});0>this.u&&(this.u=0);0==this.u&&U(this)&&jl(U(this));this.removeAuthTokenListener(a);};
 	g.addAuthTokenListener=function(a){var b=this;this.o.push(a);T(this,this.i.then(function(){b.m||Ga(b.o,a)&&a(km(b));}));};g.removeAuthTokenListener=function(a){w(this.o,function(b){return b==a});};function jm(a,b){a.I.push(b);T(a,a.i.then(function(){!a.m&&Ga(a.I,b)&&a.O!==a.getUid()&&(a.O=a.getUid(),b(km(a)));}));}
-	g.delete=function(){this.m=!0;for(var a=0;a<this.N.length;a++)this.N[a].cancel("app-deleted");this.N=[];this.h&&(a=this.h,a.b.removeListener(Pl("local"),a.a,this.ka));this.a&&(this.a.unsubscribe(this),this.a.Xa());return firebase$1.Promise.resolve()};function T(a,b){a.N.push(b);b.ia(function(){Ha(a.N,b);});return b}
+	g.delete=function(){this.m=!0;for(var a=0;a<this.N.length;a++)this.N[a].cancel("app-deleted");this.N=[];this.h&&(a=this.h,a.b.removeListener(Pl("local"),a.a,this.ka));this.a&&(this.a.unsubscribe(this),this.a.Xa());return firebase$2.Promise.resolve()};function T(a,b){a.N.push(b);b.ia(function(){Ha(a.N,b);});return b}
 	g.Yb=function(a){Je("firebase.auth.Auth.prototype.fetchProvidersForEmail is deprecated. Please use firebase.auth.Auth.prototype.fetchSignInMethodsForEmail instead.");return T(this,Th(this.b,a))};g.Zb=function(a){return T(this,Vh(this.b,a))};g.nc=function(a){return!!eg(a)};g.kb=function(a,b){var c=this;return T(this,B().then(function(){var a=new bf(b);if(!a.c)throw new L("argument-error",kf+" must be true when sending sign in link to email");return lf(a)}).then(function(b){return c.b.kb(a,b)}).then(function(){}))};
 	g.Sc=function(a){return this.Ja(a).then(function(a){return a.data.email})};g.Ya=function(a,b){return T(this,this.b.Ya(a,b).then(function(){}))};g.Ja=function(a){return T(this,this.b.Ja(a).then(function(a){return new Qe(a)}))};g.Va=function(a){return T(this,this.b.Va(a).then(function(){}))};g.jb=function(a,b){var c=this;return T(this,B().then(function(){return"undefined"===typeof b||Za(b)?{}:lf(new bf(b))}).then(function(b){return c.b.jb(a,b)}).then(function(){}))};
 	g.Ic=function(a,b){return T(this,Ok(this,a,b,r(this.Oa,this)))};g.Hc=function(a,b){var c=this;return T(this,B().then(function(){var d=dg(a,b||Vd());return c.Oa(d)}))};function lm(){}lm.prototype.render=function(){};lm.prototype.reset=function(){};lm.prototype.getResponse=function(){};lm.prototype.execute=function(){};function mm(){this.a={};this.b=1E12;}var nm=null;mm.prototype.render=function(a,b){this.a[this.b.toString()]=new om(a,b);return this.b++};mm.prototype.reset=function(a){var b=pm(this,a);a=qm(a);b&&a&&(b.delete(),delete this.a[a]);};mm.prototype.getResponse=function(a){return(a=pm(this,a))?a.getResponse():null};mm.prototype.execute=function(a){(a=pm(this,a))&&a.execute();};function pm(a,b){return(b=qm(b))?a.a[b]||null:null}function qm(a){return(a="undefined"===typeof a?1E12:a)?a.toString():null}
@@ -16490,11 +16389,11 @@
 	g.za=function(){var a=this;return this.f?this.f:this.f=Fm(this,B().then(function(){if(ue()&&!le())return ge();throw new L("operation-not-supported-in-this-environment","RecaptchaVerifier is only supported in a browser HTTP/HTTPS environment.");}).then(function(){return a.o.g(a.v())}).then(function(b){a.g=b;return P(a.u,wi,{})}).then(function(b){a.a[zm]=b.recaptchaSiteKey;}).s(function(b){a.f=null;throw b;}))};
 	g.render=function(){Gm(this);var a=this;return Fm(this,this.za().then(function(){if(null===a.c){var b=a.m;if(!a.i){var c=Id(b);b=Ld("DIV");c.appendChild(b);}a.c=a.g.render(b,a.a);}return a.c}))};g.verify=function(){Gm(this);var a=this;return Fm(this,this.render().then(function(b){return new A(function(c){var d=a.g.getResponse(b);if(d)c(d);else{var e=function(b){b&&(Em(a,e),c(b));};a.l.push(e);a.i&&a.g.execute(a.c);}})}))};g.reset=function(){Gm(this);null!==this.c&&this.g.reset(this.c);};
 	function Gm(a){if(a.C)throw new L("internal-error","RecaptchaVerifier instance has been destroyed.");}g.clear=function(){Gm(this);this.C=!0;this.o.c();for(var a=0;a<this.h.length;a++)this.h[a].cancel("RecaptchaVerifier instance has been destroyed.");if(!this.i){a=Id(this.m);for(var b;b=a.firstChild;)a.removeChild(b);}};
-	function Hm(a,b,c){var d=!1;try{this.b=c||firebase$1.app();}catch(h){throw new L("argument-error","No firebase.app.App instance is currently initialized.");}if(this.b.options&&this.b.options.apiKey)c=this.b.options.apiKey;else throw new L("invalid-api-key");var e=this,f=null;try{f=this.b.auth().xa();}catch(h){}try{d=this.b.auth().settings.appVerificationDisabledForTesting;}catch(h){}f=firebase$1.SDK_VERSION?qe(firebase$1.SDK_VERSION,f):null;ym.call(this,c,a,b,function(){try{var a=e.b.auth().ea();}catch(m){a=
+	function Hm(a,b,c){var d=!1;try{this.b=c||firebase$2.app();}catch(h){throw new L("argument-error","No firebase.app.App instance is currently initialized.");}if(this.b.options&&this.b.options.apiKey)c=this.b.options.apiKey;else throw new L("invalid-api-key");var e=this,f=null;try{f=this.b.auth().xa();}catch(h){}try{d=this.b.auth().settings.appVerificationDisabledForTesting;}catch(h){}f=firebase$2.SDK_VERSION?qe(firebase$2.SDK_VERSION,f):null;ym.call(this,c,a,b,function(){try{var a=e.b.auth().ea();}catch(m){a=
 	null;}return a},f,zi(Ai),d);}t(Hm,ym);function Im(a,b,c,d){a:{c=Array.prototype.slice.call(c);var e=0;for(var f=!1,h=0;h<b.length;h++)if(b[h].optional)f=!0;else{if(f)throw new L("internal-error","Argument validator encountered a required argument after an optional argument.");e++;}f=b.length;if(c.length<e||f<c.length)d="Expected "+(e==f?1==e?"1 argument":e+" arguments":e+"-"+f+" arguments")+" but got "+c.length+".";else{for(e=0;e<c.length;e++)if(f=b[e].optional&&void 0===c[e],!b[e].M(c[e])&&!f){b=b[e];if(0>e||e>=Jm.length)throw new L("internal-error",
 	"Argument validator received an unsupported number of arguments.");c=Jm[e];d=(d?"":c+" argument ")+(b.name?'"'+b.name+'" ':"")+"must be "+b.K+".";break a}d=null;}}if(d)throw new L("argument-error",a+" failed: "+d);}var Jm="First Second Third Fourth Fifth Sixth Seventh Eighth Ninth".split(" ");function V(a,b){return{name:a||"",K:"a valid string",optional:!!b,M:l}}function Km(a,b){return{name:a||"",K:"a boolean",optional:!!b,M:ba}}
 	function W(a,b){return{name:a||"",K:"a valid object",optional:!!b,M:q}}function Lm(a,b){return{name:a||"",K:"a function",optional:!!b,M:n}}function Mm(a,b){return{name:a||"",K:"null",optional:!!b,M:ea}}function Nm(){return{name:"",K:"an HTML element",optional:!1,M:function(a){return!!(a&&a instanceof Element)}}}function Om(){return{name:"auth",K:"an instance of Firebase Auth",optional:!0,M:function(a){return!!(a&&a instanceof Xl)}}}
-	function Pm(){return{name:"app",K:"an instance of Firebase App",optional:!0,M:function(a){return!!(a&&a instanceof firebase$1.app.App)}}}function Qm(a){return{name:a?a+"Credential":"credential",K:a?"a valid "+a+" credential":"a valid credential",optional:!1,M:function(b){if(!b)return!1;var c=!a||b.providerId===a;return!(!b.ya||!c)}}}
+	function Pm(){return{name:"app",K:"an instance of Firebase App",optional:!0,M:function(a){return!!(a&&a instanceof firebase$2.app.App)}}}function Qm(a){return{name:a?a+"Credential":"credential",K:a?"a valid "+a+" credential":"a valid credential",optional:!1,M:function(b){if(!b)return!1;var c=!a||b.providerId===a;return!(!b.ya||!c)}}}
 	function Rm(){return{name:"authProvider",K:"a valid Auth provider",optional:!1,M:function(a){return!!(a&&a.providerId&&a.hasOwnProperty&&a.hasOwnProperty("isOAuthProvider"))}}}function Sm(){return{name:"applicationVerifier",K:"an implementation of firebase.auth.ApplicationVerifier",optional:!1,M:function(a){return!!(a&&l(a.type)&&n(a.verify))}}}function X(a,b,c,d){return{name:c||"",K:a.K+" or "+b.K,optional:!!d,M:function(c){return a.M(c)||b.M(c)}}}function Y(a,b){for(var c in b){var d=b[c].name;a[d]=Tm(d,a[c],b[c].j);}}function Um(a,b){for(var c in b){var d=b[c].name;d!==c&&Object.defineProperty(a,d,{get:na(function(a){return this[a]},c),set:na(function(a,b,c,d){Im(a,[c],[d],!0);this[b]=d;},d,c,b[c].sb),enumerable:!0});}}function Z(a,b,c,d){a[b]=Tm(b,c,d);}
 	function Tm(a,b,c){function d(){var a=Array.prototype.slice.call(arguments);Im(e,c,a);return b.apply(this,a)}if(!c)return b;var e=Vm(a),f;for(f in b)d[f]=b[f];for(f in b.prototype)d.prototype[f]=b.prototype[f];return d}function Vm(a){a=a.split(".");return a[a.length-1]}Y(Xl.prototype,{Va:{name:"applyActionCode",j:[V("code")]},Ja:{name:"checkActionCode",j:[V("code")]},Ya:{name:"confirmPasswordReset",j:[V("code"),V("newPassword")]},wb:{name:"createUserWithEmailAndPassword",j:[V("email"),V("password")]},Vb:{name:"createUserAndRetrieveDataWithEmailAndPassword",j:[V("email"),V("password")]},Yb:{name:"fetchProvidersForEmail",j:[V("email")]},Zb:{name:"fetchSignInMethodsForEmail",j:[V("email")]},fa:{name:"getRedirectResult",j:[]},nc:{name:"isSignInWithEmailLink",j:[V("emailLink")]},
 	tc:{name:"onAuthStateChanged",j:[X(W(),Lm(),"nextOrObserver"),Lm("opt_error",!0),Lm("opt_completed",!0)]},uc:{name:"onIdTokenChanged",j:[X(W(),Lm(),"nextOrObserver"),Lm("opt_error",!0),Lm("opt_completed",!0)]},jb:{name:"sendPasswordResetEmail",j:[V("email"),X(W("opt_actionCodeSettings",!0),Mm(null,!0),"opt_actionCodeSettings",!0)]},kb:{name:"sendSignInLinkToEmail",j:[V("email"),W("actionCodeSettings")]},lb:{name:"setPersistence",j:[V("persistence")]},Oa:{name:"signInAndRetrieveDataWithCredential",
@@ -16508,8 +16407,8 @@
 	Y(Vf.prototype,{ta:{name:"addScope",j:[V("scope")]},Da:{name:"setCustomParameters",j:[W("customOAuthParameters")]}});Z(Vf,"credential",Wf,[X(V(),X(W(),Mm()),"idToken"),X(V(),Mm(),"accessToken",!0)]);Y(Xf.prototype,{Da:{name:"setCustomParameters",j:[W("customOAuthParameters")]}});Z(Xf,"credential",Yf,[X(V(),W(),"token"),V("secret",!0)]);
 	Y(N.prototype,{ta:{name:"addScope",j:[V("scope")]},credential:{name:"credential",j:[X(V(),Mm(),"idToken",!0),X(V(),Mm(),"accessToken",!0)]},Da:{name:"setCustomParameters",j:[W("customOAuthParameters")]}});Z(jg,"credential",lg,[V("verificationId"),V("verificationCode")]);Y(jg.prototype,{Ta:{name:"verifyPhoneNumber",j:[V("phoneNumber"),Sm()]}});Y(L.prototype,{toJSON:{name:"toJSON",j:[V(null,!0)]}});Y(tg.prototype,{toJSON:{name:"toJSON",j:[V(null,!0)]}});
 	Y(sg.prototype,{toJSON:{name:"toJSON",j:[V(null,!0)]}});Y(Hm.prototype,{clear:{name:"clear",j:[]},render:{name:"render",j:[]},verify:{name:"verify",j:[]}});
-	(function(){if("undefined"!==typeof firebase$1&&firebase$1.INTERNAL&&firebase$1.INTERNAL.registerService){var a={Auth:Xl,Error:L};Z(a,"EmailAuthProvider",O,[]);Z(a,"FacebookAuthProvider",Rf,[]);Z(a,"GithubAuthProvider",Tf,[]);Z(a,"GoogleAuthProvider",Vf,[]);Z(a,"TwitterAuthProvider",Xf,[]);Z(a,"OAuthProvider",N,[V("providerId")]);Z(a,"PhoneAuthProvider",jg,[Om()]);Z(a,"RecaptchaVerifier",Hm,[X(V(),Nm(),"recaptchaContainer"),W("recaptchaParameters",!0),Pm()]);firebase$1.INTERNAL.registerService("auth",function(a,
-	c){a=new Xl(a);c({INTERNAL:{getUid:r(a.getUid,a),getToken:r(a.bc,a),addAuthTokenListener:r(a.Ub,a),removeAuthTokenListener:r(a.Bc,a)}});return a},a,function(a,c){if("create"===a)try{c.auth();}catch(d){}});firebase$1.INTERNAL.extendNamespace({User:Q});}else throw Error("Cannot find the firebase namespace; be sure to include firebase-app.js before this library.");})();
+	(function(){if("undefined"!==typeof firebase$2&&firebase$2.INTERNAL&&firebase$2.INTERNAL.registerService){var a={Auth:Xl,Error:L};Z(a,"EmailAuthProvider",O,[]);Z(a,"FacebookAuthProvider",Rf,[]);Z(a,"GithubAuthProvider",Tf,[]);Z(a,"GoogleAuthProvider",Vf,[]);Z(a,"TwitterAuthProvider",Xf,[]);Z(a,"OAuthProvider",N,[V("providerId")]);Z(a,"PhoneAuthProvider",jg,[Om()]);Z(a,"RecaptchaVerifier",Hm,[X(V(),Nm(),"recaptchaContainer"),W("recaptchaParameters",!0),Pm()]);firebase$2.INTERNAL.registerService("auth",function(a,
+	c){a=new Xl(a);c({INTERNAL:{getUid:r(a.getUid,a),getToken:r(a.bc,a),addAuthTokenListener:r(a.Ub,a),removeAuthTokenListener:r(a.Bc,a)}});return a},a,function(a,c){if("create"===a)try{c.auth();}catch(d){}});firebase$2.INTERNAL.extendNamespace({User:Q});}else throw Error("Cannot find the firebase namespace; be sure to include firebase-app.js before this library.");})();
 	}).apply(typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : typeof window !== 'undefined' ? window : {});
 
 	/**
@@ -27419,7 +27318,7 @@
 	                // UA Format: Firebase/<wire_protocol>/<sdk_version>/<platform>/<device>
 	                var options = {
 	                    headers: {
-	                        'User-Agent': "Firebase/" + PROTOCOL_VERSION + "/" + firebase$1.SDK_VERSION + "/" + process.platform + "/" + device
+	                        'User-Agent': "Firebase/" + PROTOCOL_VERSION + "/" + firebase$2.SDK_VERSION + "/" + process.platform + "/" + device
 	                    }
 	                };
 	                // Plumb appropriate http_proxy environment variable into faye-websocket if it exists.
@@ -29057,7 +28956,7 @@
 	        else if (CONSTANTS.NODE_CLIENT) {
 	            clientName = 'node';
 	        }
-	        stats['sdk.' + clientName + '.' + firebase$1.SDK_VERSION.replace(/\./g, '-')] = 1;
+	        stats['sdk.' + clientName + '.' + firebase$2.SDK_VERSION.replace(/\./g, '-')] = 1;
 	        if (isMobileCordova()) {
 	            stats['framework.cordova'] = 1;
 	        }
@@ -32014,7 +31913,7 @@
 	        module.exports = namespace;
 	    }
 	}
-	registerDatabase(firebase$1);
+	registerDatabase(firebase$2);
 
 	var commonjsGlobal$1 = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
@@ -32160,7 +32059,7 @@
 	 * limitations under the License.
 	 */
 	/** The semver (www.semver.org) version of the SDK. */
-	var SDK_VERSION = firebase$1.SDK_VERSION;
+	var SDK_VERSION = firebase$2.SDK_VERSION;
 
 	/**
 	 * Copyright 2017 Google Inc.
@@ -52995,7 +52894,7 @@
 	function registerFirestore(instance) {
 	    configureForFirebase(instance);
 	}
-	registerFirestore(firebase$1);
+	registerFirestore(firebase$2);
 
 	/**
 	 * Copyright 2017 Google Inc.
@@ -53535,7 +53434,7 @@
 	    // Allow multiple functions instances per app.
 	    true);
 	}
-	registerFunctions(firebase$1);
+	registerFunctions(firebase$2);
 
 	/**
 	 * Copyright 2018 Google Inc.
@@ -55617,7 +55516,7 @@
 	    };
 	    instance.INTERNAL.registerService(messagingName, factoryMethod, namespaceExports);
 	}
-	registerMessaging(firebase$1);
+	registerMessaging(firebase$2);
 	function isSupported() {
 	    if (self && 'ServiceWorkerGlobalScope' in self) {
 	        // Running in ServiceWorker context
@@ -58911,7 +58810,7 @@
 	    }
 	}
 	function addVersionHeader_(headers) {
-	    var number = typeof firebase$1 !== 'undefined' ? firebase$1.SDK_VERSION : 'AppManager';
+	    var number = typeof firebase$2 !== 'undefined' ? firebase$2.SDK_VERSION : 'AppManager';
 	    headers['X-Firebase-Storage-Version'] = 'webjs/' + number;
 	}
 	/**
@@ -59098,7 +58997,7 @@
 	    // Allow multiple storage instances per app.
 	    true);
 	}
-	registerStorage(firebase$1);
+	registerStorage(firebase$2);
 
 	/**
 	 * Copyright 2017 Google Inc.
@@ -59225,7 +59124,7 @@
 	      messagingSenderId: "64632163739"
 	    };
 	    
-	    const FbApp = firebase$1.initializeApp(config);
+	    const FbApp = firebase$2.initializeApp(config);
 	    var FBAppDatabase = FbApp.database();
 	    this.myItems_ref = FBAppDatabase.ref('defaultEntities');
 	    this.avatars_ref = FBAppDatabase.ref('avatars');
