@@ -1,4 +1,6 @@
 import createListTabUi from './common/create-list-tab-ui.js'
+import el from '../common/dom-el.js'
+
 
 
 // const dbFirebase = require('./FirebaseApp.js')
@@ -40,14 +42,20 @@ var listTab
 
 function init() {
 
+
   listTab = createListTabUi({
-    title: 'Models from <a target="_blank" href="https://poly.google.com">poly.google.com</a>',
+    title: 'Search for something:',
     onSearchChange: search,
     onItemDrop: addToScene,
     onHide: function() {
       scope.isVisible = false
     }
   })
+  
+  
+
+
+
 
   isInitialized = true
 
@@ -62,12 +70,9 @@ function callSearchApi(offset, value) {
 }
 
 //JAFET ADDED
-// const API_KEY = 'AIzaSyD2l0Cy_cS9IqgA-W-bIHvYjbf24a6aUv4';
-const API_KEY = 'AIzaSyCbzifLOPONyCkD-qKWrTZEYgGEJ7ENlCQ';
-
-
+const API_KEY = 'AIzaSyBxwTbPltkM5a8MiA5pG861i_Sx4o6_pew';
 function callPolyApi(offset, value) {
-  return fetch(`https://poly.googleapis.com/v1/assets?keywords=${value}&format=OBJ&key=${API_KEY}&maxComplexity=MEDIUM`).then(function(response) {
+  return fetch(`https://poly.googleapis.com/v1/assets?keywords=${value}&format=OBJ&key=${API_KEY}&maxComplexity=SIMPLE`).then(function(response) {
     console.log('THE OUTPUT FROM POLY IS')
     // console.log(response.json())
     return response.json()
@@ -133,6 +138,7 @@ function search(value, offset) {
       //   url: item_.url,
       //   author: item_.author
       // }
+      console.log("el item es")
       console.log(item_)
 
       //OTHER PATH: https://poly.googleapis.com/downloads/42PQqEaxb-P
@@ -148,18 +154,35 @@ function search(value, offset) {
       // var profileUrl = item_.formats[0].root.url.substr(0, fifthSlashIndex)
       // profileUrl = profileUrl.replace('googleapis.com/downloads', 'google.com/view')
       // var profileUrl = 'https://poly.google.com/view/'+indexPart+'?key=AIzaSyCbzifLOPONyCkD-qKWrTZEYgGEJ7ENlCQ'//profileUrl.replace('googleapis.com/downloads/fp', 'google.com/view')
-      var profileUrl = item_.formats[1].root.url //profileUrl.replace('googleapis.com/downloads/fp', 'google.com/view')
+      
+      var gltf2Index=-1
+      item_.formats.forEach(checkFormatType)
+      function checkFormatType(formatItem,index)
+      {
+       if(formatItem.formatType=="GLTF2")
+       {
+         gltf2Index=index
+       }
+      }
+      var profileUrl = item_.formats[gltf2Index].root.url//item_.formats[1].root.url //profileUrl.replace('googleapis.com/downloads/fp', 'google.com/view')
 
       // var profileUrl=item_.formats[0].root.url
       console.log('url for download is:')
       console.log(profileUrl)
+      
+    //       //ADDED BY JAFET
+    // console.log('here is the diagnose')
+    // console.log(event)
+
 
       return {
         title: item_.displayName + ' by ' + item_.authorName,
         thumb: item_.thumbnail.url,
         url: profileUrl, //please use gltf 2
         // url: item_.formats[0].root.url, //please use gltf2
-        author: item_.authorName
+        author: item_.authorName,
+        provenance: item_.name,
+        license: item_.license
       }
     })
 
@@ -167,6 +190,21 @@ function search(value, offset) {
 
     console.log('Bro items are:')
     console.log(items)
+    
+    
+    
+          //ADDED BY JAFET TO SHOW A TOAST MESSAGE
+  //   var snackbarEl = el('<div>', {
+  //     id: 'snackbar'
+  //     // }).appendTo(listTab.el)
+  //   }).appendTo('body')
+  // var x = document.getElementById("snackbar");
+  // x.innerHTML="Drag the objects to the scene"
+  // x.className = "show";
+  // setTimeout(function(){ x.className = x.className.replace("show", ""); }, 10000);
+    
+    
+    
 
     var info = '' //'API code is open sourced on <a target="_blank" href="https://github.com/archilogic-com/aframe-gblock/blob/master/server/api-methods.js">github</a>'
     listTab.setInfo(items.length ? info : 'No results found.')
@@ -180,7 +218,7 @@ function search(value, offset) {
 
 function addToScene(item, position, callback) {
 
-  var uiMessage = io3d.utils.ui.message('Loading glTF from<br><a class="io3d-inspector-plugins___truncate-message" href="' + item.url + '" target="_blank">' + item.url + '</a>', 0)
+  var uiMessage = io3d.utils.ui.message("Hold on a sec bro", 0)
 
   // add new entity to scene
   var newEntity = document.createElement('a-entity')
@@ -219,7 +257,16 @@ function addToScene(item, position, callback) {
   newEntity.addEventListener('model-loaded', function(event) {
 
     uiMessage.close()
-    io3d.utils.ui.message.success('Added<br><a class="io3d-inspector-plugins___truncate-message" href="' + item.url + '" target="_blank">' + item.url + '</a>')
+    
+    if(item.license == 'CREATIVE_COMMONS_BY')
+    {
+      io3d.utils.ui.message.success('Added object by '+item.author+'<br>License: <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Attribution CC-BY</a>')
+    }
+    else
+    {
+      io3d.utils.ui.message.warning('Added object by '+item.author+'. The license for this object is: '+item.license)
+    }
+    // <a class="io3d-inspector-plugins___truncate-message" href="' + item.url + '" target="_blank">' + item.url + '</a>'
 
     // //COMMENTED OUT BY JAFET
     // const user = firebase.auth().currentUser;
@@ -281,12 +328,15 @@ function addToScene(item, position, callback) {
   newEntity.addEventListener('model-error', function(event) {
 
     uiMessage.close()
+    
     io3d.utils.ui.message.error('Sorry: ' + event.detail.message + '<br/><a class="io3d-inspector-plugins___truncate-message" href="' + item.url + '" target="_blank">' + item.url + '</a>')
 
   }, { once: true })
 
   // newEntity.setAttribute('gblock', item.url)
   newEntity.setAttribute('gltf-model', "url(" + item.url + ")")
+  // newEntity.setAttribute('provenance', JSON.stringify({"provider_id":"poly", "object_id_given_by_provider":item.provenance}))
+  newEntity.setAttribute('provenance', {"provider_id":"poly", "object_id_given_by_provider":item.provenance})
   document.querySelector('a-scene').appendChild(newEntity)
 
 }
@@ -321,3 +371,6 @@ function hide(callback, animate) {
 // expose API
 
 export default scope
+
+  
+  Jggg

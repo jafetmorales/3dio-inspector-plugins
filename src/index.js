@@ -10,29 +10,28 @@ import myItems from './plugins/my-items.js'
 import avatars from './plugins/avatars.js'
 
 var PLUGINS = {
-  // name
-  furnitureLibrary: {
-    // ui
-    displayTitle: '🏠&nbsp;&nbsp;furniture library',
-    // access
-    module: furnitureLibrary
-  },
+  // furnitureLibrary: {
+  //   // ui
+  //   displayTitle: '🏠&nbsp;&nbsp;furniture library',
+  //   // access
+  //   module: furnitureLibrary
+  // },
   polyModels: {
-    displayTitle: '🥑&nbsp;&nbsp;poly.google.com',
+    displayTitle: '🥑&nbsp;&nbsp;Main Library',
     module: polyModels
   },
-  staffPicks: {
-    displayTitle: '✨&nbsp;&nbsp;staff picks',
-    module: staffPicks
-  },
-  myItems: {
-    displayTitle: '✨&nbsp;&nbsp;My Items',
-    module: myItems
-  },
-  avatars: {
-    displayTitle: '✨&nbsp;&nbsp;Avatars',
-    module: avatars
-  }
+  // staffPicks: {
+  //   displayTitle: '✨&nbsp;&nbsp;staff picks',
+  //   module: staffPicks
+  // },
+  // myItems: {
+  //   displayTitle: '✨&nbsp;&nbsp;My Items',
+  //   module: myItems
+  // },
+  // avatars: {
+  //   displayTitle: '✨&nbsp;&nbsp;Avatars',
+  //   module: avatars
+  // }
 }
 
 window.io3d.aFrame.activePluginName = null
@@ -129,6 +128,10 @@ function initialize() {
   appendCss()
   // pluginManager.show3dioButton()
   if (window.io3d.aFrame.activePluginName) pluginManager.showPlugin(window.io3d.aFrame.activePluginName, false)
+  // var snackbarEl = el('<div>', {
+  //     id: 'snackbar'
+  //     // }).appendTo(listTab.el)
+  //     }).appendTo('body')
 }
 
 function destroy() {

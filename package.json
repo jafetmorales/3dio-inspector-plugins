@@ -34,10 +34,14 @@
     "url": "https://archilogic.com"
   },
   "main": "index.js",
+  "watch": {
+    "build": "/3dio-inspector-plugins/src/plugins/poly-models.js"
+  },
   "scripts": {
     "start": "gulp dev-server",
     "build": "gulp build",
-    "release": "gulp release"
+    "release": "gulp release",
+    "watch": "npm-watch"
   },
   "dependencies": {
     "firebase": "^5.5.6"

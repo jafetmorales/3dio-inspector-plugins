@@ -5,3 +5,5 @@ const gulp = require('gulp')
 gulp.task('dev-server', require('./tasks/dev-server'))
 gulp.task('build', require('./tasks/build'))
 gulp.task('release', require('./tasks/release'))
+// gulp.task('watch2', require('./tasks/watch2'))
+

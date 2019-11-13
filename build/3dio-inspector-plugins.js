@@ -2,9 +2,9 @@
  * @preserve
  * @name 3dio-inspector-plugins
  * @version 0.0.6
- * @date 2019/04/14 02:08
+ * @date 2019/11/08 00:43
  * @branch master
- * @commit 340ba74f95bda478f5a0f0924e286010abc2d767
+ * @commit 4d2cd05ef41ca6290488de7c83e39957661346fa
  * @description Connects A-Frame Inspector to 3d.io APIs
  * @see https://3d.io
  * @tutorial https://github.com/archilogic-com/3dio-inspector-plugins
@@ -18,9 +18,9 @@
 	(global.io3dInspectorPlugins = factory());
 }(this, (function () { 'use strict';
 
-	var BUILD_DATE='2019/04/14 02:08', GIT_BRANCH = 'master', GIT_COMMIT = '340ba74f95bda478f5a0f0924e286010abc2d767'
+	var BUILD_DATE='2019/11/08 00:43', GIT_BRANCH = 'master', GIT_COMMIT = '4d2cd05ef41ca6290488de7c83e39957661346fa'
 
-	var css = "#io3d-inspector-plugins * {\n  outline: none;\n  -webkit-box-sizing: border-box;\n  /* Safari/Chrome, other WebKit */\n  -moz-box-sizing: border-box;\n  /* Firefox, other Gecko */\n  box-sizing: border-box;\n  /* Opera/IE 8+ */\n}\n.io3d-inspector-plugins___truncate-message {\n  display: inline-block;\n  overflow: hidden;\n  white-space: nowrap;\n  max-width: 365px;\n  text-overflow: ellipsis;\n  margin-bottom: 0;\n}\n.io3d-inspector-plugins * {\n  outline: none;\n  -webkit-box-sizing: border-box;\n  /* Safari/Chrome, other WebKit */\n  -moz-box-sizing: border-box;\n  /* Firefox, other Gecko */\n  box-sizing: border-box;\n  /* Opera/IE 8+ */\n}\n.io3d-inspector-plugins___tab-container {\n  position: absolute;\n  font-family: Roboto, BlinkMacSystemFont, -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif;\n  font-size: 12px;\n  top: 50px;\n  left: 0;\n  bottom: 0;\n  z-index: 100000;\n}\n.io3d-inspector-plugins___tab-container a {\n  color: #bcbcbc;\n}\n.io3d-inspector-plugins___tab {\n  position: absolute;\n  font-size: 12px;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 230px;\n  background-color: #2b2b2b;\n}\n@-webkit-keyframes io3d-inspector-plugins___tab___slide-in {\n  0% {\n    -webkit-transform: translateX(-40%);\n    opacity: 0;\n  }\n  100% {\n    -webkit-transform: translateX(0%);\n    opacity: .7;\n  }\n}\n@keyframes io3d-inspector-plugins___tab___slide-in {\n  0% {\n    transform: translateX(-40%);\n    opacity: 0;\n  }\n  100% {\n    transform: translateX(0%);\n    opacity: .7;\n  }\n}\n@-webkit-keyframes io3d-inspector-plugins___tab___slide-out {\n  0% {\n    -webkit-transform: translateX(0%);\n    opacity: .7;\n  }\n  100% {\n    -webkit-transform: translateX(-40%);\n    opacity: 0;\n  }\n}\n@keyframes io3d-inspector-plugins___tab___slide-out {\n  0% {\n    transform: translateX(0%);\n    opacity: .7;\n  }\n  100% {\n    transform: translateX(-40%);\n    opacity: 0;\n  }\n}\n#io3d-inspector-plugins___3dio-button {\n  z-index: 100000;\n  position: absolute;\n  top: 39px;\n  left: 184px;\n  height: 18px;\n  text-align: right;\n  border-radius: 3px;\n  cursor: pointer;\n}\n#io3d-inspector-plugins___3dio-button svg {\n  height: 100%;\n}\n#io3d-inspector-plugins___3dio-button svg g {\n  fill: #bcbcbc;\n  stroke: #bcbcbc;\n  stroke-width: 13;\n}\n#io3d-inspector-plugins___3dio-button svg g:hover {\n  fill: #1faaf2;\n  stroke: #1faaf2;\n  stroke-width: 13;\n}\n#io3d-inspector-plugins___plugins-menu {\n  z-index: 100001;\n  position: absolute;\n  top: 50px;\n  left: 2px;\n  width: 230px;\n  font-family: Roboto, BlinkMacSystemFont, -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif;\n  font-size: 12px;\n  letter-spacing: 0px;\n  color: #bcbcbc;\n}\n@-webkit-keyframes io3d-inspector-plugins___plugins-menu-slide-in {\n  0% {\n    -webkit-transform: translateY(-40%);\n    opacity: 0;\n  }\n  100% {\n    -webkit-transform: translateY(0%);\n    opacity: 1;\n  }\n}\n@keyframes io3d-inspector-plugins___plugins-menu-slide-in {\n  0% {\n    transform: translateY(-40%);\n    opacity: 0;\n  }\n  100% {\n    transform: translateY(0%);\n    opacity: 1;\n  }\n}\n@-webkit-keyframes io3d-inspector-plugins___plugins-menu-slide-out {\n  0% {\n    -webkit-transform: translateY(0%);\n    opacity: 1;\n  }\n  100% {\n    -webkit-transform: translateY(-40%);\n    opacity: 0;\n  }\n}\n@keyframes io3d-inspector-plugins___plugins-menu-slide-out {\n  0% {\n    transform: translateY(0%);\n    opacity: 1;\n  }\n  100% {\n    transform: translateY(-40%);\n    opacity: 0;\n  }\n}\n#io3d-inspector-plugins___plugins-menu___container {\n  background-color: rgba(0, 0, 0, 0.7);\n  padding: 0 12px 0 12px;\n}\n#io3d-inspector-plugins___plugins-menu___header {\n  padding: 14px 0 14px 0;\n  border-bottom: 1px solid #bcbcbc;\n}\n#io3d-inspector-plugins___plugins-menu___close-button {\n  position: absolute;\n  top: 0;\n  right: 12px;\n  padding: 14px 0 14px 0;\n  cursor: pointer;\n}\n#io3d-inspector-plugins___plugins-menu___button {\n  padding: 10px 0 10px 0;\n  border-bottom: 1px solid #bcbcbc;\n  cursor: pointer;\n}\n#io3d-inspector-plugins___plugins-menu___button:hover {\n  background-color: rgba(255, 255, 255, 0.2);\n}\n#io3d-inspector-plugins___plugins-menu___footer {\n  padding: 14px 0 14px 0;\n  line-height: 1.3;\n}\n#io3d-inspector-plugins___plugins-menu___footer a {\n  color: #bcbcbc;\n}\n#io3d-inspector-plugins___plugins-menu___footer a:hover {\n  color: white;\n}\n#io3d-inspector-plugins___bake-lightmaps___container {\n  font-family: Roboto, BlinkMacSystemFont, -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif;\n  position: absolute;\n  top: 0px;\n  left: 246px;\n  z-index: 100000;\n}\n#io3d-inspector-plugins___bake-lightmaps___main-bar span,\n#io3d-inspector-plugins___bake-lightmaps___main-bar a {\n  text-decoration: none;\n  display: inline-block;\n  height: 33px;\n  line-height: 33px;\n  padding: 0 12px 0 12px;\n  margin: 0 0 0 0;\n  border-left: 1px solid rgba(255, 255, 255, 0.5);\n  white-space: nowrap;\n  font-weight: 400;\n  letter-spacing: 1px;\n  font-size: 12px;\n  color: white;\n  background-color: rgba(0, 0, 0, 0.8);\n}\n#io3d-inspector-plugins___bake-lightmaps___bake-button {\n  display: inline-block;\n  cursor: pointer;\n  text-decoration: none;\n  color: white;\n  font-size: 16px;\n  font-weight: 500;\n  letter-spacing: 0px;\n  height: 38px;\n  line-height: 40px;\n  padding: 0 13px 0 13px;\n  background-color: #1faaf2;\n  border-radius: 2px;\n  margin: 16px 0 0 0;\n  position: relative;\n  left: 2px;\n  top: -2px;\n  box-shadow: -2px 2px 0px 0px #105576;\n}\n#io3d-inspector-plugins___bake-lightmaps___bake-button:hover {\n  background-color: #44c3f2;\n}\n#io3d-inspector-plugins___bake-lightmaps___bake-button:active {\n  left: -1px;\n  top: 1px;\n  background-color: #105576;\n  box-shadow: -2px 2px 0px 0px rgba(0, 0, 0, 0);\n}\n#io3d-inspector-plugins___list-tab___header {\n  position: absolute;\n  width: 100%;\n  height: 64px;\n  background-color: #000000;\n  top: 0;\n  left: 0;\n}\n#io3d-inspector-plugins___list-tab___title {\n  position: absolute;\n  width: 100%;\n  height: 38px;\n  line-height: 38px;\n  color: #ffffff;\n  padding: 0 0 0 8px;\n  top: 0;\n  left: 0;\n  letter-spacing: 1px;\n}\n#io3d-inspector-plugins___list-tab___close-button {\n  -webkit-font-smoothing: antialiased;\n  font-size: 16px;\n  font-weight: 200;\n  position: absolute;\n  width: 20px;\n  height: 20px;\n  line-height: 20px;\n  border-radius: 50%;\n  text-align: center;\n  top: 9px;\n  right: 4px;\n  cursor: pointer;\n  color: #ffffff;\n}\n#io3d-inspector-plugins___list-tab___close-button:hover {\n  color: #1faaf2;\n}\n#io3d-inspector-plugins___list-tab___close-button:before {\n  content: \"x\";\n}\n#io3d-inspector-plugins___list-tab___search-input {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  writing-mode: horizontal-tb;\n  -webkit-rtl-ordering: logical;\n  -webkit-border-image: none;\n  font-family: \"Roboto Mono\", Consolas, \"Andale Mono\", Monaco, \"Courier New\", monospace;\n  font-size: 11px;\n  font-weight: normal;\n  letter-spacing: 0px;\n  position: absolute;\n  width: 218px;\n  height: 26px;\n  line-height: 26px;\n  top: 37px;\n  left: 6px;\n  padding: 0 0 0 7px;\n  border-radius: 5px;\n  border: 0;\n  background-color: #ffffff;\n  color: #000000;\n}\n#io3d-inspector-plugins___list-tab___search-icon {\n  font-size: 12px;\n  position: absolute;\n  width: 26px;\n  height: 26px;\n  line-height: 26px;\n  top: 37px;\n  right: 0;\n  color: #4d4d4d;\n}\n#io3d-inspector-plugins___list-tab___search-icon:before {\n  content: \"x\";\n}\n#io3d-inspector-plugins___list-tab___list-container {\n  position: absolute;\n  width: 100%;\n  top: 64px;\n  left: 0;\n  bottom: 0;\n  padding: 0 0 20px 0;\n  overflow: auto;\n  background-color: #000000;\n}\n#io3d-inspector-plugins___list-tab___list-info {\n  position: relative;\n  display: block;\n  padding: 10px;\n  width: 100%;\n  color: #ffffff;\n  line-height: 1.3;\n}\n#io3d-inspector-plugins___list-tab___list-info a {\n  color: #bcbcbc;\n}\n#io3d-inspector-plugins___list-tab___list-info a:hover {\n  color: white;\n}\n#io3d-inspector-plugins___list-tab___list-item-container {\n  position: relative;\n  display: block;\n  width: 100%;\n  padding: 4px 0 0 4px;\n}\n#io3d-inspector-plugins___list-tab___list-item-container .io3d-inspector-plugins___list-item {\n  display: inline-block;\n  margin: 4px 0 0 4px;\n  position: relative;\n  width: 98px;\n  height: 98px;\n  -moz-user-select: none;\n  -webkit-user-select: none;\n  user-select: none;\n  /* Required to make elements draggable in old WebKit */\n  -khtml-user-drag: element;\n  -webkit-user-drag: element;\n  border: 1px dotted rgba(255, 255, 255, 0.4);\n  border-radius: 3px;\n  overflow: hidden;\n  -webkit-transition: border-color 1500ms;\n  transition: border-color 1500ms;\n  cursor: move;\n  /* fallback if grab cursor is unsupported */\n  cursor: grab;\n  cursor: -moz-grab;\n  cursor: -webkit-grab;\n}\n#io3d-inspector-plugins___list-tab___list-item-container .io3d-inspector-plugins___list-item:active {\n  cursor: grabbing;\n  cursor: -moz-grabbing;\n  cursor: -webkit-grabbing;\n}\n#io3d-inspector-plugins___list-tab___list-item-container .io3d-inspector-plugins___list-item:hover {\n  background-color: #333;\n}\n#io3d-inspector-plugins___list-tab___list-item-container .io3d-inspector-plugins___list-item img {\n  position: absolute;\n  opacity: 0;\n  -webkit-transition: opacity 1500ms;\n  transition: opacity 1500ms;\n}\n#io3d-inspector-plugins___list-tab___drop-plane {\n  position: absolute;\n  top: 0;\n  right: 0;\n  left: 230px;\n  height: 100%;\n  background-color: rgba(33, 172, 242, 0.15);\n  border: 2px solid #21acf2;\n  z-index: 100000;\n  opacity: 0;\n  -webkit-transition: opacity 200ms;\n  transition: opacity 200ms;\n}\n#io3d-inspector-plugins___list-tab___drop-plane-info {\n  width: 100%;\n  height: 100%;\n  line-height: 100vh;\n  text-align: center;\n  color: rgba(33, 172, 242, 0.2);\n  font-size: 68px;\n  font-weight: 400;\n  letter-spacing: 2px;\n}\n";
+	var css = "#io3d-inspector-plugins * {\n  outline: none;\n  -webkit-box-sizing: border-box;\n  /* Safari/Chrome, other WebKit */\n  -moz-box-sizing: border-box;\n  /* Firefox, other Gecko */\n  box-sizing: border-box;\n  /* Opera/IE 8+ */\n}\n.io3d-inspector-plugins___truncate-message {\n  display: inline-block;\n  overflow: hidden;\n  white-space: nowrap;\n  max-width: 365px;\n  text-overflow: ellipsis;\n  margin-bottom: 0;\n}\n.io3d-inspector-plugins * {\n  outline: none;\n  -webkit-box-sizing: border-box;\n  /* Safari/Chrome, other WebKit */\n  -moz-box-sizing: border-box;\n  /* Firefox, other Gecko */\n  box-sizing: border-box;\n  /* Opera/IE 8+ */\n}\n.io3d-inspector-plugins___tab-container {\n  position: absolute;\n  font-family: Roboto, BlinkMacSystemFont, -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif;\n  font-size: 12px;\n  top: 50px;\n  left: 0;\n  bottom: 0;\n  z-index: 100000;\n}\n.io3d-inspector-plugins___tab-container a {\n  color: #bcbcbc;\n}\n.io3d-inspector-plugins___tab {\n  position: absolute;\n  font-size: 12px;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 230px;\n  background-color: #2b2b2b;\n}\n@-webkit-keyframes io3d-inspector-plugins___tab___slide-in {\n  0% {\n    -webkit-transform: translateX(-40%);\n    opacity: 0;\n  }\n  100% {\n    -webkit-transform: translateX(0%);\n    opacity: .95;\n  }\n}\n@keyframes io3d-inspector-plugins___tab___slide-in {\n  0% {\n    transform: translateX(-40%);\n    opacity: 0;\n  }\n  100% {\n    transform: translateX(0%);\n    opacity: .95;\n  }\n}\n@-webkit-keyframes io3d-inspector-plugins___tab___slide-out {\n  0% {\n    -webkit-transform: translateX(0%);\n    opacity: .95;\n  }\n  100% {\n    -webkit-transform: translateX(-40%);\n    opacity: 0;\n  }\n}\n@keyframes io3d-inspector-plugins___tab___slide-out {\n  0% {\n    transform: translateX(0%);\n    opacity: .95;\n  }\n  100% {\n    transform: translateX(-40%);\n    opacity: 0;\n  }\n}\n#io3d-inspector-plugins___3dio-button {\n  z-index: 100000;\n  position: absolute;\n  top: 39px;\n  left: 184px;\n  height: 18px;\n  text-align: right;\n  border-radius: 3px;\n  cursor: pointer;\n}\n#io3d-inspector-plugins___3dio-button svg {\n  height: 100%;\n}\n#io3d-inspector-plugins___3dio-button svg g {\n  fill: #bcbcbc;\n  stroke: #bcbcbc;\n  stroke-width: 13;\n}\n#io3d-inspector-plugins___3dio-button svg g:hover {\n  fill: #1faaf2;\n  stroke: #1faaf2;\n  stroke-width: 13;\n}\n#io3d-inspector-plugins___plugins-menu {\n  z-index: 100001;\n  position: absolute;\n  top: 50px;\n  left: 2px;\n  width: 230px;\n  font-family: Roboto, BlinkMacSystemFont, -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif;\n  font-size: 12px;\n  letter-spacing: 0px;\n  color: #bcbcbc;\n}\n@-webkit-keyframes io3d-inspector-plugins___plugins-menu-slide-in {\n  0% {\n    -webkit-transform: translateY(-40%);\n    opacity: 0;\n  }\n  100% {\n    -webkit-transform: translateY(0%);\n    opacity: 1;\n  }\n}\n@keyframes io3d-inspector-plugins___plugins-menu-slide-in {\n  0% {\n    transform: translateY(-40%);\n    opacity: 0;\n  }\n  100% {\n    transform: translateY(0%);\n    opacity: 1;\n  }\n}\n@-webkit-keyframes io3d-inspector-plugins___plugins-menu-slide-out {\n  0% {\n    -webkit-transform: translateY(0%);\n    opacity: 1;\n  }\n  100% {\n    -webkit-transform: translateY(-40%);\n    opacity: 0;\n  }\n}\n@keyframes io3d-inspector-plugins___plugins-menu-slide-out {\n  0% {\n    transform: translateY(0%);\n    opacity: 1;\n  }\n  100% {\n    transform: translateY(-40%);\n    opacity: 0;\n  }\n}\n#io3d-inspector-plugins___plugins-menu___container {\n  background-color: rgba(0, 0, 0, 0.7);\n  padding: 0 12px 0 12px;\n}\n#io3d-inspector-plugins___plugins-menu___header {\n  padding: 14px 0 14px 0;\n  border-bottom: 1px solid #bcbcbc;\n}\n#io3d-inspector-plugins___plugins-menu___close-button {\n  position: absolute;\n  top: 0;\n  right: 12px;\n  padding: 14px 0 14px 0;\n  cursor: pointer;\n}\n#io3d-inspector-plugins___plugins-menu___button {\n  padding: 10px 0 10px 0;\n  border-bottom: 1px solid #bcbcbc;\n  cursor: pointer;\n}\n#io3d-inspector-plugins___plugins-menu___button:hover {\n  background-color: rgba(255, 255, 255, 0.2);\n}\n#io3d-inspector-plugins___plugins-menu___footer {\n  padding: 14px 0 14px 0;\n  line-height: 1.3;\n}\n#io3d-inspector-plugins___plugins-menu___footer a {\n  color: #bcbcbc;\n}\n#io3d-inspector-plugins___plugins-menu___footer a:hover {\n  color: white;\n}\n#io3d-inspector-plugins___bake-lightmaps___container {\n  font-family: Roboto, BlinkMacSystemFont, -apple-system, \"Segoe UI\", Helvetica, Arial, sans-serif;\n  position: absolute;\n  top: 0px;\n  left: 246px;\n  z-index: 100000;\n}\n#io3d-inspector-plugins___bake-lightmaps___main-bar span,\n#io3d-inspector-plugins___bake-lightmaps___main-bar a {\n  text-decoration: none;\n  display: inline-block;\n  height: 33px;\n  line-height: 33px;\n  padding: 0 12px 0 12px;\n  margin: 0 0 0 0;\n  border-left: 1px solid rgba(255, 255, 255, 0.5);\n  white-space: nowrap;\n  font-weight: 400;\n  letter-spacing: 1px;\n  font-size: 12px;\n  color: white;\n  background-color: rgba(0, 0, 0, 0.8);\n}\n#io3d-inspector-plugins___bake-lightmaps___bake-button {\n  display: inline-block;\n  cursor: pointer;\n  text-decoration: none;\n  color: white;\n  font-size: 16px;\n  font-weight: 500;\n  letter-spacing: 0px;\n  height: 38px;\n  line-height: 40px;\n  padding: 0 13px 0 13px;\n  background-color: #1faaf2;\n  border-radius: 2px;\n  margin: 16px 0 0 0;\n  position: relative;\n  left: 2px;\n  top: -2px;\n  box-shadow: -2px 2px 0px 0px #105576;\n}\n#io3d-inspector-plugins___bake-lightmaps___bake-button:hover {\n  background-color: #44c3f2;\n}\n#io3d-inspector-plugins___bake-lightmaps___bake-button:active {\n  left: -1px;\n  top: 1px;\n  background-color: #105576;\n  box-shadow: -2px 2px 0px 0px rgba(0, 0, 0, 0);\n}\n#io3d-inspector-plugins___list-tab___header {\n  position: absolute;\n  width: 100%;\n  height: 64px;\n  background-color: #000000;\n  top: 0;\n  left: 0;\n}\n#io3d-inspector-plugins___list-tab___title {\n  position: absolute;\n  width: 100%;\n  height: 38px;\n  line-height: 38px;\n  color: #ffffff;\n  padding: 0 0 0 8px;\n  top: 0;\n  left: 0;\n  letter-spacing: 1px;\n}\n#io3d-inspector-plugins___list-tab___close-button {\n  -webkit-font-smoothing: antialiased;\n  font-size: 16px;\n  font-weight: 200;\n  position: absolute;\n  width: 20px;\n  height: 20px;\n  line-height: 20px;\n  border-radius: 50%;\n  text-align: center;\n  top: 9px;\n  right: 4px;\n  cursor: pointer;\n  color: #ffffff;\n}\n#io3d-inspector-plugins___list-tab___close-button:hover {\n  color: #1faaf2;\n}\n#io3d-inspector-plugins___list-tab___close-button:before {\n  content: \"x\";\n}\n#io3d-inspector-plugins___list-tab___search-input {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  writing-mode: horizontal-tb;\n  -webkit-rtl-ordering: logical;\n  -webkit-border-image: none;\n  font-family: \"Roboto Mono\", Consolas, \"Andale Mono\", Monaco, \"Courier New\", monospace;\n  font-size: 11px;\n  font-weight: normal;\n  letter-spacing: 0px;\n  position: absolute;\n  width: 218px;\n  height: 26px;\n  line-height: 26px;\n  top: 37px;\n  left: 6px;\n  padding: 0 0 0 7px;\n  border-radius: 5px;\n  border: 0;\n  background-color: #ffffff;\n  color: #000000;\n}\n#io3d-inspector-plugins___list-tab___search-icon {\n  font-size: 12px;\n  position: absolute;\n  width: 26px;\n  height: 26px;\n  line-height: 26px;\n  top: 37px;\n  right: 0;\n  color: #4d4d4d;\n}\n#io3d-inspector-plugins___list-tab___search-icon:before {\n  content: \"x\";\n}\n#io3d-inspector-plugins___list-tab___list-container {\n  position: absolute;\n  width: 100%;\n  top: 64px;\n  left: 0;\n  bottom: 0;\n  padding: 0 0 20px 0;\n  overflow: auto;\n  background-color: #000000;\n}\n#io3d-inspector-plugins___list-tab___list-info {\n  position: relative;\n  display: block;\n  padding: 10px;\n  width: 100%;\n  color: #ffffff;\n  line-height: 1.3;\n}\n#io3d-inspector-plugins___list-tab___list-info a {\n  color: #bcbcbc;\n}\n#io3d-inspector-plugins___list-tab___list-info a:hover {\n  color: white;\n}\n#io3d-inspector-plugins___list-tab___list-item-container {\n  position: relative;\n  display: block;\n  width: 100%;\n  padding: 4px 0 0 4px;\n}\n#io3d-inspector-plugins___list-tab___list-item-container .io3d-inspector-plugins___list-item {\n  display: inline-block;\n  margin: 4px 0 0 4px;\n  position: relative;\n  width: 98px;\n  height: 98px;\n  -moz-user-select: none;\n  -webkit-user-select: none;\n  user-select: none;\n  /* Required to make elements draggable in old WebKit */\n  -khtml-user-drag: element;\n  -webkit-user-drag: element;\n  border: 1px dotted rgba(255, 255, 255, 0.4);\n  border-radius: 3px;\n  overflow: hidden;\n  -webkit-transition: border-color 1500ms;\n  transition: border-color 1500ms;\n  cursor: move;\n  /* fallback if grab cursor is unsupported */\n  cursor: grab;\n  cursor: -moz-grab;\n  cursor: -webkit-grab;\n}\n#io3d-inspector-plugins___list-tab___list-item-container .io3d-inspector-plugins___list-item:active {\n  cursor: grabbing;\n  cursor: -moz-grabbing;\n  cursor: -webkit-grabbing;\n}\n#io3d-inspector-plugins___list-tab___list-item-container .io3d-inspector-plugins___list-item:hover {\n  background-color: #333;\n}\n#io3d-inspector-plugins___list-tab___list-item-container .io3d-inspector-plugins___list-item img {\n  position: absolute;\n  opacity: 0;\n  -webkit-transition: opacity 1500ms;\n  transition: opacity 1500ms;\n}\n#io3d-inspector-plugins___list-tab___drop-plane {\n  position: absolute;\n  top: 0;\n  right: 0;\n  left: 230px;\n  height: 100%;\n  background-color: rgba(33, 172, 242, 0.15);\n  border: 2px solid #21acf2;\n  z-index: 100000;\n  opacity: 0;\n  -webkit-transition: opacity 200ms;\n  transition: opacity 200ms;\n}\n#io3d-inspector-plugins___list-tab___drop-plane-info {\n  width: 100%;\n  height: 100%;\n  line-height: 100vh;\n  text-align: center;\n  color: rgba(33, 172, 242, 0.2);\n  font-size: 68px;\n  font-weight: 400;\n  letter-spacing: 2px;\n}\n";
 
 	// basic element utils for convenience inspired by jquery API
 
@@ -11069,9 +11069,9 @@
 
 
 	        if (e.stopPropagation) e.stopPropagation(); // stops the browser from redirecting.
-	        
-	        
-	                ////by jafet
+
+
+	        ////by jafet
 	        ////THIS BELOW IS A PATCH BECAUSE THIS PACKAGE IS PREVENTING DEFAULT AND STOPPING PROPAGATION OF MOUSE EVENTS
 	        ////WHICH MAKES ANOTHER APPLICATION FAIL. I TRIED DEACTIVATING THE DEFAULT PREVENTION AND PROPAGATION STOPS
 	        ////BUT THAT WOULD MAKE THIS APPLICATION FAIL FOR SOME REASON.
@@ -11080,8 +11080,8 @@
 	        clickEvent.initEvent('mouseup', true, true);
 	        document.dispatchEvent(clickEvent);
 
-	        
-	        
+
+
 	        fadeInDropPlane();
 	        e.dataTransfer.effectAllowed = 'move';
 	        e.dataTransfer.setData('text/plain', JSON.stringify(item));
@@ -11122,10 +11122,10 @@
 
 	        //by jafet
 	        // if (e.preventDefault) e.preventDefault() // stops the browser from redirecting.
-	        
-	        
 
-	        
+
+
+
 
 	        if (e.stopPropagation) e.stopPropagation(); // stops the browser from redirecting.
 
@@ -11170,6 +11170,8 @@
 
 	    tab = createTabUi();
 
+
+
 	    var headerEl = el('<div>', {
 	      id: 'io3d-inspector-plugins___list-tab___header',
 	    }).appendTo(tab.el);
@@ -11195,6 +11197,8 @@
 	    listItemContainerEl = el('<div>', {
 	      id: 'io3d-inspector-plugins___list-tab___list-item-container',
 	    }).appendTo(listContainerEl);
+	    listItemContainerEl.addEventListener('mousedown', onMouseDownOnItem, false);
+
 
 	    dropPlaneEl = el('<div>', {
 	      id: 'io3d-inspector-plugins___list-tab___drop-plane',
@@ -11253,6 +11257,23 @@
 	    e.dataTransfer.dropEffect = 'move'; // See the section on the DataTransfer object.
 
 	    return false
+
+	  }
+
+	  //ADDED BY JAFET TO SHOW A SNACKBAR OR TOAST MESSAGE
+	  function onMouseDownOnItem(e) {
+	    // var snackbarEl = el('<div>', {
+	    //   id: 'snackbar'
+	    //   // }).appendTo(listTab.el)
+	    // }).appendTo('body')
+
+	    // var x = document.getElementById("snackbar");
+	    // x.innerHTML = "Drag the objects to the scene"
+	    // x.className = "show";
+	    // setTimeout(function() { x.className = x.className.replace("show", ""); }, 3000);
+	    
+	    // io3d.utils.ui.message('Hint: You can use drag & drop ;)', 6000)
+	        io3d.utils.ui.message.warning('Drag and drop <br> Arrastra y suelta', 2000);
 
 	  }
 
@@ -11499,80 +11520,9 @@
 
 	});
 
-	// config
-
-	var DEFAULT_SEARCH_VALUE = 'chair';
-
-	// export
-
-	var scope = {
-	  show: show,
-	  hide: hide,
-	  isVisible: false
-	};
-
-	// internals
-
-	var isInitialized$1 = false;
 	var listTab;
 
-	// methods
-
-	function init$1 () {
-
-	  listTab = createListTabUi({
-	    title: 'Furniture Library',
-	    onSearchInput: searchDebounced,
-	    onItemDrop: addToScene,
-	    onHide: function () {
-	      scope.isVisible = false;
-	    }
-	  });
-
-	  isInitialized$1 = true;
-
-	}
-
-	function addToScene (item, position, callback) {
-
-	  // add new entity to scene
-	  var newEntity = document.createElement('a-entity');
-	  newEntity.setAttribute('io3d-furniture', 'id', item.furnitureId);
-	  newEntity.setAttribute('position', position.x + ' 0 ' + position.z);
-	  document.querySelector('a-scene').appendChild(newEntity);
-
-	  newEntity.addEventListener('model-loaded', function (event) {
-	    callback();
-	  });
-
-	}
-
-	function show (callback, animate) {
-
-	  if (!isInitialized$1) init$1();
-
-	  if (scope.isVisible) return
-	  scope.isVisible = true;
-
-	  listTab.show(callback, animate);
-
-	  if (!listTab.getSearchValue()) {
-	    searchDebounced(DEFAULT_SEARCH_VALUE);
-	    listTab.setSearchValue(DEFAULT_SEARCH_VALUE);
-	  }
-
-	}
-
-	function hide (callback, animate) {
-
-	  if (!isInitialized$1) return
-
-	  if (!scope.isVisible) return
-	  scope.isVisible = false;
-
-	  listTab.hide(callback, animate);
-
-	}
+	// expose API
 
 	// const dbFirebase = require('./FirebaseApp.js')
 	// var firebase = require('firebase');
@@ -11598,7 +11548,7 @@
 
 	// export
 	 
-	var scope$1 = {
+	var scope$2 = {
 	  show: show$1,
 	  hide: hide$1,
 	  isVisible: false
@@ -11613,26 +11563,29 @@
 
 	function init$2() {
 
+
 	  listTab$1 = createListTabUi({
-	    title: 'Models from <a target="_blank" href="https://poly.google.com">poly.google.com</a>',
+	    title: 'Search for something:',
 	    onSearchChange: search,
 	    onItemDrop: addToScene$1,
 	    onHide: function() {
-	      scope$1.isVisible = false;
+	      scope$2.isVisible = false;
 	    }
 	  });
+	  
+	  
+
+
+
 
 	  isInitialized$2 = true;
 
 	}
 
 	//JAFET ADDED
-	// const API_KEY = 'AIzaSyD2l0Cy_cS9IqgA-W-bIHvYjbf24a6aUv4';
-	const API_KEY = 'AIzaSyCbzifLOPONyCkD-qKWrTZEYgGEJ7ENlCQ';
-
-
+	const API_KEY = 'AIzaSyBxwTbPltkM5a8MiA5pG861i_Sx4o6_pew';
 	function callPolyApi(offset, value) {
-	  return fetch(`https://poly.googleapis.com/v1/assets?keywords=${value}&format=OBJ&key=${API_KEY}&maxComplexity=MEDIUM`).then(function(response) {
+	  return fetch(`https://poly.googleapis.com/v1/assets?keywords=${value}&format=OBJ&key=${API_KEY}&maxComplexity=SIMPLE`).then(function(response) {
 	    console.log('THE OUTPUT FROM POLY IS');
 	    // console.log(response.json())
 	    return response.json()
@@ -11668,6 +11621,7 @@
 	      //   url: item_.url,
 	      //   author: item_.author
 	      // }
+	      console.log("el item es");
 	      console.log(item_);
 
 	      //OTHER PATH: https://poly.googleapis.com/downloads/42PQqEaxb-P
@@ -11683,18 +11637,35 @@
 	      // var profileUrl = item_.formats[0].root.url.substr(0, fifthSlashIndex)
 	      // profileUrl = profileUrl.replace('googleapis.com/downloads', 'google.com/view')
 	      // var profileUrl = 'https://poly.google.com/view/'+indexPart+'?key=AIzaSyCbzifLOPONyCkD-qKWrTZEYgGEJ7ENlCQ'//profileUrl.replace('googleapis.com/downloads/fp', 'google.com/view')
-	      var profileUrl = item_.formats[1].root.url; //profileUrl.replace('googleapis.com/downloads/fp', 'google.com/view')
+	      
+	      var gltf2Index=-1;
+	      item_.formats.forEach(checkFormatType);
+	      function checkFormatType(formatItem,index)
+	      {
+	       if(formatItem.formatType=="GLTF2")
+	       {
+	         gltf2Index=index;
+	       }
+	      }
+	      var profileUrl = item_.formats[gltf2Index].root.url;//item_.formats[1].root.url //profileUrl.replace('googleapis.com/downloads/fp', 'google.com/view')
 
 	      // var profileUrl=item_.formats[0].root.url
 	      console.log('url for download is:');
 	      console.log(profileUrl);
+	      
+	    //       //ADDED BY JAFET
+	    // console.log('here is the diagnose')
+	    // console.log(event)
+
 
 	      return {
 	        title: item_.displayName + ' by ' + item_.authorName,
 	        thumb: item_.thumbnail.url,
 	        url: profileUrl, //please use gltf 2
 	        // url: item_.formats[0].root.url, //please use gltf2
-	        author: item_.authorName
+	        author: item_.authorName,
+	        provenance: item_.name,
+	        license: item_.license
 	      }
 	    });
 
@@ -11702,6 +11673,21 @@
 
 	    console.log('Bro items are:');
 	    console.log(items);
+	    
+	    
+	    
+	          //ADDED BY JAFET TO SHOW A TOAST MESSAGE
+	  //   var snackbarEl = el('<div>', {
+	  //     id: 'snackbar'
+	  //     // }).appendTo(listTab.el)
+	  //   }).appendTo('body')
+	  // var x = document.getElementById("snackbar");
+	  // x.innerHTML="Drag the objects to the scene"
+	  // x.className = "show";
+	  // setTimeout(function(){ x.className = x.className.replace("show", ""); }, 10000);
+	    
+	    
+	    
 
 	    var info = ''; //'API code is open sourced on <a target="_blank" href="https://github.com/archilogic-com/aframe-gblock/blob/master/server/api-methods.js">github</a>'
 	    listTab$1.setInfo(items.length ? info : 'No results found.');
@@ -11715,7 +11701,7 @@
 
 	function addToScene$1(item, position, callback) {
 
-	  var uiMessage = io3d.utils.ui.message('Loading glTF from<br><a class="io3d-inspector-plugins___truncate-message" href="' + item.url + '" target="_blank">' + item.url + '</a>', 0);
+	  var uiMessage = io3d.utils.ui.message("Hold on a sec bro", 0);
 
 	  // add new entity to scene
 	  var newEntity = document.createElement('a-entity');
@@ -11754,30 +11740,86 @@
 	  newEntity.addEventListener('model-loaded', function(event) {
 
 	    uiMessage.close();
-	    io3d.utils.ui.message.success('Added<br><a class="io3d-inspector-plugins___truncate-message" href="' + item.url + '" target="_blank">' + item.url + '</a>');
-
-	    //COMMENTED OUT BY JAFET
-	    // // center model to picking position
-
-
-	    const user = firebase.auth().currentUser;
-	    console.log('The user in 3dio is:');
-	    console.log(user);
-	    const setYto = 12.0;
-	    // setScale(newEntity.id, setYto, 1)
 	    
+	    if(item.license == 'CREATIVE_COMMONS_BY')
+	    {
+	      io3d.utils.ui.message.success('Added object by '+item.author+'<br>License: <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Attribution CC-BY</a>');
+	    }
+	    else
+	    {
+	      io3d.utils.ui.message.warning('Added object by '+item.author+'. The license for this object is: '+item.license);
+	    }
+	    // <a class="io3d-inspector-plugins___truncate-message" href="' + item.url + '" target="_blank">' + item.url + '</a>'
+
+	    // //COMMENTED OUT BY JAFET
+	    // const user = firebase.auth().currentUser;
+	    // console.log('The user in 3dio is:')
+	    // console.log(user)
+	    // const setYto = 12.0
+	    // // setScale(newEntity.id, setYto, 1)
+	    
+	    // function setScale(id, setYto, iteration) {
+	    //   const numberOfTries = 10
+	    //   var node = document.getElementById(newEntity.id)
+	    //   if (node !== null && iteration <= numberOfTries) {
+	    //     var boxHelper = new THREE.BoxHelper(node.object3D, 0xff0000)
+	    //     boxHelper.geometry.computeBoundingBox()
+	    //     const bb = boxHelper.geometry.boundingBox
+	    //     if (bb.max.y == bb.min.y) {
+	    //       console.log('inside the if man because bb.max.y==bb.min.y')
+	    //       setTimeout(function() {
+	    //         console.log('calling recursively')
+	    //         setScale(node, setYto, iteration + 1)
+	    //       }, 50); //was 50
+	    //     }
+	    //     else {
+	    //       console.log('about to set scale online')
+	    //       var size = new THREE.Vector3(Math.abs(bb.max.x - bb.min.x), Math.abs(bb.max.y - bb.min.y), Math.abs(bb.max.z - bb.min.z))
+	    //       var scalingFactor = setYto / size.y
+	    //       var scaleString = scalingFactor + ' ' + scalingFactor + ' ' + scalingFactor
+	    //       var position = node.object3D.position
+	    //       position.set(
+	    //         position.x, -bb.min.y * scalingFactor, position.z)
+	    //       var positionString = position.x + ' ' + position.y + ' ' + position.z
+	    //       node.setAttribute('scale', scaleString)
+	    //       node.setAttribute('position', positionString)
+
+	    //       // dbFirebase.ref("users").child(user.uid).child("currentWorld").once("value").then(function(snapshot) {
+	    //       //   const currentWorld = snapshot.toJSON();
+	    //       //   console.log('the world for this user is')
+	    //       //   console.log(currentWorld)
+	    //       //   // this.dbFirebase.ref("worlds").child(user.uid).child(currentWorld).child("entities").child(newEntity.id).child('gltf-model').set("url(" + url + ")").then(function() {})
+	            
+	    //       //   const refString=`/worlds/${user.uid}/${currentWorld}/entities/${newEntity.id}/scale`
+	    //       //   console.log('ref string is')
+	    //       //   console.log(refString)
+	    //       //   dbFirebase.ref(refString+'/scale').set({ "x": scalingFactor, "y": scalingFactor, "z": scalingFactor })
+	    //       //   dbFirebase.ref(refString+'/position').set({ "x": position.x, "y": -bb.min.y * scalingFactor, "z": position.z })
+	    //       // }.bind(this))
+	    //     }
+	    //   }
+	    //   else {
+	    //     setTimeout(function() {
+	    //       setScale(id, setYto, iteration + 1)
+	    //     }, 50);
+	    //   }
+	    // }
+
 	    callback();
 	  }.bind(this), { once: true });
 
 	  newEntity.addEventListener('model-error', function(event) {
 
 	    uiMessage.close();
+	    
 	    io3d.utils.ui.message.error('Sorry: ' + event.detail.message + '<br/><a class="io3d-inspector-plugins___truncate-message" href="' + item.url + '" target="_blank">' + item.url + '</a>');
 
 	  }, { once: true });
 
 	  // newEntity.setAttribute('gblock', item.url)
 	  newEntity.setAttribute('gltf-model', "url(" + item.url + ")");
+	  // newEntity.setAttribute('provenance', JSON.stringify({"provider_id":"poly", "object_id_given_by_provider":item.provenance}))
+	  newEntity.setAttribute('provenance', {"provider_id":"poly", "object_id_given_by_provider":item.provenance});
 	  document.querySelector('a-scene').appendChild(newEntity);
 
 	}
@@ -11786,8 +11828,8 @@
 
 	  if (!isInitialized$2) init$2();
 
-	  if (scope$1.isVisible) return
-	  scope$1.isVisible = true;
+	  if (scope$2.isVisible) return
+	  scope$2.isVisible = true;
 
 	  listTab$1.show(callback, animate);
 
@@ -11802,263 +11844,14 @@
 
 	  if (!isInitialized$2) return
 
-	  if (!scope$1.isVisible) return
-	  scope$1.isVisible = false;
+	  if (!scope$2.isVisible) return
+	  scope$2.isVisible = false;
 
 	  listTab$1.hide(callback, animate);
 
 	}
 
-	var staffPickItems = [{
-	  title: 'Steve Jobs Theatre',
-	  thumb: 'https://storage.3d.io/535e624259ee6b0200000484/2017-10-02_17-55-42_Ow0tyt/sadasd.png',
-	  editorUrl: 'https://spaces.archilogic.com/model/archilogic/clxtnlsv?modelResourceId=6f3a27fa-51e0-4773-9cb7-87d497b554af&mode=edit',
-	  type: 'io3d-data3d',
-	  attributes: {
-	    url: 'https://storage.3d.io/535e624259ee6b0200000484/171002-1952-zypqqx/archilogic_2017-10-02_19-51-14_6MiTgp.gz.data3d.buffer',
-	    lightMapExposure: 0.626,
-	    lightMapIntensity: 2.166
-	  }
-	},{
-	  title: 'Millennium Falcon',
-	  thumb: 'https://storage.3d.io/535e624259ee6b0200000484/2017-10-02_17-57-37_4xyPaE/localhost_8081_examples_staff-picks_html_4.png',
-	  attributes: {
-	    url: 'https://storage.3d.io/535e624259ee6b0200000484/170903-1554-hl8t6r/archilogic_2017-09-03_15-47-13_dkhZ1I.gz.data3d.buffer'
-	  },
-	  type: 'io3d-data3d'
-	},{
-	  title: 'Loewy House by Albert Frey',
-	  thumb: 'https://storage.3d.io/535e624259ee6b0200000484/2017-10-02_14-51-45_Obk9pz/Cursor_and_Archilogic.png',
-	  editorUrl: 'https://spaces.archilogic.com/model/archilogic/wlnobthy?modelResourceId=88ac69d1-28c1-406c-890c-1f86531e2a31&mode=edit',
-	  type: 'io3d-data3d',
-	  attributes: {
-	    url: 'https://storage.3d.io/535e624259ee6b0200000484/171002-1928-ticazn/archilogic_2017-10-02_19-25-55_TGu8vT.gz.data3d.buffer'
-	  }
-	},{
-	  title: 'Architecture Cardboard Model',
-	  thumb: 'https://storage.3d.io/535e624259ee6b0200000484/2017-10-02_14-26-46_cBo1I6/localhost_8081_examples_staff-picks_html_copy.png',
-	  editorUrl: 'https://spaces.archilogic.com/model/archilogic/psm59wss?modelResourceId=3e03a0e7-587b-473f-86b1-32fba6c13a8d&mode=edit',
-	  type: 'io3d-data3d',
-	  attributes: {
-	    url: 'https://storage.3d.io/535e624259ee6b0200000484/171002-1509-2xzmx3/archilogic_2017-10-02_14-50-27_85SdOH.gz.data3d.buffer',
-	    lightMapIntensity: 0.850,
-	    lightMapExposure: 0.9
-	  }
-	},{
-	  title: 'Big Bang Theory',
-	  thumb: 'https://storage.3d.io/535e624259ee6b0200000484/2017-10-02_16-30-51_8ZMkZR/Cursor_and_Archilogic_2.png',
-	  editorUrl: 'https://spaces.archilogic.com/model/archilogic/fljox97z?modelResourceId=60dde7c8-d481-475f-9c0f-8ecbe57cef05&mode=edit',
-	  type: 'io3d-data3d',
-	  attributes: {
-	    url: 'https://storage.3d.io/535e624259ee6b0200000484/171002-1837-069qe5/archilogic_2017-10-02_18-36-42_jZBOac.gz.data3d.buffer',
-	    lightMapIntensity: 3,
-	    lightMapExposure: 0.541
-	  }
-	},{
-	  title: 'Room (with lightmaps)',
-	  thumb: 'https://storage.3d.io/535e624259ee6b0200000484/2017-10-02_12-39-00_OoAMZ9/localhost_8081.png',
-	  type: 'io3d-data3d',
-	  attributes: {
-	    url: 'https://storage.3d.io/535e624259ee6b0200000484/170918-2056-hp86we/archilogic_2017-09-18_20-56-43_B4LLEX.gz.data3d.buffer',
-	  }
-	},{
-	  title: 'Bridge House',
-	  thumb: 'https://storage.3d.io/535e624259ee6b0200000484/2017-10-02_14-54-19_hRwy6W/localhost_8081_examples_staff-picks_html.png',
-	  type: 'io3d-data3d',
-	  attributes: {
-	    url: 'https://storage.3d.io/535e624259ee6b0200000484/170927-2018-a10bpi/archilogic_2017-09-27_20-18-12_GT3EQI.gz.data3d.buffer'
-	  }
-	},{
-	  title: 'The Office',
-	  thumb: 'https://storage.3d.io/535e624259ee6b0200000484/2017-10-02_14-57-25_gyGxcm/khjghfd.png',
-	  editorUrl: 'https://spaces.archilogic.com/3d/archilogic/nsh7wfvq?modelResourceId=3d6acff4-abcd-4c58-b3f3-d56d99642199&mode=edit',
-	  type: 'io3d-data3d',
-	  attributes: {
-	    url: 'https://storage.3d.io/535e624259ee6b0200000484/171004-1708-j45k01/archilogic_2017-10-04_17-07-52_TZmYmS.gz.data3d.buffer'
-	  }
-	},{
-	  title: '55 West 17th Street @night',
-	  thumb: 'https://storage.3d.io/535e624259ee6b0200000484/2017-10-02_16-31-03_NaN4m8/Cursor_and_Archilogic_3.png',
-	  editorUrl: 'https://spaces.archilogic.com/model/archilogic/empzwgkx?modelResourceId=e717c8e5-3d7c-423b-b2f2-21874665a5b3&mode=edit',
-	  type: 'io3d-data3d',
-	  attributes: {
-	    url: 'https://storage.3d.io/535e624259ee6b0200000484/171002-1827-w81rq6/archilogic_2017-10-02_18-25-28_CYLCC5.gz.data3d.buffer',
-	    lightMapIntensity: 2, //2.86,
-	    lightMapExposure: 0.6 //0.672
-	  }
-	},{
-	  title: null,
-	  thumb: 'https://storage.3d.io/535e624259ee6b0200000484/2017-10-02_16-47-24_dmVHK7/localhost_8081_examples_staff-picks_html_2.png',
-	  editorUrl: null,
-	  type: 'io3d-data3d',
-	  attributes: {
-	    url: 'https://storage.3d.io/535e624259ee6b0200000484/processing/2017-09-20_11-42-38_Vnv6ma/lighting.gz.data3d.buffer',
-	    lightMapIntensity: 1.2,
-	    lightMapExposure: 0.6
-	  }
-	},{
-	  title: 'Apartment (with lightmaps)',
-	  thumb: 'https://storage.3d.io/535e624259ee6b0200000484/2017-10-02_14-49-30_4F8kDN/apt.png',
-	  type: 'io3d-data3d',
-	  attributes: {
-	    url: 'https://storage.3d.io/535e624259ee6b0200000484/170725-1421-wujxjb/archilogic_2017-07-25_14-19-02_hn9axa.gz.data3d.buffer'
-	  }
-	},{
-	  title: 'Case Study House 4, Ralph Rapson',
-	  thumb: 'https://storage.3d.io/535e624259ee6b0200000484/2017-10-02_16-01-30_aXZWGC/jzthgf.png',
-	  editorUrl: 'https://spaces.archilogic.com/model/archilogic/krxvla7n?modelResourceId=ac682b97-3c9b-45a0-9c90-f1534ea769d3&mode=edit',
-	  type: 'io3d-data3d',
-	  attributes: {
-	    url: 'https://storage.3d.io/535e624259ee6b0200000484/171002-1754-b4u6gv/archilogic_2017-10-02_17-52-50_41hXdK.gz.data3d.buffer',
-	    lightMapIntensity: 2,
-	    lightMapExposure: 0.576
-	  }
-	},{
-	  title: 'Stahl House',
-	  thumb: 'https://storage.3d.io/535e624259ee6b0200000484/2017-10-02_14-41-55_xBsnUO/sadsad.png',
-	  editorUrl: 'https://spaces.archilogic.com/model/archilogic/la7jhe3t?modelResourceId=216cfcbc-82d3-4ad0-a834-e6cfbb173dcb&mode=edit',
-	  type: 'io3d-data3d',
-	  attributes: {
-	    url: 'https://storage.3d.io/535e624259ee6b0200000484/171002-1639-r2mus5/archilogic_2017-10-02_16-39-08_HYWIGh.gz.data3d.buffer'
-	  }
-	},{
-	  title: 'The Office (baked white)',
-	  thumb: 'https://storage.3d.io/535e624259ee6b0200000484/2017-10-04_16-22-37_Od7ppw/qwesadsad-1.png',
-	  editorUrl: 'https://spaces.archilogic.com/model/archilogic/uhyxqfvr?modelResourceId=34bfdbba-a44d-4268-bdb8-6b7cfe719555',
-	  type: 'io3d-data3d',
-	  attributes: {
-	    url: 'https://storage.3d.io/535e624259ee6b0200000484/171002-1644-4cfpoh/archilogic_2017-10-02_16-44-01_5CoeyU.gz.data3d.buffer',
-	    lightMapIntensity: 1.4,
-	    lightMapExposure: 0.83
-	  }
-	},{
-	  title: 'Empty apartment (with lightmaps)',
-	  thumb: 'https://storage.3d.io/535e624259ee6b0200000484/2017-10-04_16-21-52_z16iGz/localhost_8081_examples_staff-picks_html_5.png',
-	  editorUrl: 'https://spaces.archilogic.com/3d/archilogic/h4959x0g?modelResourceId=62cb3510-6708-4f62-94c3-f9936db7e20b',
-	  type: 'io3d-data3d',
-	  attributes: {
-	    url: 'https://storage.3d.io/535e624259ee6b0200000484/bake/2017-06-30_11-05-49_P144IW/regular/lighting.gz.data3d.buffer',
-	    lightMapIntensity: 1.2,
-	    lightMapExposure: 0.6
-	  }
-	},{
-	  title: 'Room (no lightmaps)',
-	  thumb: 'https://storage.3d.io/535e624259ee6b0200000484/2017-10-02_14-31-08_k31wKT/sdasd.png',
-	  type: 'io3d-data3d',
-	  attributes: {
-	    url: 'https://storage.3d.io/535e624259ee6b0200000484/170918-2106-0sr2cn/9fd87fec-8bdd-4bc1-b9ba-bbfc47d08008.gz.data3d.buffer'
-	  },
-	},{
-	  title: 'Test Cube',
-	  thumb: 'https://storage.3d.io/535e624259ee6b0200000484/2017-10-02_12-30-54_8do34C/localhost_8081.png',
-	  type: 'io3d-data3d',
-	  attributes: {
-	    url: 'https://storage.3d.io/archilogic/sample-models/cube-with-texture/data3d/cube-with-texture.gz.data3d.buffer',
-	  }
-	}];
-
-	// export
-
-	var scope$2 = {
-	  show: show$2,
-	  hide: hide$2,
-	  isVisible: false
-	};
-
-	// internal
-
-	var isInitialized$3 = false;
-	var listTab$2;
-
-	// method
-
-	function init$3() {
-
-	  listTab$2 = createListTabUi({
-	    title: 'Staff Pics',
-	    listInfo: 'A growing list of models for testing and demo purposes.',
-	    onItemDrop: addToScene$2,
-	    onHide: function() {
-	      scope$2.isVisible = false;
-	    }
-	  });
-
-	  listTab$2.init();
-
-	  listTab$2.setInfo('<a target="_blank" href="https://spaces.archilogic.com">Archilogic Models</a> for experimenting & testing. Kudos to <a target="_blank" href="https://twitter.com/Pandatology">@Pandatology</a>, <a target="_blank" href="https://twitter.com/anialdam">@anialdam</a>');
-	  listTab$2.setList(staffPickItems);
-
-	  isInitialized$3 = true;
-
-	}
-
-	function addToScene$2(item, position, callback) {
-
-	  var uiMessage = io3d.utils.ui.message('Loading' + (item.title ? ' "' + item.title + '" ' : ' ') + '...', 0);
-
-	  // add new entity to scene
-	  var newEntity = document.createElement('a-entity');
-	  //LINE ADDED BY JAFET
-	  newEntity.setAttribute('position', position.x + ' ' + position.y + ' ' + position.z);
-
-	  newEntity.addEventListener('model-loaded', function(event) {
-
-	    uiMessage.close();
-	    io3d.utils.ui.message.success('Added' + (item.title ? ' "' + item.title + '"' : 'model'));
-
-	    // center model to picking position
-
-	    //COMMENTED OUT BY JAFET
-	    // var bb = new THREE.Box3().setFromObject(event.detail.model) // bounding box
-	    // var size = new THREE.Vector3(Math.abs(bb.max.x - bb.min.x), Math.abs(bb.max.y - bb.min.y), Math.abs(bb.max.z - bb.min.z))
-	    // position.set(
-	    //   position.x - bb.min.x - size.x / 2,
-	    //   -bb.min.y,
-	    //   position.z - bb.min.z - size.z / 2
-	    // )
-	    // newEntity.setAttribute('position', position.x + ' 0 ' + position.z)
-
-	    callback();
-
-	  }, { once: true });
-
-	  newEntity.setAttribute(item.type, stringifyAttributes(item.attributes));
-
-	  // add other attributes
-
-	  document.querySelector('a-scene').appendChild(newEntity);
-
-	}
-
-	function show$2(callback, animate) {
-
-	  if (!isInitialized$3) init$3();
-
-	  if (scope$2.isVisible) return
-	  scope$2.isVisible = true;
-
-	  listTab$2.show(callback, animate);
-
-	}
-
-	function hide$2(callback, animate) {
-
-	  if (!isInitialized$3) return
-
-	  if (!scope$2.isVisible) return
-	  scope$2.isVisible = false;
-
-	  listTab$2.hide(callback, animate);
-
-	}
-
-	function stringifyAttributes(attributes) {
-	  var s = '';
-	  Object.keys(attributes).forEach(function(name) {
-	    s += name + ': ' + attributes[name] + '; ';
-	  });
-	  return s
-	}
+	// expose API
 
 	(function(self) {
 	  'use strict';
@@ -59112,329 +58905,35 @@
 	 */
 	console.warn("\nIt looks like you're using the development build of the Firebase JS SDK.\nWhen deploying Firebase apps to production, it is advisable to only import\nthe individual SDK components you intend to use.\n\nFor the module builds, these are available in the following manner\n(replace <PACKAGE> with the name of a component - i.e. auth, database, etc):\n\nCommonJS Modules:\nconst firebase = require('firebase/app');\nrequire('firebase/<PACKAGE>');\n\nES Modules:\nimport firebase from 'firebase/app';\nimport 'firebase/<PACKAGE>';\n\nTypescript:\nimport * as firebase from 'firebase/app';\nimport 'firebase/<PACKAGE>';\n");
 
-	class tensorModels {
-	  static initializeDatabase() {
-	    // Initialize Firebase
-	    var config = {
-	      apiKey: "AIzaSyCbzifLOPONyCkD-qKWrTZEYgGEJ7ENlCQ",
-	      authDomain: "vrquitect.firebaseapp.com",
-	      databaseURL: "https://vrquitect.firebaseio.com",
-	      projectId: "vrquitect",
-	      storageBucket: "vrquitect.appspot.com",
-	      messagingSenderId: "64632163739"
-	    };
-	    
-	    const FbApp = firebase$2.initializeApp(config);
-	    var FBAppDatabase = FbApp.database();
-	    this.myItems_ref = FBAppDatabase.ref('defaultEntities');
-	    this.avatars_ref = FBAppDatabase.ref('avatars');
-	  }
+	// expose API
 
-	  static fetchMyItems(cb) {
-	    this.myItems_ref.once("value").then(function(snapshot) {
-	      cb(snapshot.toJSON());
-	    }.bind(cb));
-	  }
-	  static fetchAvatars(cb) {
-	    this.avatars_ref.once("value").then(function(snapshot) {
-	      cb(snapshot.toJSON());
-	    }.bind(cb));
-	  }
-
-	  // // Getter
-	  // get defaultItems() {
-	  //   return this.defaultItems;
-	  // }
-	}
-
-	// export
-
-	// import {FBAppDatabase} from './firebaseInit.js'
-
-
-	var scope$3 = {
-	  show: show$3,
-	  hide: hide$3,
-	  isVisible: false
-	};
-
-	// internal
-
-	var isInitialized$4 = false;
-	var listTab$3;
-
-	// method
-
-	function init$4() {
-
-	  listTab$3 = createListTabUi({
-	    title: 'My Items',
-	    listInfo: 'The items you have saved',
-	    onItemDrop: addToScene$3,
-	    onHide: function() {
-	      scope$3.isVisible = false;
-	    }
-	  });
-
-	  listTab$3.init();
-
-	  listTab$3.setInfo('<a target="_blank" href="https://spaces.archilogic.com">Archilogic Models</a> for experimenting & testing. Kudos to <a target="_blank" href="https://twitter.com/Pandatology">@Pandatology</a>, <a target="_blank" href="https://twitter.com/anialdam">@anialdam</a>');
-
-	  tensorModels.initializeDatabase();
-	  tensorModels.fetchMyItems(itemsCallback);
-	}
-
-	function itemsCallback(itemsJson) {
-	  
-	  var items = [];
-	for(var i in itemsJson)
-	    items.push(itemsJson[i]);
-
-	  console.log("bro fetched items are");
-	  console.log(items);
-	  
-	  listTab$3.setList(items);
-	  isInitialized$4 = true;
-
-	} //.bind(listTab, isInitialized))
-	// listTab.setList(tensorModels.defaultItems)
-	// isInitialized = true
-
-
-
-	// }
-
-	function addToScene$3(item, position, callback) {
-
-	  var uiMessage = io3d.utils.ui.message('Loading' + (item.title ? ' "' + item.title + '" ' : ' ') + '...', 0);
-
-	  // add new entity to scene
-	  var newEntity = document.createElement('a-entity');
-	  //LINE ADDED BY JAFET
-	  newEntity.setAttribute('position', position.x + ' ' + position.y + ' ' + position.z);
-
-	  newEntity.addEventListener('model-loaded', function(event) {
-
-	    uiMessage.close();
-	    io3d.utils.ui.message.success('Added' + (item.title ? ' "' + item.title + '"' : 'model'));
-
-	    // center model to picking position
-
-	    //COMMENTED OUT BY JAFET
-	    // var bb = new THREE.Box3().setFromObject(event.detail.model) // bounding box
-	    // var size = new THREE.Vector3(Math.abs(bb.max.x - bb.min.x), Math.abs(bb.max.y - bb.min.y), Math.abs(bb.max.z - bb.min.z))
-	    // position.set(
-	    //   position.x - bb.min.x - size.x / 2,
-	    //   -bb.min.y,
-	    //   position.z - bb.min.z - size.z / 2
-	    // )
-	    // newEntity.setAttribute('position', position.x + ' 0 ' + position.z)
-
-	    callback();
-
-	  }, { once: true });
-
-
-	  // // var allAtts = node.getAttributeNames()
-	  // var arrayLength = item.length;
-	  // for (var i = 0; i < arrayLength; i++) {
-	  //   console.log(allAtts[i])
-	  //   jsonified[allAtts[i]] = node.getAttribute(allAtts[i])
-	  //   //Do something
-	  // }
-	  // // node.remove()
-	  var key;
-	  for (key in item) {
-	    newEntity.setAttribute(key, item[key]);
-	  }
-	  // newEntity.setAttribute(item.type, item.value)
-	  // newEntity.setAttribute('gltf-model', item['gltf-model'])
-
-	  // add other attributes
-
-	  document.querySelector('a-scene').appendChild(newEntity);
-
-	}
-
-	function show$3(callback, animate) {
-
-	  if (!isInitialized$4) init$4();
-
-	  if (scope$3.isVisible) return
-	  scope$3.isVisible = true;
-
-	  listTab$3.show(callback, animate);
-
-	}
-
-	function hide$3(callback, animate) {
-
-	  if (!isInitialized$4) return
-
-	  if (!scope$3.isVisible) return
-	  scope$3.isVisible = false;
-
-	  listTab$3.hide(callback, animate);
-
-	}
-
-	// export
-
-	// import {FBAppDatabase} from './firebaseInit.js'
-
-
-	var scope$4 = {
-	  show: show$4,
-	  hide: hide$4,
-	  isVisible: false
-	};
-
-	// internal
-
-	var isInitialized$5 = false;
-	var listTab$4;
-
-	// method
-
-	function init$5() {
-
-	  listTab$4 = createListTabUi({
-	    title: 'Avatars',
-	    listInfo: 'Choose your avatar!',
-	    onItemDrop: addToScene$4,
-	    onHide: function() {
-	      scope$4.isVisible = false;
-	    }
-	  });
-
-	  listTab$4.init();
-
-	  listTab$4.setInfo('<a target="_blank" href="https://spaces.archilogic.com">Archilogic Models</a> for experimenting & testing. Kudos to <a target="_blank" href="https://twitter.com/Pandatology">@Pandatology</a>, <a target="_blank" href="https://twitter.com/anialdam">@anialdam</a>');
-
-	  tensorModels.initializeDatabase();
-	  tensorModels.fetchAvatars(itemsCallback$1);
-	}
-
-	function itemsCallback$1(itemsJson) {
-	  
-	  var items = [];
-	for(var i in itemsJson)
-	    items.push(itemsJson[i]);
-
-	  console.log("bro fetched items are");
-	  console.log(items);
-	  
-	  listTab$4.setList(items);
-	  isInitialized$5 = true;
-
-	} //.bind(listTab, isInitialized))
-	// listTab.setList(tensorModels.defaultItems)
-	// isInitialized = true
-
-
-
-	// }
-
-	function addToScene$4(item, position, callback) {
-
-	  var uiMessage = io3d.utils.ui.message('Loading' + (item.title ? ' "' + item.title + '" ' : ' ') + '...', 0);
-
-	  // add new entity to scene
-	  var newEntity = document.createElement('a-entity');
-	  //LINE ADDED BY JAFET
-	  newEntity.setAttribute('position', position.x + ' ' + position.y + ' ' + position.z);
-
-	  newEntity.addEventListener('model-loaded', function(event) {
-
-	    uiMessage.close();
-	    io3d.utils.ui.message.success('Added' + (item.title ? ' "' + item.title + '"' : 'model'));
-
-	    // center model to picking position
-
-	    //COMMENTED OUT BY JAFET
-	    // var bb = new THREE.Box3().setFromObject(event.detail.model) // bounding box
-	    // var size = new THREE.Vector3(Math.abs(bb.max.x - bb.min.x), Math.abs(bb.max.y - bb.min.y), Math.abs(bb.max.z - bb.min.z))
-	    // position.set(
-	    //   position.x - bb.min.x - size.x / 2,
-	    //   -bb.min.y,
-	    //   position.z - bb.min.z - size.z / 2
-	    // )
-	    // newEntity.setAttribute('position', position.x + ' 0 ' + position.z)
-
-	    callback();
-
-	  }, { once: true });
-
-
-	  // // var allAtts = node.getAttributeNames()
-	  // var arrayLength = item.length;
-	  // for (var i = 0; i < arrayLength; i++) {
-	  //   console.log(allAtts[i])
-	  //   jsonified[allAtts[i]] = node.getAttribute(allAtts[i])
-	  //   //Do something
-	  // }
-	  // // node.remove()
-	  var key;
-	  for (key in item) {
-	    newEntity.setAttribute(key, item[key]);
-	  }
-	  // newEntity.setAttribute(item.type, item.value)
-	  // newEntity.setAttribute('gltf-model', item['gltf-model'])
-
-	  // add other attributes
-
-	  document.querySelector('a-scene').appendChild(newEntity);
-
-	}
-
-	function show$4(callback, animate) {
-
-	  if (!isInitialized$5) init$5();
-
-	  if (scope$4.isVisible) return
-	  scope$4.isVisible = true;
-
-	  listTab$4.show(callback, animate);
-
-	}
-
-	function hide$4(callback, animate) {
-
-	  if (!isInitialized$5) return
-
-	  if (!scope$4.isVisible) return
-	  scope$4.isVisible = false;
-
-	  listTab$4.hide(callback, animate);
-
-	}
+	// expose API
 
 	// plugin manager & menu
 	// plugins
 	var PLUGINS = {
-	  // name
-	  furnitureLibrary: {
-	    // ui
-	    displayTitle: '🏠&nbsp;&nbsp;furniture library',
-	    // access
-	    module: scope
-	  },
+	  // furnitureLibrary: {
+	  //   // ui
+	  //   displayTitle: '🏠&nbsp;&nbsp;furniture library',
+	  //   // access
+	  //   module: furnitureLibrary
+	  // },
 	  polyModels: {
-	    displayTitle: '🥑&nbsp;&nbsp;poly.google.com',
-	    module: scope$1
-	  },
-	  staffPicks: {
-	    displayTitle: '✨&nbsp;&nbsp;staff picks',
+	    displayTitle: '🥑&nbsp;&nbsp;Main Library',
 	    module: scope$2
 	  },
-	  myItems: {
-	    displayTitle: '✨&nbsp;&nbsp;My Items',
-	    module: scope$3
-	  },
-	  avatars: {
-	    displayTitle: '✨&nbsp;&nbsp;Avatars',
-	    module: scope$4
-	  }
+	  // staffPicks: {
+	  //   displayTitle: '✨&nbsp;&nbsp;staff picks',
+	  //   module: staffPicks
+	  // },
+	  // myItems: {
+	  //   displayTitle: '✨&nbsp;&nbsp;My Items',
+	  //   module: myItems
+	  // },
+	  // avatars: {
+	  //   displayTitle: '✨&nbsp;&nbsp;Avatars',
+	  //   module: avatars
+	  // }
 	};
 
 	window.io3d.aFrame.activePluginName = null;
@@ -59531,6 +59030,10 @@
 	  appendCss();
 	  // pluginManager.show3dioButton()
 	  if (window.io3d.aFrame.activePluginName) pluginManager.showPlugin(window.io3d.aFrame.activePluginName, false);
+	  // var snackbarEl = el('<div>', {
+	  //     id: 'snackbar'
+	  //     // }).appendTo(listTab.el)
+	  //     }).appendTo('body')
 	}
 
 	function destroy() {

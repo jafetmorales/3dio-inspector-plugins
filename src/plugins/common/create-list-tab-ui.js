@@ -109,9 +109,9 @@ function createListTabUi(args) {
 
 
         if (e.stopPropagation) e.stopPropagation() // stops the browser from redirecting.
-        
-        
-                ////by jafet
+
+
+        ////by jafet
         ////THIS BELOW IS A PATCH BECAUSE THIS PACKAGE IS PREVENTING DEFAULT AND STOPPING PROPAGATION OF MOUSE EVENTS
         ////WHICH MAKES ANOTHER APPLICATION FAIL. I TRIED DEACTIVATING THE DEFAULT PREVENTION AND PROPAGATION STOPS
         ////BUT THAT WOULD MAKE THIS APPLICATION FAIL FOR SOME REASON.
@@ -120,8 +120,8 @@ function createListTabUi(args) {
         clickEvent.initEvent('mouseup', true, true);
         document.dispatchEvent(clickEvent);
 
-        
-        
+
+
         fadeInDropPlane()
         e.dataTransfer.effectAllowed = 'move'
         e.dataTransfer.setData('text/plain', JSON.stringify(item))
@@ -162,10 +162,10 @@ function createListTabUi(args) {
 
         //by jafet
         // if (e.preventDefault) e.preventDefault() // stops the browser from redirecting.
-        
-        
 
-        
+
+
+
 
         if (e.stopPropagation) e.stopPropagation() // stops the browser from redirecting.
 
@@ -210,6 +210,8 @@ function createListTabUi(args) {
 
     tab = createTabUi()
 
+
+
     var headerEl = el('<div>', {
       id: 'io3d-inspector-plugins___list-tab___header',
     }).appendTo(tab.el)
@@ -235,6 +237,8 @@ function createListTabUi(args) {
     listItemContainerEl = el('<div>', {
       id: 'io3d-inspector-plugins___list-tab___list-item-container',
     }).appendTo(listContainerEl)
+    listItemContainerEl.addEventListener('mousedown', onMouseDownOnItem, false)
+
 
     dropPlaneEl = el('<div>', {
       id: 'io3d-inspector-plugins___list-tab___drop-plane',
@@ -293,6 +297,23 @@ function createListTabUi(args) {
     e.dataTransfer.dropEffect = 'move' // See the section on the DataTransfer object.
 
     return false
+
+  }
+
+  //ADDED BY JAFET TO SHOW A SNACKBAR OR TOAST MESSAGE
+  function onMouseDownOnItem(e) {
+    // var snackbarEl = el('<div>', {
+    //   id: 'snackbar'
+    //   // }).appendTo(listTab.el)
+    // }).appendTo('body')
+
+    // var x = document.getElementById("snackbar");
+    // x.innerHTML = "Drag the objects to the scene"
+    // x.className = "show";
+    // setTimeout(function() { x.className = x.className.replace("show", ""); }, 3000);
+    
+    // io3d.utils.ui.message('Hint: You can use drag & drop ;)', 6000)
+        io3d.utils.ui.message.warning('Drag and drop <br> Arrastra y suelta', 2000)
 
   }
 
