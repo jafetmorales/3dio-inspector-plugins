@@ -9,19 +9,37 @@ import el from '../common/dom-el.js'
 // const dbFirebase = require('./common/FirebaseApp.js')
 // import dbFirebase from './FirebaseApp.js'
 
-var firebase = require('firebase');
-  var config = {
-    apiKey: "AIzaSyCbzifLOPONyCkD-qKWrTZEYgGEJ7ENlCQ",
-    authDomain: "vrquitect.firebaseapp.com",
-    databaseURL: "https://vrquitect.firebaseio.com",
-    projectId: "vrquitect",
-    storageBucket: "vrquitect.appspot.com",
-    messagingSenderId: "64632163737"
-  };
-const dbFirebase = firebase.initializeApp(config).database();
 
 
-// config
+
+// //JAFET COMMENTED OUT ON 4/30/2020
+// var firebase = require('firebase/app');
+// require('firebase/auth');
+// require('firebase/database');
+//   var config = {
+//     apiKey: "AIzaSyCbzifLOPONyCkD-qKWrTZEYgGEJ7ENlCQ",
+//     authDomain: "vrquitect.firebaseapp.com",
+//     databaseURL: "https://vrquitect.firebaseio.com",
+//     projectId: "vrquitect",
+//     storageBucket: "vrquitect.appspot.com",
+//     messagingSenderId: "64632163737"
+//   };
+// ///MODDED BY JAFET ON 4/14/2020
+// var dbFirebase
+
+
+
+
+
+
+
+//   if (!firebase.apps.length) {
+//     firebase.initializeApp(config)
+// dbFirebase = firebase.app().database();
+//   }
+// else {
+// dbFirebase = firebase.app().database()
+// }
 
 var DEFAULT_SEARCH_VALUE = 'house'
 
@@ -61,18 +79,19 @@ function init() {
 
 }
 
-function callSearchApi(offset, value) {
-  return fetch('https://gblock.3d.io/api/search?limit=10&offset=' + offset + '&query=' + value).then(function(response) {
-    console.log('THE OUTPUT FROM GBLOCKS IS')
-    // console.log(response.json())
-    return response.json()
-  })
-}
+// function callSearchApi(offset, value) {
+//   return fetch('https://gblock.3d.io/api/search?limit=10&offset=' + offset + '&query=' + value).then(function(response) {
+//     console.log('THE OUTPUT FROM GBLOCKS IS')
+//     // console.log(response.json())
+//     return response.json()
+//   })
+// }
 
 //JAFET ADDED
-const API_KEY = 'AIzaSyBxwTbPltkM5a8MiA5pG861i_Sx4o6_pew';
+const API_KEY = 'AIzaSyADzByPSy2AVnGwyQdBJ6Cib-nkboQ-VmM';
 function callPolyApi(offset, value) {
-  return fetch(`https://poly.googleapis.com/v1/assets?keywords=${value}&format=OBJ&key=${API_KEY}&maxComplexity=SIMPLE`).then(function(response) {
+  //COMPLEXITY CAN BE SIMPLE, MEDIUM, COMPLEX
+  return fetch(`https://poly.googleapis.com/v1/assets?keywords=${value}&format=OBJ&key=${API_KEY}&maxComplexity=COMPLEX`).then(function(response) {
     console.log('THE OUTPUT FROM POLY IS')
     // console.log(response.json())
     return response.json()
@@ -82,17 +101,17 @@ function callPolyApi(offset, value) {
 
 
 
-// NEW POLY STUFFFFFF
-// 	const API_KEY = 'AIzaSyD2l0Cy_cS9IqgA-W-bIHvYjbf24a6aUv4';
-function searchPoly(keywords, onLoad) {
-  var url = `https://poly.googleapis.com/v1/assets?keywords=${keywords}&format=OBJ&key=${API_KEY}`;
-  var request = new XMLHttpRequest();
-  request.open('GET', url, true);
-  request.addEventListener('load', function(event) {
-    onLoad(JSON.parse(event.target.response));
-  });
-  request.send(null);
-}
+// // NEW POLY STUFFFFFF
+// // 	const API_KEY = 'AIzaSyD2l0Cy_cS9IqgA-W-bIHvYjbf24a6aUv4';
+// function searchPoly(keywords, onLoad) {
+//   var url = `https://poly.googleapis.com/v1/assets?keywords=${keywords}&format=OBJ&key=${API_KEY}`;
+//   var request = new XMLHttpRequest();
+//   request.open('GET', url, true);
+//   request.addEventListener('load', function(event) {
+//     onLoad(JSON.parse(event.target.response));
+//   });
+//   request.send(null);
+// }
 // NEW POLY STUFFFFFF
 function onResults(data) {
   while (results.childNodes.length) {
@@ -224,7 +243,9 @@ function addToScene(item, position, callback) {
   var newEntity = document.createElement('a-entity')
   //ADDED BY JAFET
   newEntity.setAttribute('position', position.x + ' ' + position.y + ' ' + position.z)
-  newEntity.setAttribute('scale', 1 + ' ' + 1 + ' ' + 1)
+  // newEntity.setAttribute('scale', 1 + ' ' + 1 + ' ' + 1)
+  // newEntity.setAttribute('upon-insertion',JSON.stringify({ 'face-player': true }))
+  newEntity.setAttribute('upon-insertion',{ 'face-player': true })
 
   // newEntity.addEventListener('loaded', function () {
   //   console.log('the object has loaded')

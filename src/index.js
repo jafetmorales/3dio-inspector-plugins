@@ -6,7 +6,7 @@ import pluginManager from './plugin-manager.js'
 import furnitureLibrary from './plugins/furniture-library.js'
 import polyModels from './plugins/poly-models.js'
 import staffPicks from './plugins/staff-picks.js'
-import myItems from './plugins/my-items.js'
+import library from './plugins/library.js'
 import avatars from './plugins/avatars.js'
 
 var PLUGINS = {
@@ -17,21 +17,21 @@ var PLUGINS = {
   //   module: furnitureLibrary
   // },
   polyModels: {
-    displayTitle: '🥑&nbsp;&nbsp;Main Library',
+    displayTitle: '🥑&nbsp;&nbsp;Third-party Library',
     module: polyModels
   },
-  // staffPicks: {
-  //   displayTitle: '✨&nbsp;&nbsp;staff picks',
-  //   module: staffPicks
-  // },
-  // myItems: {
-  //   displayTitle: '✨&nbsp;&nbsp;My Items',
-  //   module: myItems
-  // },
-  // avatars: {
-  //   displayTitle: '✨&nbsp;&nbsp;Avatars',
-  //   module: avatars
-  // }
+  staffPicks: {
+    displayTitle: '✨&nbsp;&nbsp;staff picks',
+    module: staffPicks
+  },
+  library: {
+    displayTitle: '✨&nbsp;&nbsp;Library',
+    module: library
+  },
+  avatars: {
+    displayTitle: '✨&nbsp;&nbsp;Change Avatar',
+    module: avatars
+  }
 }
 
 window.io3d.aFrame.activePluginName = null
